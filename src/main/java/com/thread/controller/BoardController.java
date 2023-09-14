@@ -1,4 +1,4 @@
-package com.board.controller;
+package com.thread.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +10,12 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/main/*")
+@RequestMapping("/thread/*")
 @AllArgsConstructor
 public class BoardController {
 
     //로그인 이후 나오는 첫 페이지. 모든 글과 댓글이 보이도록 한다.
-    @GetMapping("/")
+    @GetMapping("/main")
     public void list(){
         log.info("Main Page Thread List");
     }
@@ -28,10 +28,10 @@ public class BoardController {
     @PostMapping("/newThread")
     public String makeThread() {
     		log.info("make thread complete");
-        return "redirect:/board/list";
+        return "redirect:/thread/list";
     }
     
-    @GetMapping("/main/threadId") //특정 아이디를 가진 스레드에 접속한다.
+    @GetMapping("/threadId") //특정 아이디를 가진 스레드에 접속한다.
     public void check_Thread() {
     	log.info("check a thread");
     }
