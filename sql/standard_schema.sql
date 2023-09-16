@@ -7,7 +7,6 @@ CREATE TABLE users (
 
 CREATE TABLE posts(
 	post_id INT AUTO_INCREMENT PRIMARY KEY,
-    post_title VARCHAR(255) NOT NULL,
     post_content TEXT NOT NULL,
     post_user_name VARCHAR(255),
     FOREIGN KEY (post_user_name) REFERENCES users(user_name),
