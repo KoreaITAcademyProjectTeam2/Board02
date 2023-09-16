@@ -1,0 +1,20 @@
+.search_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search_box ul {
+    display: flex;
+}
+
+.search_box ul input {
+    margin-right: 2px;
+    font-size: 10px;
+    text-align: center;
+}
+
+
+/* #search_box .search #but {
+    width
+} */

@@ -17,15 +17,15 @@ VALUES
 ('Post 1', 'Content for Post 1-2', 'User1'),
 ('Post 3', 'Content for Post 3-6', 'User3');
 
-INSERT INTO comments (comment_content, comment_post_id)
+INSERT INTO comments (comment_content, comment_post_id, comment_user_name)
 VALUES 
-('Comment 1 for Post 1', 1),
-('Comment 2 for Post 1', 1),
-('Comment 1 for Post 2', 2),
-('Comment 2 for Post 2', 2),
-('Comment 3 for Post 1', 1),
-('Comment 1 for Post 4', 4),
-('Comment 7 for Post 2', 2),
-('Comment 1 for Post 10', 10),
-('Comment 4 for Post 1', 1),
-('Comment 1 for Post 3', 3);
+('Comment 1 for Post 1', 1, 'User1'),
+('Comment 2 for Post 1', 1, 'User1'),
+('Comment 1 for Post 2', 2, 'User2'),
+('Comment 2 for Post 2', 2, 'User3'),
+('Comment 3 for Post 1', 1, 'User2'),
+('Comment 1 for Post 4', 4, 'User3'),
+('Comment 7 for Post 2', 2, 'User3'),
+('Comment 1 for Post 10', 10, 'User2'),
+('Comment 4 for Post 1', 1, 'User1'),
+('Comment 1 for Post 3', 3, 'User3');

@@ -12,7 +12,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/thread/*")
 @AllArgsConstructor
-public class BoardController {
+public class PostController {
 
     //로그인 이후 나오는 첫 페이지. 모든 글과 댓글이 보이도록 한다.
     @GetMapping("/main")
@@ -38,6 +38,5 @@ public class BoardController {
 
         log.info("check a thread");
     }
-    
-    
+
 }
