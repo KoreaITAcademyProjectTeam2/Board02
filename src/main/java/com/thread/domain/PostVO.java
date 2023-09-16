@@ -1,13 +1,12 @@
 package com.thread.domain;
 
-import lombok.Data;
-
 import java.util.Date;
+
+import lombok.Data;
 
 @Data
 public class PostVO {
     private Long post_id;
-    private String post_title;
     private String post_content;
     private String post_user_name;
     private Date post_add_date;
