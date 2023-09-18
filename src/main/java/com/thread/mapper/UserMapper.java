@@ -1,5 +1,5 @@
 package com.thread.mapper;
 
-public class UserMapper {
+public interface UserMapper {
 
 }

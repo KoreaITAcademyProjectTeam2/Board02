@@ -10,7 +10,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/thread/*")
+@RequestMapping("/*")
 @AllArgsConstructor
 public class PostController {
 
@@ -30,7 +30,7 @@ public class PostController {
     @PostMapping("/newThread")
     public String makeThread() {
     		log.info("make thread complete");
-        return "redirect:/thread/list";
+        return "redirect:./main";
     }
     
     @GetMapping("/threadId") //특정 아이디를 가진 스레드에 접속한다.

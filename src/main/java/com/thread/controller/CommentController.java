@@ -1,5 +1,5 @@
 package com.thread.controller;
 
-public class UserController {
+public class CommentController {
 
 }
