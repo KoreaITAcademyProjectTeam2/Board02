@@ -1,4 +1,4 @@
-/*
+
 header {
   display: flex;
   position: fixed;
@@ -12,9 +12,9 @@ header {
   background-color: white;
   z-index: 999;
 }
-*/
 
-/* (왜 있는지 모르겠음)
+
+/*(왜 있는지 모르겠음)*/
 .middle_box {
   display: inline;
   border: 1px solid red;
@@ -26,9 +26,9 @@ header {
   width: 22px;
 }
 
-*/
 
-/*
+
+
 .right_box {
   display: flex;
   position: relative;
@@ -105,7 +105,7 @@ header {
   height: 22px;
 }
 
-*/
+
 
 
 /* header css (내가 고친 부분)*/

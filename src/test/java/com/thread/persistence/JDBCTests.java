@@ -1,4 +1,4 @@
-package org.zerock.persistence;
+package com.thread.persistence;
 
 import static org.junit.Assert.fail;
 
@@ -11,22 +11,15 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class JDBCTests {
-	static {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
+
 	@Test
 	public void testConnection() {
 		
 		try(Connection con =
 				DriverManager.getConnection(
-				"jdbc:oracle:thin:@localhost:1521:XE",
-				"book_ex",
-				"book_ex")) {
+				"jdbc:mysql://34.64.70.237:3306/test",
+				"root",
+				"board0@")) {
 					
 					log.info(con);
 				} catch (Exception e) {

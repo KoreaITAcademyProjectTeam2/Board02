@@ -1,4 +1,4 @@
-package org.zerock.persistence;
+package com.thread.persistence;
 
 import static org.junit.Assert.fail;
 
