@@ -21,19 +21,19 @@ public class PostController {
         log.info("Main Page Thread List");
     }
 
-    @GetMapping("/newThread")
+    @GetMapping("/newPost")
     public void newPost() {
 
         log.info("make thread post");
     }
 
-    @PostMapping("/newThread")
+    @PostMapping("/newPost")
     public String makeThread() {
     		log.info("make thread complete");
         return "redirect:./main";
     }
     
-    @GetMapping("/threadId") //특정 아이디를 가진 스레드에 접속한다.
+    @GetMapping("/postId") //특정 아이디를 가진 스레드에 접속한다.
     public void check_Thread() {
 
         log.info("check a thread");

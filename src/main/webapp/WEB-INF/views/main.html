@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>main-page</title>
+  <link href="./styles/common.css" rel="stylesheet" type="text/css" />
+  <link href="./styles/nav.css" rel="stylesheet" type="text/css" />
+  <link href="./styles/body.css" rel="stylesheet" type="text/css" /> 
+</head>
+
+<body>
+  <header include-html="./header.html"></header>
+
+  <!--body-->
+  <div id="container">
+
+  </div>
+  <div class="none"></div>
+  
+  <div class="main_body">
+    <div class="right-none"></div>
+    <article>
+      <div class="story">
+        게시글 작성 위치
+        <form action="/newPost" method="post" id="">
+            <input type="textarea">
+        </form>
+      </div>
+      
+      <div class="feed">
+        <div class="feed_id">
+          <div class="id_round">
+            <div class="id_box">
+              <div class="id_box_img">
+                (profile_img)
+              </div>
+              <div class="id_container">
+                <div class="id_name">USER_NAME</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed_picture">
+          <p>게시글 내용</p>
+        </div>
+        <!--feedbottom-->
+        <div class="feed_bottom">
+          <div class="emoticon_box">
+            <div class="emoticon_box2">
+              <div class="heart_box">
+                <img class="heart" src="resources/img/heart.png" alt="하트">
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!--/feedbottom-->
+        <div class="feed_like_box">
+        </div>
+        <div class="feed_article">
+          <div class="feed_article_box">
+
+            <div class="comments1_box">
+              <div class="comments"><span>sunmerrr</span> 세원님 너무 멋져요!!</div>
+              <div class="comments">aida_shin.y 와 세원님 완전 화보</div>
+              <div class="comments">dooreplay 세원님 정말 짱이에요!</div>
+            </div>
+            <div class="new_comments">
+            </div>
+          </div>
+        </div>
+        <div class="inputContainer"> 
+          <div class="type_comment">
+            <input class="inputBox" type="text" placeholder="댓글 달기...">
+          </div>
+          <span>
+            <button class="buttonBox" type="summit">게시</button>
+          </span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+</body>
+
+</html>

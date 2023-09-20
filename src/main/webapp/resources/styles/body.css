@@ -8,6 +8,13 @@ body {
   padding-top: 75px;
   background-color: #fafafa;
 }
+
+.right_none {
+
+  margin: 1px;
+  padding: 1px;
+  border: 1px solid gray;
+}
 article {
   position: relative;
   right: 0px;
@@ -30,6 +37,7 @@ article {
   height: 117px;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
+  margin-bottom: 25px;
 }
 
 .my_profile{
@@ -37,17 +45,12 @@ article {
 }
 
 
-aside{
-  position: relative;
-  left:0px;
-  right:100px;
-}
-
-.feed_right_container{
-  position: sticky;
+.tag_right_container{
+  display: flex;
   width: 450px;
   top:0px;
   right:100px;
+  justify-content: flex-end;
 }
 
 .my_profile {
