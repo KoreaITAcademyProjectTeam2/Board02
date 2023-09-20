@@ -176,14 +176,10 @@ ul li {
   height: 40px;
 }
 .feed_picture {
-  width: 598px;
-  height: 598px;
+  width: 40%;
+  height: 500px;
 }
 
-.feed_picture img {
-  width: 598px;
-  height: 598px;
-}
 
 .emoticon_box {
   display: flex;

@@ -1,7 +1,7 @@
-<link href="./styles/common.css" rel="stylesheet" type="text/css" />
-  <link href="./styles/nav.css" rel="stylesheet" type="text/css" />
-  <link href="./styles/body.css" rel="stylesheet" type="text/css" /> 
-<link rel="stylesheet" href="header.css">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<link rel="stylesheet" href="/resources/header.css">
 <header>
   <div class="header-container">
     
@@ -22,14 +22,14 @@
 
     <div class="right_box">
       <span class="home_box">
-        <img class="home" src="resources/img/home.png" alt="탐색" />
+        <img class="home" src="/resources/img/home.png" alt="탐색" />
         <a href="message.html">
         </a>
       </span>
 
       <span class="direct_box">
         <a href="message.html">
-          <img class="direct" src="resources/img/direct.png" alt="메세지" />
+          <img class="direct" src="/resources/img/direct.png" alt="메세지" />
         </a>
       </span>
 
@@ -44,7 +44,7 @@
       </span>
 
       <span class="myProfile_box_2">
-        <img class="my_profile" src="resources/img/picture8.png" alt="내 프로필" />
+        <img class="my_profile" src="/resources/img/picture8.png" alt="내 프로필" />
       </span>
     </div>
   </div>
