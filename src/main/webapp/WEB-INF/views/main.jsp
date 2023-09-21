@@ -16,13 +16,9 @@
 <body>
 
   <!--body-->
-  <div id="container">
-
-  </div>
-  <div class="none"></div>
-  
+	<div class='none'></div>
+   
   <div class="main_body">
-    <div class="right-none"></div>
     <article>
       <!-- <div class="story">
         게시글 추가
@@ -30,61 +26,63 @@
             <input type="textarea">
         </form>
       </div> -->
-      
-      <div class="feed">
-        <div class="feed_id">
-
-            <div class="id_box">
-              <div class="id_box_img">
-                (profile_img)
-              </div>
-              <div class="id_container">
-                <div class="id_name">USER_NAME</div>
-              </div>
-            </div>
-
-        </div>
-
-        <div class="feed_picture">
-          <p>이미지 등 게시글 내용</p>
-        </div>
-        <!--feedbottom-->
-        <div class="feed_bottom">
-          <div class="emoticon_box">
-            <div class="emoticon_box2">
-              <div class="heart_box">
-                <img class="heart" src="/resources/img/heart.png" alt="좋아요 이미지">
-              </div>
-              <div class="comment_box">
-              	<img class="comment" src="/resources/img/comment.png" alt="댓글 이미지">
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <!--/feedbottom-->
-
-        <div class="feed_article">
-          <div class="feed_article_box">
-
-            <div class="comments1_box">
-              <div class="comments"><span class="comment_user_id">아이디1 </span>댓글1</div>
-              <div class="comments"><span class="comment_user_id">아이디2 </span>댓글2</div>
-              <div class="comments"><span class="comment_user_id">아이디3 </span>댓글3</div>
-            </div>
-            <div class="new_comments">
-            </div>
-          </div>
-        </div>
-        <div class="inputContainer"> 
-          <div class="type_comment">
-            <input class="inputBox" type="text" placeholder="댓글 작성...">
-          </div>
-          <span>
-            <button class="buttonBox" type="submit">게시</button>
-          </span>
-        </div>
+      <div class="feed-container">
+	      <div class="feed">
+	        <div class="feed_id">
+	
+	            <div class="id_box">
+	              <div class="id_box_img">
+	                (profile_img)
+	              </div>
+	              <div class="id_container">
+	                <div class="id_name">USER_NAME</div>
+	              </div>
+	            </div>
+	
+	        </div>
+	
+	        <div class="feed_picture">
+	          <p>이미지 등 게시글 내용</p>
+	        </div>
+	        <!--feedbottom-->
+	        <div class="feed_bottom">
+	          <div class="emoticon_box">
+	            <div class="emoticon_box2">
+	              <div class="heart_box">
+	                <img class="heart" src="/resources/img/heart.png" alt="좋아요 이미지">
+	              </div>
+	              <div class="comment_box">
+	              	<img class="comment" src="/resources/img/comment.png" alt="댓글 이미지">
+	              </div>
+	            </div>
+	
+	          </div>
+	        </div>
+	        <!--/feedbottom-->
+	
+	        <div class="feed_article">
+	          <div class="feed_article_box">
+	
+	            <div class="comments1_box">
+	              <div class="comments"><span class="comment_user_id">아이디1 </span>댓글1</div>
+	              <div class="comments"><span class="comment_user_id">아이디2 </span>댓글2</div>
+	              <div class="comments"><span class="comment_user_id">아이디3 </span>댓글3</div>
+	            </div>
+	            <div class="new_comments">
+	            </div>
+	          </div>
+	        </div>
+	        <div class="inputContainer"> 
+	          <div class="type_comment">
+	            <input class="inputBox" type="text" placeholder="댓글 작성...">
+	          </div>
+	          <span>
+	            <button class="buttonBox" type="submit">게시</button>
+	          </span>
+	        </div>
+	      </div>
       </div>
+
     </article>
 
   </div>
