@@ -6,16 +6,16 @@ aside{
   height: 100%;
   width: 20em;
   padding: 20px;
+  z-index: 999;
 }
 
 .tag_list{
-  position: sticky;
+
   top:100px;
   right:100px;
   border: 1px solid #ccc;
   padding: 20px;
 }
-  
 .tag_list ul{
   list-style: none;
   padding: 0;

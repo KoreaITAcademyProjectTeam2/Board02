@@ -9,6 +9,7 @@
       <li>tag1</li>
       <li>tag2</li>
       <li>tag3</li>
+      <input type="text">
     </ul>
   </div>
 </div>

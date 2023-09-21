@@ -15,8 +15,9 @@ body {
 
 article {
 	position: relative;
+	padding-top: 20px;
 	right: 0px;
-	background-color: #fafafa;
+	
 	border-radius: 3px;
 }
 
@@ -30,8 +31,13 @@ article {
 .feed {
 	width: 600px;
 	height: auto;
+	background-color: #fafafa;
 	border: 1px solid #dbdbdb;
 	border-radius: 3px;
+}
+
+.feed-container{
+	margin-bottom: 20px;
 }
 
 .story {
