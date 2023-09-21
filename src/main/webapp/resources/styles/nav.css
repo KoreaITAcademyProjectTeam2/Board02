@@ -1,4 +1,4 @@
-
+/* 
 header {
   display: flex;
   position: fixed;
@@ -11,7 +11,7 @@ header {
   border-bottom: solid 1px #dbdbdb;
   background-color: white;
   z-index: 999;
-}
+} */
 
 
 /*(왜 있는지 모르겠음)*/
@@ -26,20 +26,15 @@ header {
   width: 22px;
 }
 
-
-
-
-.right_box {
+/* .right_box {
   display: flex;
   position: relative;
   justify-content: space-around;
   align-items: center;
-  right: 80px;
-  width: 222px;
-}
+} */
 
 
-.left_box {
+/* .left_box {
   display: flex;
   position: relative;
   justify-content: flex-start;
@@ -48,7 +43,7 @@ header {
   top: 10px;
   width: 280px;
   height: 32px;
-}
+} */
 
 .camera {
   width: 22px;
@@ -64,12 +59,12 @@ header {
   width: 103px;
 }
 
-.logo_box {
+/* .logo_box {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+ */
 
 .seach_box {
   display: flex;
@@ -105,13 +100,10 @@ header {
   height: 22px;
 }
 
-
-
-
 /* header css (내가 고친 부분)*/
 
 header {
-  display: flex;
+/*   display: flex; */
   position: fixed;
   flex-direction: row;
   justify-content: center;
@@ -135,9 +127,9 @@ header {
 
 .search_box {
   position : relative;
-  display: flex;
+/*   display: flex; */
   align-items: center;
-  margin : 0 50px;
+/*   margin : 0 50px; */
   flex-shrink: 1;
 }
 
@@ -188,11 +180,11 @@ header {
 /* left_box css (내가 고친 부분)*/
 
 .left_box {
-  display: flex;
+/*   display: flex; */
   position: relative;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 10px;
+/*   margin-left: 10px; */
   flex-shrink: 0;
 }
 
@@ -209,7 +201,7 @@ header {
 }
 
 .logo_box {
-  display: flex;
+/*   display: flex; */
   align-items: center;
   justify-content: center;
 }
@@ -218,10 +210,12 @@ header {
 .right_box {
   display: flex;
   position: relative;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
-  margin-right: 10px;
+/*   margin-right: 10px; */
   flex-shrink: 0;
+/*   right: 80px;
+  width: 222px; */
 }
 
 .right_box span img {

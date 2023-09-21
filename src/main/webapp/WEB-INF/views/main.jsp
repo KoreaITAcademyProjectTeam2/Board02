@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="./header.jsp"%>
+<%@ include file="./aside.jsp"%>
 
 <head>
   <meta name="viewport" content="width=device-width" />
@@ -23,12 +24,12 @@
   <div class="main_body">
     <div class="right-none"></div>
     <article>
-      <div class="story">
+      <!-- <div class="story">
         게시글 추가
         <form action="/newPost" method="post" id="">
             <input type="textarea">
         </form>
-      </div>
+      </div> -->
       
       <div class="feed">
         <div class="feed_id">
@@ -65,8 +66,8 @@
 
             <div class="comments1_box">
               <div class="comments"><span>아이디1 </span>댓글1</div>
-              <div class="comments"><span>아이디1 </span>댓글1</div>
-              <div class="comments"><span>아이디1 </span>댓글1</div>
+              <div class="comments"><span>아이디2 </span>댓글2</div>
+              <div class="comments"><span>아이디3 </span>댓글3</div>
             </div>
             <div class="new_comments">
             </div>
