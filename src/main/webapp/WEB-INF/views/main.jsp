@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="/header.jsp"%>
-<%@ include file="/aside.jsp"%>
+<%@ include file="/resources/header/header.jsp"%>
+<%@ include file="/resources/header/aside.jsp"%>
 
 <head>
   <meta name="viewport" content="width=device-width" />

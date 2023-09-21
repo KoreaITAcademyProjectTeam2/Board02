@@ -6,7 +6,7 @@
   <div class="tag_list">
     <h2>Tags</h2>
     <ul>
-      <li>tag1</li>
+      <li>#<a href="/newPost">tag1</a></li>
       <li>tag2</li>
       <li>tag3</li>
       <input type="text">
