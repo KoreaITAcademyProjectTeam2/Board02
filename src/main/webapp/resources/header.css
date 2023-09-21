@@ -24,16 +24,22 @@ header, .header-container{
 }
 .search-input{
   width: 30em;
-  border: 1px solid gray;
+  border: 2px solid gray;
+  border-right-width: 0;
   border-radius: 1em 0 0 1em;
 }
 .search-btn{
   
   width: 5em;
-  border: 1px solid gray;
+  border: 2px solid gray;
   border-radius: 0 1em 1em 0em;
   color: white;
   background-color: rgb(141, 141, 212);
+}
+
+.search-btn:hover{
+	border: 2px solid black;
+	color: black;
 }
 
 /* .right-box{

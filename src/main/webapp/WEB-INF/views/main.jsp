@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="./header.jsp"%>
-<%@ include file="./aside.jsp"%>
+<%@ include file="/header.jsp"%>
+<%@ include file="/aside.jsp"%>
 
 <head>
   <meta name="viewport" content="width=device-width" />
@@ -33,7 +33,7 @@
       
       <div class="feed">
         <div class="feed_id">
-          <div class="id_round">
+
             <div class="id_box">
               <div class="id_box_img">
                 (profile_img)
@@ -42,7 +42,7 @@
                 <div class="id_name">USER_NAME</div>
               </div>
             </div>
-          </div>
+
         </div>
 
         <div class="feed_picture">
@@ -55,6 +55,9 @@
               <div class="heart_box">
                 <img class="heart" src="/resources/img/heart.png" alt="좋아요 이미지">
               </div>
+              <div class="comment_box">
+              	<img class="comment" src="/resources/img/comment.png" alt="댓글 이미지">
+              </div>
             </div>
 
           </div>
@@ -65,9 +68,9 @@
           <div class="feed_article_box">
 
             <div class="comments1_box">
-              <div class="comments"><span>아이디1 </span>댓글1</div>
-              <div class="comments"><span>아이디2 </span>댓글2</div>
-              <div class="comments"><span>아이디3 </span>댓글3</div>
+              <div class="comments"><span class="comment_user_id">아이디1 </span>댓글1</div>
+              <div class="comments"><span class="comment_user_id">아이디2 </span>댓글2</div>
+              <div class="comments"><span class="comment_user_id">아이디3 </span>댓글3</div>
             </div>
             <div class="new_comments">
             </div>

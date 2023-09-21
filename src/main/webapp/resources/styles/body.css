@@ -1,12 +1,10 @@
 body {
-	background-color: #fafafa;
 }
 
 .none {
 	width: auto;
 	height: 40px;
 	padding-top: 75px;
-	background-color: #fafafa;
 }
 
 .right_none {
@@ -32,6 +30,8 @@ article {
 .feed {
 	width: 600px;
 	height: auto;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
 }
 
 .story {
@@ -42,22 +42,11 @@ article {
 }
 
 .my_profile {
-	border-radius: 50%;
-}
-
-.tag_right_container {
-	display: flex;
-	width: 450px;
-	top: 0px;
-	right: 100px;
-	justify-content: flex-end;
-}
-
-.my_profile {
 	display: flex;
 	height: 95px;
 	margin: 0px;
 	background-color: #fafafa;
+	border-radius: 50%;
 }
 
 .recommendation_box {
@@ -74,30 +63,11 @@ article {
 	top: 11px;
 }
 
-.feed {
-	border: 1px solid #dbdbdb;
-	border-radius: 3px;
-}
-
 .feed_id {
 	position: relative;
 	display: flex;
 	justify-content: center;
 	height: 60px;
-}
-
-.id_round {
-	display: flex;
-	position: absolute;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	top: 15px;
-	left: 10px;
-	width: 32px;
-	height: 32px;
-	background-size: contain;
-	border-radius: 50%;
 }
 
 .id_box {
@@ -160,8 +130,7 @@ article {
 .emoticon_box {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+	justify-content: end;
 	height: 40px;
 	margin: 0px;
 }
@@ -197,8 +166,6 @@ article {
 }
 
 .feed_like_box {
-	display: flex;
-	position: relative;
 	flex-direction: row;
 	align-items: center;
 	height: 30px;
@@ -242,6 +209,12 @@ article {
 	flex-direction: column;
 	padding: 0 16px 0 16px;
 }
+
+.comment_user_id{
+	font-weight: 700;
+	padding: 0 16px 0 0;
+}
+
 
 .comments_container {
 	display: flex;
