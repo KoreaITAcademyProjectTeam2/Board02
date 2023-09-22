@@ -10,16 +10,11 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/*")
+@RequestMapping("/main/*")
 @AllArgsConstructor
 public class PostController {
 
-    //로그인 이후 나오는 첫 페이지. 모든 글과 댓글이 보이도록 한다.
-    @GetMapping("/main")
-    public void list(){
 
-        log.info("Main Page Thread List");
-    }
 
     @GetMapping("/newPost")
     public void newPost() {
@@ -30,7 +25,7 @@ public class PostController {
     @PostMapping("/newPost")
     public String makeThread() {
     		log.info("make thread complete");
-        return "redirect:./main";
+        return "redirect:/main";
     }
     
     @GetMapping("/postId") //특정 아이디를 가진 스레드에 접속한다.

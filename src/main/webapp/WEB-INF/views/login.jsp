@@ -2,24 +2,41 @@
     pageEncoding="UTF-8"
     session ="true"
     %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>repl.it</title>
+    <link href="/resources/styles/common.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/styles/login.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <header class="logo">
+        <div>
+          <img class="logoPicture" src="resources/img/logo_text.png" alt="인스타 로고" />
+        </div>
+      </header>
+      <form class="login-container" method="post" action="/main">
+        <input type="text" name="id" class="id" placeholder="이메일" />
+        <input type="password" name="password" class="password" placeholder="비밀번호" />
+        <input type="submit" class="loginBtn" value="로그인" />
+    </form>
     
-    <%request.setCharacterEncoding("UTF-8");
-    String id = request.getParameter("id");
-    String pwd = request.getParameter("password");
-    String sessionId = session.getId();
-    
-    session.setAttribute("idKey", id);
-    session.setMaxInactiveInterval(60/12);
-    
-    if(id != null){
-    %>
+    <footer>
+      <form method="post" action="password_check.html">
+      <input type = "submit" value = "비밀번호를 잊으셨나요?" name = "pwd_check" class = "pwd_check" />
+    </footer>
+</div>
 
-    
-    
-    
-    <%
-    session.invalidate();
-    } else {
-    out.println("세션의 시간이 경과를 하였거나 다른 이유로 연결을 할 수 없습니다.");
-    }
-    %>
+<div class="member-container">
+  <form method="post" action="member.html">
+    <span>계정이 없으신가요?</span>
+    <input type="submit" name="member" class="member" value="회원가입" />
+  </form>
+</div>
+<!-- <script src="js/login.js"></script> -->
+  </body>
+</html>
+
