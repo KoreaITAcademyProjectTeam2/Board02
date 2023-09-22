@@ -38,5 +38,4 @@ public class PostController {
 
         log.info("check a thread");
     }
-
 }

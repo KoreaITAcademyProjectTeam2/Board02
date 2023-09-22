@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/resources/aside.css">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 <aside>
 <div class="tag_right_container">
   <div class="tag_list">

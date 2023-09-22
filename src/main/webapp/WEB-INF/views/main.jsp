@@ -26,7 +26,7 @@
             <input type="textarea">
         </form>
       </div> -->
-      <div class="feed-container">
+      <div href="/newPost" class="feed-container">
 	      <div class="feed">
 	        <div class="feed_id">
 	
@@ -41,9 +41,9 @@
 	
 	        </div>
 	
-	        <div class="feed_picture">
+	        <a href="./newPost" class="feed_picture">
 	          <p>이미지 등 게시글 내용</p>
-	        </div>
+	        </a>
 	        <!--feedbottom-->
 	        <div class="feed_bottom">
 	          <div class="emoticon_box">

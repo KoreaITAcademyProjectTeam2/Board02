@@ -38,6 +38,8 @@ article {
 
 .feed-container{
 	margin-bottom: 20px;
+	text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 기본 글자색 사용 */
 }
 
 .story {
@@ -70,28 +72,30 @@ article {
 }
 
 .feed_id {
+	
 	position: relative;
 	height: 60px;
+	width: 100%;
 }
 
 .id_box {
 	display: flex;
-	position: absolute;
+/* 	position: absolute;
 	flex-direction: row;
-	align-items: flex-start;
+	align-items: flex-start; */
 	justify-content: flex-start;
-	left: 0px;
+/* 	left: 0px;
 	top: 0px;
-	width: 536px;
-	height: 41px;
+ */	width: 100%px;
+	height: 100%px;
 }
 
 .id_container {
 	display: flex;
+	align-items: center;
 	position: relative;
-	flex-direction: column;
-	align-items: flex-start;
 	left: 10px;
+	height: 100%;
 }
 
 .id_img {
@@ -100,11 +104,18 @@ article {
 	border-radius: 50%;
 }
 
-.id_name {
-	margin-bottom: 3px;
+.id_name {    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 기본 글자색 사용 */
 	font-size: 14px;
 	font-weight: 600;
 }
+
+.id_box_img {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
 
 .place {
 	font-size: 12px;
@@ -123,20 +134,29 @@ article {
 }
 
 .feed_picture {
-	height: 500px;
-	border: 1px solid #efefef;
+	max-height: 500px;
+
 }
 
 .feed_picture p {
+	padding: 10px;
+	text-align: left;
 	width: 100%;
 }
+
+.feed_bottom{
+	border-top: 1px solid #dbdbdb;
+}
+
 
 .emoticon_box {
 	display: flex;
 	flex-direction: row;
 	justify-content: end;
+	align-items: center;
 	height: 40px;
 	margin: 0px;
+	padding: 10px;
 }
 
 .emoticon_box2 {

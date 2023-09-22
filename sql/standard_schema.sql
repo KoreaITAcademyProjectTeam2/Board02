@@ -6,7 +6,7 @@ CREATE TABLE users (
 	);
 
 CREATE TABLE posts(
-	post_id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT AUTO_INCREMENT PRIMARY KEY,
     post_content TEXT NOT NULL,
     post_user_email VARCHAR(255),
     post_add_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -15,8 +15,8 @@ CREATE TABLE posts(
     );
     
 CREATE TABLE comments(
-	comment_id INT AUTO_INCREMENT PRIMARY KEY,
-	comment_content TEXT NOT NULL,
+    comment_id INT AUTO_INCREMENT PRIMARY KEY,
+    comment_content TEXT NOT NULL,
     comment_user_email VARCHAR(255),
     comment_post_id INT,
     comment_add_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
