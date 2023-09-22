@@ -1,0 +1,7 @@
+화면 상단바(header), 사이드바(aside)
+/resources/header/aside.jsp
+/resources/header/header.jsp
+
+기본 화면 css
+ - /resources/styles/body.css
+ - /resources/styles/body.css
