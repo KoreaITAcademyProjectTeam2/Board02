@@ -100,10 +100,21 @@ footer {
   margin : 0;
 }
 
-.pwd_check {
+.small_text {
   background-color: transparent;
   color: black;
   border: none;
   cursor: pointer;
   font-size: 12px; 
+}
+
+.userJoin-container input {
+  display: block;
+  width: 100px;
+  height: 30px;
+  padding: 8px;
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+  font-family: -apple-;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
 }

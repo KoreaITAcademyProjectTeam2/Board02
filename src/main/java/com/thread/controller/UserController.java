@@ -20,6 +20,13 @@ public class UserController {
 
         log.info("Main Page Thread List");
     }
+    
+	@PostMapping("/main")
+	public String loginSuccess() {
+		log.info("go mainPage");
+		
+		return "redirect:./main";
+	}
 	
 	@GetMapping("/login")
     public void loginPage(){
@@ -27,11 +34,20 @@ public class UserController {
         log.info("Login Page");
     }
 	
-	@PostMapping("/main")
-	public String loginSuccess() {
-		log.info("go mainPage");
+	@PostMapping("/login")
+	public String userJoinSuccess() {
+		log.info("go LoginPage");
 		
-		return "redirect:./main";
+		return "redirect:./login";
 	}
+	
+	
+	@PostMapping("/userJoin")
+	public void userJoinPage() {
+		log.info("UserJoin Page");
+	}
+	
+
+	
 	
 }

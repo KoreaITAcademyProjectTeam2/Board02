@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"
     session ="true"
     %>
+    
 <!DOCTYPE html>
 <html>
   <head>
+  <link rel="icon" href="/resources/favicon.ico" type="image/x-icon">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>repl.it</title>
+    <title>login</title>
     <link href="/resources/styles/common.css" rel="stylesheet" type="text/css" />
     <link href="/resources/styles/login.css" rel="stylesheet" type="text/css" />
   </head>
@@ -26,14 +28,15 @@
     
     <footer>
       <form method="post" action="password_check.html">
-      <input type = "submit" value = "비밀번호를 잊으셨나요?" name = "pwd_check" class = "pwd_check" />
+      <input type = "submit" value = "비밀번호를 잊으셨나요?" name = "pwd_check" class = "small_text" />
+		</form>
     </footer>
 </div>
 
 <div class="member-container">
-  <form method="post" action="member.html">
+  <form method="post" action="/userJoin">
     <span>계정이 없으신가요?</span>
-    <input type="submit" name="member" class="member" value="회원가입" />
+    <input type="submit" class="member" value="회원가입" />
   </form>
 </div>
 <!-- <script src="js/login.js"></script> -->
