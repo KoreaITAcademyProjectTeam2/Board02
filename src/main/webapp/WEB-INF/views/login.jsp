@@ -33,10 +33,10 @@
     </footer>
 </div>
 
-<div class="member-container">
+<div class="user-container">
   <form method="post" action="/userJoin">
     <span>계정이 없으신가요?</span>
-    <input type="submit" class="member" value="회원가입" />
+    <input type="submit" class="user" value="회원가입" />
   </form>
 </div>
 <!-- <script src="js/login.js"></script> -->

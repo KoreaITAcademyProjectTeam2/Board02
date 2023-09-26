@@ -20,15 +20,29 @@
         </div>
       </header>
       <form method="post" action="/login">
-        <input type="text" name="id" class="user_Join" placeholder="이메일" />
-        <input type="submit" class="confirm" value="인증" /><p/>
-        <input type="text" name="id" class="id" placeholder="이메일 인증 번호" />
+      	<div class="email-form">
+      		<input type="text" name="id" class="user_Join" placeholder="이메일" />
+        	<input type="submit" class="confirm" value="인증" /><p/>
+      	</div>
+        <div class="email-form">
+        <input type="text" name="id" class="user_Join" placeholder="이메일 인증 번호" />
         <input type="submit" class="confirm" value="확인" /><p/>
-        <input type="password" name="password" class="password" placeholder="비밀번호" /><p/>
-        <input type="password" name="password" class="password" placeholder="비밀번호 확인" />
+        </div>
+        
+       <div class="email-form">
+       <input type="password" name="password" class="user_Join" placeholder="비밀번호" />
+       <div style="width: 54px;"></div> <!-- This is the spacer div -->
+       </div>
+
+        <div class="email-form">
+        <input type="password" name="password" class="user_Join" placeholder="비밀번호 확인" />
         <input type="submit" class="confirm" value="확인" /><p/>
-        <input type="password" name="nickname" placeholder="닉네임" />
-    </form>
+        </div>
+        <div class="email-form">
+        <input type="password" name="nickname" class="user_Join" placeholder="닉네임" />
+        <div style="width: 54px;"></div> <!-- This is the spacer div -->
+        </div>
+        </form>
     
     <footer>
       <form method="post" action="/login">

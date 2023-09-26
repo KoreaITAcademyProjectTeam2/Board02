@@ -64,7 +64,7 @@ footer {
 }
 
 
-.member-container {
+.user-container {
   display: flex;
   justify-content: center;  /* 가로 중앙 정렬 */
   align-items: center;      /* 세로 중앙 정렬 */
@@ -77,19 +77,19 @@ footer {
   margin-top: 10px;
 }
 
-.member-container form {
+.user-container form {
   display: flex;           /* form 요소 내의 항목들을 flex로 만들어 줍니다. */
   align-items: center;     /* form 요소 내의 항목들을 세로 중앙 정렬합니다. */
   gap: 0;               /* 항목들 사이의 간격을 줍니다. */
 }
 
-.member-container span {
+.user-container span {
   font-weight: bold;       /* '계정이 없으신가요?'의 글자 무게를 굵게 설정합니다. */
   font-size: 14px;         /* 글자 크기를 설정합니다. */
   margin-left : 0;
 }
 
-.member {
+.user {
   background-color: transparent;
   color: blue;
   border: none;
@@ -107,6 +107,35 @@ footer {
   cursor: pointer;
   font-size: 12px; 
 }
+
+
+.user_Join {
+	display: block;
+	width: 150px;
+	height: 36px;
+	padding: 8px;
+	color: rgba(var(--i1d, 38, 38, 38), 1);
+	font-family: -apple-;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+}
+
+.confirm{
+	display: block;
+	width: 45px;
+	height: 36px;
+	padding: 8px;
+	color: rgba(var(--i1d, 38, 38, 38), 1);
+	font-family: -apple-;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.email-form{
+	display: flex;
+}
+
 
 /* .userJoin-container input {
   display: block;
