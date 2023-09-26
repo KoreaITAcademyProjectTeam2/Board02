@@ -41,7 +41,7 @@
 	
 	        </div>
 	
-	        <a href="./newPost" class="feed_picture">
+	        <a href="/main/newPost" class="feed_picture">
 	          <p>이미지 등 게시글 내용</p>
 	        </a>
 	        <!--feedbottom-->
@@ -55,23 +55,18 @@
 	              	<img class="comment" src="/resources/img/comment.png" alt="댓글 이미지">
 	              </div>
 	            </div>
-	
 	          </div>
 	        </div>
 	        <!--/feedbottom-->
 	
 	        <div class="feed_article">
 	          <div class="feed_article_box">
-	
 	            <div class="comments1_box">
 	              <div class="comments"><span class="comment_user_id">아이디1 </span>댓글1</div>
-	              <div class="comments"><span class="comment_user_id">아이디2 </span>댓글2</div>
-	              <div class="comments"><span class="comment_user_id">아이디3 </span>댓글3</div>
-	            </div>
-	            <div class="new_comments">
 	            </div>
 	          </div>
 	        </div>
+	        <!-- 게시글의 댓글 -->
 	        <div class="inputContainer"> 
 	          <div class="type_comment">
 	            <input class="inputBox" type="text" placeholder="댓글 작성...">
@@ -80,6 +75,7 @@
 	            <button class="buttonBox" type="submit">게시</button>
 	          </span>
 	        </div>
+	        <!-- 댓글 작성 폼 -->
 	      </div>
       </div>
 

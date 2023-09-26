@@ -1,5 +1,7 @@
 package com.thread.service;
 
-public interface PostService {
+import com.thread.domain.PostVO;
 
+public interface PostService {
+	public void newPost(PostVO post);
 }

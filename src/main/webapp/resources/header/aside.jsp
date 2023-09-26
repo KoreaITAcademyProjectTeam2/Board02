@@ -10,7 +10,6 @@
       <li>#<a href="/newPost">tag1</a></li>
       <li>tag2</li>
       <li>tag3</li>
-      <input type="text">
     </ul>
   </div>
 </div>
