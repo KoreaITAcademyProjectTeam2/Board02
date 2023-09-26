@@ -22,12 +22,12 @@ body {
 }
 
 .logoPicture {
-  margin: 35px 0;
+  margin: 28px 0;
 }
 
 .login-container input {
   display: block;
-  width: 270px;
+  width: 250px;
   height: 36px;
   padding: 8px;
   color: rgba(var(--i1d, 38, 38, 38), 1);
@@ -45,9 +45,9 @@ body {
   border-radius: 5px;
 }
 
-h1 {
+/* h1 {
   font-size: 50px;
-}
+} */
 
 input {
   margin: 3px auto;
@@ -57,7 +57,7 @@ input {
 
 footer {
   position: relative;
-  top: 65px;
+  top : 10px;
   color: rgba(var(--fe0, 0, 55, 107), 1);
   font-size: 12px;
   text-align: center;

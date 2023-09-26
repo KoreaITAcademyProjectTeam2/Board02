@@ -21,8 +21,10 @@
         </div>
       </header>
       <form class="login-container" method="post" action="/main">
-        <input type="text" name="id" class="id" placeholder="이메일" />
-        <input type="password" name="password" class="password" placeholder="비밀번호" />
+      <div class="email-form">
+        <input type="text" name="id" placeholder="이메일" />
+        </div>
+        <input type="password" name="password" placeholder="비밀번호" />
         <input type="submit" class="loginBtn" value="로그인" />
     </form>
     
