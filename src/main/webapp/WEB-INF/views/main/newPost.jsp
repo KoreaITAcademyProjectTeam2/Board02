@@ -28,7 +28,7 @@
       </div> -->
       <div class="feed-container">
 	      <form class="feed" action="/main/newPost" method="POST">
-			<div class="feed_picture"></div>
+	
 	        <a href="/main" class="feed_picture">
 	          <p>이미지 등 게시글 내용</p>
 	        </a>

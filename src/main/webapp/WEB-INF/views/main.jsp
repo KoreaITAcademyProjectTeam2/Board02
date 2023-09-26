@@ -40,9 +40,14 @@
 	            </div>
 	
 	        </div>
-	
+			
 	        <a href="/main/newPost" class="feed_picture">
 	          <p>이미지 등 게시글 내용</p>
+	          sadflsadmfklasmkdlfasd
+	          asdlfkmsakdlfmsdlkf
+	          asdlfmsldkfmslkdf
+	          sakdlfmsdlmflsdf
+	          sfsad
 	        </a> 
 	        <!-- 삭제 예정. 이곳에는 게시글의 내용이 추가된다. -->
 	        
@@ -66,8 +71,8 @@
 	        <div class="feed_article">
 	          <div class="feed_article_box">
 	            <div class="comments1_box">
-	              <div class="comment_user_id"><div class="comments">아이디1</div></div>
-	              <div class="comments-comment"><div class="comments">asdfasdfkljsakdlfnsa;dlfndf;klndvxlnvjklandfgklbakbgfklasbfdiksadfisadfbksadfbasdfm sadf, safd sa,dsklfsmakflk</div></div>
+	              <div class="comment_user_id">아이디1</div>
+	              <div class="comments-comment"></div>
 	            </div>
 	          </div>
 	        </div>
