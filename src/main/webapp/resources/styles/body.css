@@ -72,9 +72,8 @@ article {
 }
 
 .feed_id {
-	
+	border-bottom: 1px solid #dbdbdb;
 	position: relative;
-	height: 60px;
 	width: 100%;
 }
 
@@ -146,6 +145,7 @@ article {
 
 .feed_bottom{
 	border-top: 1px solid #dbdbdb;
+	border-bottom: 1px solid #dbdbdb;
 }
 
 
@@ -227,16 +227,17 @@ article {
 }
 
 .feed_article_box {
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	flex-direction: column;
-	padding: 0 16px 0 16px;
+	width: 100%;
+	padding: 0 16px;
+	text-align: center;
 }
 
 .comment_user_id{
+	width: 6em;
+	height: 100%;
 	font-weight: 700;
 	padding: 0 16px 0 0;
+	border-right: 1px solid #dbdbdb;
 }
 
 
@@ -245,9 +246,18 @@ article {
 }
 
 .comments {
+	height: 100%;
 	font-size: 14px;
 	line-height: 18px;
 	padding: 2px;
+	overflow: auto;
+}
+
+.comments-comment {
+	width: 100%;
+	padding-left: 1em;
+	text-align: left;
+	margin: 0;
 }
 
 .comments1 {
@@ -258,10 +268,10 @@ article {
 }
 
 .comments1_box {
+	width: 100%;
 	display: flex;
 	justify-content: flex-start;
 	align-items: flex-start;
-	flex-direction: column;
 }
 
 .new_comments {
@@ -295,7 +305,7 @@ article {
 	height: 56px;
 	padding: 0 12px 0 12px;
 	margin: 0px;
-	border-top: 1px solid #efefef;
+	border-top: 1px solid #dbdbdb;
 }
 
 .inputBox {
@@ -309,11 +319,19 @@ article {
 }
 
 .buttonBox {
+	margin-right: 
 	background-color: #FAFAFA;
 	color: #C0E0FD;
 	outline: none;
 	border: solid 0px;
 }
+
+.buttonBox:hover{
+	color: #0789ff;
+	font-weight: 700;
+	cursor: pointer;
+}
+
 
 .type_comment {
 	display: flex;
@@ -468,4 +486,13 @@ article {
 .recommendation {
 	font-size: 14px;
 	color: #8e8e8e;
+}
+
+
+textarea {
+	height: 100%;
+	width: 95%;
+	padding: 0.5em 1em;
+	margin: 1em;
+	border: 1px solid #dbdbdb;
 }

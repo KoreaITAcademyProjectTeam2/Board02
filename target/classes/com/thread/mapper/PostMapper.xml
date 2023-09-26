@@ -10,5 +10,21 @@
     values(#{post_content}, #{post_user_email})
 </insert>
 
+<select id="getList" resultType="com.thread.domain.PostVO">
+	<![CDATA[
+		select * from posts
+	]]>
+</select>
+
+<delete id="delete">
+	
+</delete>
+
+<update id="update">
+	update posts
+	set post_content=#{post_content},
+	post_modify_date = TIMESTAMP,
+	where post_id
+</update>
 
 </mapper>

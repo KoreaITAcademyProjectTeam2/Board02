@@ -27,22 +27,20 @@
         </form>
       </div> -->
       <div class="feed-container">
-	      <div class="feed">
-	
+	      <form class="feed" action="/main/newPost" method="POST">
+			<div class="feed_picture"></div>
 	        <a href="/main" class="feed_picture">
 	          <p>이미지 등 게시글 내용</p>
 	        </a>
-	        <textarea rows="5" cols=50 name='content'>글 작성</textarea>
+	        <textarea rows="5" cols=50 name='content' placeholder="글 작성"></textarea>
 	        <!--feedbottom-->
 	        <div class="feed_bottom">
 	          <div class="emoticon_box">
-	            <div class="emoticon_box2">
-					게시 버튼
-	            </div>
+	            <button class="buttonBox" type="submit">게시</button>
 	          </div>
 	        </div>
 	        <!--/feedbottom-->
-	      </div>
+	      </form>
       </div>
 
     </article>

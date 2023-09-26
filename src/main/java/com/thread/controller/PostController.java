@@ -28,8 +28,12 @@ public class PostController {
 
     @PostMapping("/newPost")
     public String makePost(PostVO post) {
-    		log.info("make post complete");
-        return "redirect:/main";
+    	
+    	
+    	
+    	log.info("make post complete");
+        
+    	return "redirect:/main";
     }
     
     @GetMapping("/postId") //특정 아이디를 가진 스레드에 접속한다.

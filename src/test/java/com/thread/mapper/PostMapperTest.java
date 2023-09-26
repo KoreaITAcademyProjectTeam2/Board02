@@ -20,7 +20,12 @@ public class PostMapperTest {
 	private PostMapper mapper;
 	
 	@Test
-	public void testIsert() {
+	public void testGetList() {
+		mapper.getList();
+	}
+	
+	@Test
+	public void testInsert() {
 		
 		PostVO post = new PostVO();
 		post.setPost_content("새로 작성하는 내용");
