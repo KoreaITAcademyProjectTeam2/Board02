@@ -10,7 +10,8 @@
   <title>main-page</title>
   <link href="/resources/styles/common.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/nav.css" rel="stylesheet" type="text/css" />
-  <link href="/resources/styles/body.css" rel="stylesheet" type="text/css" /> 
+  <link href="/resources/styles/body.css" rel="stylesheet" type="text/css" />
+  <link href="/resources/styles/comments.css" rel="stylesheet" type="text/css" />  
 </head>
 
 <body>
@@ -40,44 +41,55 @@
 	            </div>
 	
 	        </div>
-			
-	        <a href="/main/newPost" class="feed_picture">
-	          <p>이미지 등 게시글 내용</p>
-	          sadflsadmfklasmkdlfasd
-	          asdlfkmsakdlfmsdlkf
-	          asdlfmsldkfmslkdf
-	          sakdlfmsdlmflsdf
-	          sfsad
-	        </a> 
-	        <!-- 삭제 예정. 이곳에는 게시글의 내용이 추가된다. -->
-	        
+				<div class="feed-post-box">
+					<div class="feed_picture">
+						<p>이미지 등 게시글 내용</p>
+					</div>
+					<div class="feed_text">
+					  sadflsadmfklasmkdlfasd
+					  asdlfkmsakdlfmsdlkf
+					  asdlfmsldkfmslkdf
+					  sakdlfmsdlmflsdf
+					  sfsad
+					</div>
+				</div>
+
+	          
 	        <!--feedbottom-->
 	        <div class="feed_bottom">
+	          
 	          <div class="emoticon_box">
+	          	<div>
+	          		
+	          	</div>
 	            <div class="emoticon_box2">
 	              <div class="heart_box">
 	                <img class="heart" src="/resources/img/heart.png" alt="좋아요 이미지">
+	                <div class="emoticon_number">333</div>
 	                <!-- 좋아요 표시. -->
 	              </div>
 	              <div class="comment_box">
 	              	<img class="comment" src="/resources/img/comment.png" alt="댓글 이미지">
+	              	<div class="emoticon_number">333</div>
 	              	<!-- 댓글 작성 페이지로 넘어감. -->
 	              </div>
 	            </div>
 	          </div>
+
 	        </div>
+
 	        <!--/feedbottom-->
 	
 	        <div class="feed_article">
 	          <div class="feed_article_box">
 	            <div class="comments1_box">
 	              <div class="comment_user_id">아이디1</div>
-	              <div class="comments-comment"></div>
+	              <div class="comments-comment">asdlfsfsadlfnasdlnfklansdfklsankdlfkaslasfl;asd;fma;'dfm;sdfmkdmf;lzcmv;lzmcv;klanm;lnsd;lknsadlnskafdlnsadlf</div>
 	            </div>
 	          </div>
 	        </div>
 	        <!-- 게시글의 댓글 -->
-	        <div class="inputContainer">
+<!-- 	        <div class="inputContainer">
 	          <div class="type_comment">
 	            <input class="inputBox" type="text" placeholder="댓글 작성...">
 	          </div>
@@ -85,7 +97,7 @@
 	            <button class="buttonBox" type="submit">게시</button>
 	          </span>
 	        </div>
-	        <!-- 댓글 작성 폼 -->
+	        댓글 작성 폼 -->
 	      </div>
       </div>
 

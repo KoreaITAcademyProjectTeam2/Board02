@@ -7,7 +7,9 @@
     
     <div class="left_box">
       <span class="logo_box">
-        (로고 영역)
+        <a href="/main">
+        	<img src="">로고 들어가야함
+        </a>
         </span>
     </div>
 
@@ -34,8 +36,10 @@
       </span>
 
       <span class="compass_box">
-        <img class="compass" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/explore.png"
-          alt="내 프로필" />
+        <a href="/main/newPost" class="header_button">
+          <img src="/resources/img/chat-box.png"
+            alt="새 글쓰기" />
+        </a>
       </span>
       
       <span class="myProfile_box">
@@ -43,9 +47,6 @@
           alt="내 프로필" />
       </span>
 
-      <span class="myProfile_box_2">
-        <img class="my_profile" src="/resources/img/picture8.png" alt="내 프로필" />
-      </span>
     </div>
   </div>
 </header>
