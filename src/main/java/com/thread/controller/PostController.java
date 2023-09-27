@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.thread.domain.PostVO;
 import com.thread.service.PostService;
@@ -29,10 +30,7 @@ public class PostController {
     @PostMapping("/newPost")
     public String makePost(PostVO post) {
     	
-    	
-    	
     	log.info("make post complete");
-        
     	return "redirect:/main";
     }
     
@@ -40,5 +38,10 @@ public class PostController {
     public void viewPost() {
 
         log.info("check a thread");
+    }
+    
+    @GetMapping({"/get", "modify"})
+    public void get(@RequestParam("post_id") Long post_id) {
+    	
     }
 }

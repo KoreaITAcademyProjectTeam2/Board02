@@ -47,7 +47,7 @@ public class DataSourceTests {
 		
 		try(Connection con = dataSource.getConnection()) {
 			
-			log.info(con);
+			log.info("asdfasdf" + con);
 			
 		}catch(Exception e) {
 			fail(e.getMessage());

@@ -12,19 +12,19 @@
 
 <select id="getList" resultType="com.thread.domain.PostVO">
 	<![CDATA[
-		select * from posts
+		SELECT * FROM posts
 	]]>
 </select>
 
 <delete id="delete">
-	
+	DELETE FROM posts WHERE post_id = #{post_id}
 </delete>
 
 <update id="update">
-	update posts
-	set post_content=#{post_content},
+	UPDATE posts
+	SET post_content=#{post_content},
 	post_modify_date = TIMESTAMP,
-	where post_id
+	WHERE post_id = #{post_id}
 </update>
 
 </mapper>

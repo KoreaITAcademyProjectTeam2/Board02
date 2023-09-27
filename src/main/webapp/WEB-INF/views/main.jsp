@@ -43,7 +43,7 @@
 	        </div>
 				<div class="feed-post-box">
 					<div class="feed_picture">
-						<p>이미지 등 게시글 내용</p>
+						(이미지 영역)
 					</div>
 					<div class="feed_text">
 					  sadflsadmfklasmkdlfasd

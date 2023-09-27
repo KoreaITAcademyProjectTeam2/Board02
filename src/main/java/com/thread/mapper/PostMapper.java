@@ -8,7 +8,11 @@ public interface PostMapper {
 	
 	public List<PostVO> getList();
 	
+	public PostVO get();
+	
     public void insert(PostVO post);
     
     public int update(PostVO post);
+    
+    public int delete(Long post_id);
 }
