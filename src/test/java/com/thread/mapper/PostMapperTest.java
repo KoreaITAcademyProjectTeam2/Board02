@@ -20,11 +20,6 @@ public class PostMapperTest {
 	private PostMapper mapper;
 	
 	@Test
-	public void testGetList() {
-		mapper.getList();
-	}
-	
-	@Test
 	public void testInsert() {
 		
 		PostVO post = new PostVO();
@@ -34,4 +29,17 @@ public class PostMapperTest {
 		mapper.insert(post);
 		log.info(post);
 	}
+	
+	@Test
+	public void testGet() {
+		mapper.get(3L);
+	}
+	
+	@Test
+	public void testGetList() {
+		mapper.getList();
+	}
+	
+	
+	
 }

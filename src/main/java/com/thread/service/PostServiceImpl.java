@@ -24,32 +24,34 @@ public class PostServiceImpl implements PostService{
 	@Transactional
 	@Override
 	public void newPost(PostVO post) {
-		log.info("new Post");
-		
+		log.info("new Post..." + post);
 		mapper.insert(post);
 	}
 
 	@Override
 	public List<PostVO> getList() {
-		
+		log.info("getList...");
 		return mapper.getList();
 	}
 
 	@Override
 	public PostVO get(Long post_id) {
-		return mapper.get();
+		log.info("get...");
+		return mapper.get(post_id);
 	}
-
+	
+	@Transactional
 	@Override
-	public boolean modify(Long post_id) {
-		
-		return false;
+	public boolean modify(PostVO post) {
+		log.info("modify... : " + post);
+		boolean modifyResult = mapper.update(post) == 1;
+		return modifyResult;
 	}
 
 	@Override
 	public boolean remove(Long post_id) {
 		
-		return mapper.delete(post_id)==1;
+		return mapper.delete(post_id)==3;
 	}
 
 }

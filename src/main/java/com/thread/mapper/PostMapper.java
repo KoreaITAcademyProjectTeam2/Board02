@@ -8,7 +8,7 @@ public interface PostMapper {
 	
 	public List<PostVO> getList();
 	
-	public PostVO get();
+	public PostVO get(Long post_id);
 	
     public void insert(PostVO post);
     

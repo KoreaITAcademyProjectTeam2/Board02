@@ -12,7 +12,7 @@ public interface PostService {
 	
 	public PostVO get(Long post_id);
 	
-	public boolean modify(Long post_id);
+	public boolean modify(PostVO post);
 	
 	public boolean remove(Long post_id);
 }

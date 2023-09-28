@@ -36,4 +36,18 @@ public class PostServiceTest {
 		
 		log.info("게시글 생성: " + post.getPost_id());
 	}
+	
+	@Test
+	public void testGet() {
+		log.info(service.get(7L));
+	}
+	
+	@Test
+	public void testModify() {
+		PostVO post = service.get(7L);
+		
+		log.info("modify..." + post);
+		post.setPost_content("서비스 테스트에서 수정한 내용.");
+		log.info("modify result..." + service.modify(post));
+	}
 }
