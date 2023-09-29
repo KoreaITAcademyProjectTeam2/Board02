@@ -1,9 +1,13 @@
 package com.thread.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.thread.service.PostService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -14,10 +18,13 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class UserController {
 	
+	@Autowired
+	private PostService service;
     //로그인 이후 나오는 첫 페이지. 모든 글과 댓글이 보이도록 한다.
     @GetMapping("/main")
-    public void mainView(){
-
+    public void mainView(Model model){
+    	
+    	model.addAttribute("list", service.getList());
         log.info("Main Page Thread List");
     }
     
@@ -25,7 +32,7 @@ public class UserController {
 	public String loginSuccess() {
 		log.info("go mainPage");
 		
-		return "redirect:./main";
+		return "redirect:/main";
 	}
 	
 	@GetMapping("/login")
