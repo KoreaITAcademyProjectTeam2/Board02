@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/resources/header/header.jsp"%>
 <%@ include file="/resources/header/aside.jsp"%>
-
 <head>
   <meta name="viewport" content="width=device-width" />
   <title>main-page</title>
@@ -11,15 +10,10 @@
   <link href="/resources/styles/nav.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/body.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/comments.css" rel="stylesheet" type="text/css" />
-  <link href="/resources/styles/main.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-
-
-  <!--body-->
-	<div class='none'></div>
-   
+  <div class='none'></div>
   <div class="main_body">
     <article id="posts">
       <!-- <div class="story">
@@ -30,8 +24,7 @@
       </div> -->
       <div class="feed-container">
       
-      	  <c:forEach items="${list}" var="posts">
-	      <div onclick='location.href="main/getPost?post_id=<c:out value="${posts.post_id }" />"' class="feed" >
+	      <div class="feed" >
 	        <div class="feed_id">
 	
 	            <div class="id_box">
@@ -49,7 +42,7 @@
 						(이미지 영역)
 					</div>
 					<div class="feed_text">
-					  <c:out value="${posts.post_content }"/>
+					  <c:out value="${post.post_content }"/>
 					</div>
 				</div>
 
@@ -98,14 +91,10 @@
 	        </div>
 	        댓글 작성 폼 -->
 	      </div>
-	      </c:forEach>
 	      
       </div>
 
     </article>
 
   </div>
-<script>
-	
-</script>
 </body>

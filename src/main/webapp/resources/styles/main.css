@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.feed:hover {
+	border-color: black;
+	cursor: pointer;
+	background-color: #ffffff;
+}
