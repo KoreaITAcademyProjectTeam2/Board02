@@ -24,7 +24,7 @@ public class UserMapperTest {
 
 		UserVO user = new UserVO();
 		user.setUser_email("user5@example.com");
-		user.setUser_pwd("password5");
+		user.setUser_password("password5");
 		user.setUser_name("username5");
 
 		mapper.insert(user);

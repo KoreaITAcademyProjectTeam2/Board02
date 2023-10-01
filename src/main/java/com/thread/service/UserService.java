@@ -12,7 +12,7 @@ public interface UserService {
 
 	public UserVO get(String user_email);
 
-	public boolean modifyPwd(UserVO user);
+	public boolean modifyPassword(UserVO user);
 
 	public boolean modifyUserName(UserVO user);
 

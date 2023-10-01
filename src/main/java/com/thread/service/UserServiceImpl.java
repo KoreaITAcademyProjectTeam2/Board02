@@ -42,9 +42,9 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public boolean modifyPwd(UserVO user) {
-		log.info("modifyPwd... : " + user);
-		boolean modifyResult = mapper.update_pwd(user) == 1;
+	public boolean modifyPassword(UserVO user) {
+		log.info("modifyPassword... : " + user);
+		boolean modifyResult = mapper.update_user_password(user) == 1;
 		return modifyResult;
 	}
 

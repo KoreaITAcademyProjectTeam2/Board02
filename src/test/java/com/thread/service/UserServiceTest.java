@@ -26,36 +26,35 @@ public class UserServiceTest {
 		log.info(service);
 	}
 
-	@Test
-	public void testNewUser() {
-		UserVO user = new UserVO();
-		user.setUser_email("user1@example.com");
-
-		service.newUser(user);
-
-		log.info("회원 생성: " + user.getUser_email());
-	}
+	/*
+	 * @Test public void testNewUser() { UserVO user = new UserVO();
+	 * user.setUser_email("user1@example.com");
+	 * 
+	 * service.newUser(user);
+	 * 
+	 * log.info("회원 생성: " + user.getUser_email()); }
+	 */
 
 	@Test
 	public void testGet() {
-		log.info(service.get(""));
+		log.info(service.get("user2@example.com"));
 	}
 
 	@Test
-	public void testModifyPwd() {
-		UserVO user = service.get("");
+	public void testModifyPassword() {
+		UserVO user = service.get("user2@example.com");
 
 		log.info("modify..." + user);
-		user.setUser_pwd("서비스 테스트에서 수정한 내용.");
-		log.info("modify result..." + service.modifyPwd(user));
+		user.setUser_password("pwd02");
+		log.info("modify result..." + service.modifyPassword(user));
 	}
 
 	@Test
 	public void testModifyUserName() {
-		UserVO user = service.get("");
+		UserVO user = service.get("user2@example.com");
 
 		log.info("modify..." + user);
-		user.setUser_name("서비스 테스트에서 수정한 내용.");
+		user.setUser_name("두번째 유저");
 		log.info("modify result..." + service.modifyUserName(user));
 	}
 

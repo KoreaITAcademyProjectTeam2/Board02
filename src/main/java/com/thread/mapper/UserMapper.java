@@ -12,7 +12,7 @@ public interface UserMapper {
 
 	public void insert(UserVO user);
 
-	public int update_pwd(UserVO user);
+	public int update_user_password(UserVO user);
 
 	public int update_user_name(UserVO user);
 
