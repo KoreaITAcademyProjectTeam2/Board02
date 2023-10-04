@@ -8,10 +8,16 @@ header, .header-container{
     width: 100%;
     height: 53px;
 }
+
 .left_box{
     justify-content: flex-start;
     align-items: center;
 }
+
+.left_box:hover {
+	cursor: pointer;
+}
+
 .search-form{	
   display: flex;
   justify-content: space-between;

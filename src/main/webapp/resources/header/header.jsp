@@ -28,13 +28,13 @@
         	<img class="home" src="/resources/img/home.png" alt="탐색" />
         </a>
       </span>
-
+<!-- 
       <span class="direct_box" >
         <a href="message.html" class="header_button">
           <img class="direct" src="/resources/img/direct.png" alt="메세지" />
         </a>
       </span>
-
+ -->
       <span class="compass_box">
         <a href="/main/newPost" class="header_button">
           <img src="/resources/img/chat-box.png"

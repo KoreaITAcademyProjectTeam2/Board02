@@ -17,8 +17,6 @@ article {
 	position: relative;
 	padding-top: 20px;
 	right: 0px;
-	
-	border-radius: 3px;
 }
 
 .main_body {
@@ -33,7 +31,7 @@ article {
 	height: auto;
 	background-color: #fafafa;
 	border: 1px solid #dbdbdb;
-	border-radius: 1em;
+	border-radius: 0.5em;
 	margin-bottom: 20px;	
 }
 
@@ -78,6 +76,7 @@ article {
 }
 
 .feed_id {
+	display: flex;
 	border-bottom: 1px solid #dbdbdb;
 	position: relative;
 	width: 100%;
@@ -86,14 +85,8 @@ article {
 
 .id_box {
 	display: flex;
-/* 	position: absolute;
-	flex-direction: row;
-	align-items: flex-start; */
 	justify-content: flex-start;
-/* 	left: 0px;
-	top: 0px;
- */	width: 100%px;
-	height: 100%px;
+	width: 50%;
 }
 
 .id_container {
@@ -102,6 +95,13 @@ article {
 	position: relative;
 	left: 10px;
 	height: 100%;
+}
+
+.feed_action {
+	display: flex;
+	
+	width: 50%;
+	text-align: right;
 }
 
 .id_img {
@@ -159,14 +159,26 @@ article {
 .emoticon_box {
 	display: flex;
 	flex-direction: row;
-	justify-content: end;
+	justify-content: space-between;
 	align-items: center;
+	padding: 0.2em;
 	margin: 0px;
+}
+
+.feed_info {
+	font-size: 0.5em;
+	height: 100%;
+	text-align: left;
+}
+
+.feed_info div{
+	height: 50%;
 }
 
 .emoticon_box2 {
 	display: flex;
 }
+
 
 .emoticon_box2 div {
 	width: 2.5em;
@@ -285,15 +297,15 @@ article {
 }
 
 .buttonBox {
-	margin-right: 
+	padding: 0.2em;
+	color: #0789ff;
 	background-color: #FAFAFA;
-	color: #C0E0FD;
-	outline: none;
-	border: solid 0px;
+	border: solid 1px;
+	border-radius: 0.1em;
 }
 
 .buttonBox:hover{
-	color: #0789ff;
+	color: #C0E0FD;	
 	font-weight: 700;
 	cursor: pointer;
 }
