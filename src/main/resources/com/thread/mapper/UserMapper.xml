@@ -21,15 +21,15 @@
 </select>
 
 
-<update id="update_pwd">
+<update id="update_user_password">
 	UPDATE users
-	SET user_password = #{user_password},
+	SET user_password = #{user_password}
 	WHERE user_email = #{user_email}
 </update>
 
 <update id="update_user_name">
 	UPDATE users
-	SET user_name = #{user_name},
+	SET user_name = #{user_name}
 	WHERE user_email = #{user_email}
 </update>
 
