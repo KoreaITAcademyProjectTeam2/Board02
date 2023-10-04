@@ -22,12 +22,12 @@ body {
 }
 
 .logoPicture {
-  margin: 35px 0;
+  margin: 35px 0px;
 }
 
-.login-container input {
+login-container input {
   display: block;
-  width: 270px;
+  width: 250px;
   height: 36px;
   padding: 8px;
   color: rgba(var(--i1d, 38, 38, 38), 1);
@@ -45,9 +45,21 @@ body {
   border-radius: 5px;
 }
 
-h1 {
-  font-size: 50px;
+<<<<<<< HEAD
+/* 로그인 실패시 경고글 */
+.login_warn{
+  background-color: transparent;
+  color: red;
+  border: none;
+  font-size: 12px; 
 }
+
+h1 {
+=======
+/* h1 {
+>>>>>>> f2912afb812be2a54089616773531c8fb800dc16
+  font-size: 50px;
+} */
 
 input {
   margin: 3px auto;
@@ -56,8 +68,13 @@ input {
 }
 
 footer {
-  position: relative;
+<<<<<<< HEAD
+  /*position: relative;*/
   top: 65px;
+=======
+  position: relative;
+  top : 10px;
+>>>>>>> f2912afb812be2a54089616773531c8fb800dc16
   color: rgba(var(--fe0, 0, 55, 107), 1);
   font-size: 12px;
   text-align: center;

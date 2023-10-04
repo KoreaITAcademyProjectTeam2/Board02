@@ -7,6 +7,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width" />
+  <meta charset="UTF-8">
   <title>main-page</title>
   <link href="/resources/styles/common.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/nav.css" rel="stylesheet" type="text/css" />
@@ -27,22 +28,21 @@
         </form>
       </div> -->
       <div class="feed-container">
-	      <div class="feed">
+	      <form class="feed" action="/main/newPost" method="POST">
 	
 	        <a href="/main" class="feed_picture">
 	          <p>이미지 등 게시글 내용</p>
 	        </a>
-	        <textarea rows="5" cols=50 name='content'>글 작성</textarea>
+	        <textarea name='post_content' placeholder="글 내용"></textarea>
 	        <!--feedbottom-->
 	        <div class="feed_bottom">
 	          <div class="emoticon_box">
-	            <div class="emoticon_box2">
-					게시 버튼
-	            </div>
+	          <div class="tag-container"></div>
+	            <button class="buttonBox" type="submit">게시</button>
 	          </div>
 	        </div>
 	        <!--/feedbottom-->
-	      </div>
+	      </form>
       </div>
 
     </article>

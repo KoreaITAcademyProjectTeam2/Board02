@@ -17,8 +17,6 @@ article {
 	position: relative;
 	padding-top: 20px;
 	right: 0px;
-	
-	border-radius: 3px;
 }
 
 .main_body {
@@ -33,11 +31,17 @@ article {
 	height: auto;
 	background-color: #fafafa;
 	border: 1px solid #dbdbdb;
-	border-radius: 3px;
+	border-radius: 0.5em;
+	margin-bottom: 20px;	
+}
+
+.feed_text {
+	padding: 0.3em;
+	text-align: left;
 }
 
 .feed-container{
-	margin-bottom: 20px;
+	
 	text-decoration: none; /* 밑줄 제거 */
     color: inherit; /* 기본 글자색 사용 */
 }
@@ -72,22 +76,17 @@ article {
 }
 
 .feed_id {
-	
+	display: flex;
+	border-bottom: 1px solid #dbdbdb;
 	position: relative;
-	height: 60px;
 	width: 100%;
+	padding: 0.5em;
 }
 
 .id_box {
 	display: flex;
-/* 	position: absolute;
-	flex-direction: row;
-	align-items: flex-start; */
 	justify-content: flex-start;
-/* 	left: 0px;
-	top: 0px;
- */	width: 100%px;
-	height: 100%px;
+	width: 50%;
 }
 
 .id_container {
@@ -96,6 +95,13 @@ article {
 	position: relative;
 	left: 10px;
 	height: 100%;
+}
+
+.feed_action {
+	display: flex;
+	
+	width: 50%;
+	text-align: right;
 }
 
 .id_img {
@@ -135,7 +141,6 @@ article {
 
 .feed_picture {
 	max-height: 500px;
-
 }
 
 .feed_picture p {
@@ -146,28 +151,37 @@ article {
 
 .feed_bottom{
 	border-top: 1px solid #dbdbdb;
+	border-bottom: 1px solid #dbdbdb;
+	padding: 0.1em;
 }
 
 
 .emoticon_box {
 	display: flex;
 	flex-direction: row;
-	justify-content: end;
+	justify-content: space-between;
 	align-items: center;
-	height: 40px;
+	padding: 0.2em;
 	margin: 0px;
-	padding: 10px;
+}
+
+.feed_info {
+	font-size: 0.5em;
+	height: 100%;
+	text-align: left;
+}
+
+.feed_info div{
+	height: 50%;
 }
 
 .emoticon_box2 {
 	display: flex;
 }
 
+
 .emoticon_box2 div {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 40px;
+	width: 2.5em;
 	margin: 0px;
 }
 
@@ -220,35 +234,15 @@ article {
 	border-radius: 50%;
 }
 
-.feed_article {
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-}
-
-.feed_article_box {
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	flex-direction: column;
-	padding: 0 16px 0 16px;
-}
-
-.comment_user_id{
-	font-weight: 700;
-	padding: 0 16px 0 0;
-}
-
-
-.comments_container {
-	display: flex;
-}
-
 .comments {
+	height: 100%;
 	font-size: 14px;
 	line-height: 18px;
 	padding: 2px;
+	overflow: auto;
 }
+
+
 
 .comments1 {
 	padding: 2px;
@@ -257,12 +251,6 @@ article {
 	color: #8e8e8e;
 }
 
-.comments1_box {
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	flex-direction: column;
-}
 
 .new_comments {
 	display: block;
@@ -295,7 +283,7 @@ article {
 	height: 56px;
 	padding: 0 12px 0 12px;
 	margin: 0px;
-	border-top: 1px solid #efefef;
+	border-top: 1px solid #dbdbdb;
 }
 
 .inputBox {
@@ -309,11 +297,19 @@ article {
 }
 
 .buttonBox {
+	padding: 0.2em;
+	color: #0789ff;
 	background-color: #FAFAFA;
-	color: #C0E0FD;
-	outline: none;
-	border: solid 0px;
+	border: solid 1px;
+	border-radius: 0.1em;
 }
+
+.buttonBox:hover{
+	color: #C0E0FD;	
+	font-weight: 700;
+	cursor: pointer;
+}
+
 
 .type_comment {
 	display: flex;
@@ -468,4 +464,17 @@ article {
 .recommendation {
 	font-size: 14px;
 	color: #8e8e8e;
+}
+
+.emoticon_number{
+	text-size :
+}
+
+
+textarea {
+	height: 100%;
+	width: 95%;
+	padding: 0.5em 1em;
+	margin: 1em;
+	border: 1px solid #dbdbdb;
 }

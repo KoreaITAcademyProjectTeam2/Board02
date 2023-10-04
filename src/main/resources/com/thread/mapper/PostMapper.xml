@@ -10,5 +10,34 @@
     values(#{post_content}, #{post_user_email})
 </insert>
 
+<select id="getList" resultType="com.thread.domain.PostVO">
+	<![CDATA[
+		SELECT * FROM posts
+	]]>
+</select>
+
+<select id="get" resultType="com.thread.domain.PostVO">
+	<![CDATA[
+		SELECT * FROM posts WHERE post_id = #{post_id}
+	]]>
+</select>
+
+<!-- <update id="update">
+	UPDATE posts
+	SET post_content = #{post_content},
+	post_modify_date = TIMESTAMP
+	WHERE post_id = #{post_id}
+</update> -->
+
+<update id="update">
+	UPDATE posts
+	SET post_content = #{post_content},
+	post_modify_date = NOW()
+	WHERE post_id = #{post_id}
+</update>
+
+<delete id="delete">
+	DELETE FROM posts WHERE post_id = #{post_id}
+</delete>
 
 </mapper>
