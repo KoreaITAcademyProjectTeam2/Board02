@@ -1,14 +1,13 @@
 package com.thread.mapper;
 
+import java.util.List;
 
-import java.util.List;
-import java.util.List;
 import com.thread.domain.UserVO;
 
 public interface UserMapper {
-	
+
 	/* 로그인 */
-    public UserVO userLogin(UserVO user);
+	public UserVO userLogin(UserVO user);
 
 	public List<UserVO> getList();
 
@@ -21,6 +20,5 @@ public interface UserMapper {
 	public int update_user_name(UserVO user);
 
 	public int delete(String user_email);
-
 
 }

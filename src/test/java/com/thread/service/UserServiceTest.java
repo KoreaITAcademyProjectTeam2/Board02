@@ -42,29 +42,29 @@ public class UserServiceTest {
 
 	@Test
 	public void testModifyPassword() {
-		UserVO user = service.get("user5@example.com");
+		UserVO user = service.get("user6@example.com");
 
 		log.info("modify..." + user);
-		user.setUser_password("pwd05");
+		user.setUser_password("password6");
 		log.info("modify result..." + service.modifyPassword(user));
 	}
 
 	@Test
 	public void testModifyUserName() {
-		UserVO user = service.get("user5@example.com");
+		UserVO user = service.get("user6@example.com");
 
 		log.info("modify..." + user);
-		user.setUser_name("다섯번째 유저");
+		user.setUser_name("6 유저");
 		log.info("modify result..." + service.modifyUserName(user));
 	}
 
 	@Test
 	public void testRemove() {
-		UserVO user = service.get("user5@example.com");
+		UserVO user = service.get("user6@example.com");
 
 		log.info("remove..." + user);
-		user.setUser_email("다섯번째 유저");
-		log.info("remove result..." + service.remove("user5@example.com"));
+		user.setUser_email("여섯번째 유저");
+		log.info("remove result..." + service.remove("user6@example.com"));
 	}
 
 }
