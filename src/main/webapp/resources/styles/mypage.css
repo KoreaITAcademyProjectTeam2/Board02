@@ -1,0 +1,78 @@
+.middle-container{
+	margin-top:100px;
+	display:flex;
+	justify-content:center;
+}
+
+.middle-container span {
+    display: inline-block;   /* span은 기본적으로 inline 요소이므로 높이와 너비를 조절하기 위해 inline-block으로 설정 */
+    padding: 10px;          /* 내부 여백 설정 */
+    margin: 10px;            /* 외부 여백 설정 */
+    text-align: center;     /* 텍스트 중앙 정렬 */
+}
+
+#roundbox{
+	width:150px;
+	height:150px;
+	border-radius:50%;
+	background-color : transparent;
+	border: 1px solid #000; /* 테두리 설정 */
+}
+#box{
+	width:150px;
+	height:70px;
+	background-color : transparent;
+	padding-top: 50px;
+}
+#box2{
+	width:100px;
+	height:70px;
+	background-color : transparent;
+	padding-top: 50px;
+}
+
+#moreInfo{
+	background-color : transparent;
+}
+
+#moreInfo div{
+	padding-top: 10px;
+	width: 150px;
+	height: 50px;
+	text-align:center;
+}
+
+.footer-container{
+	margin-top:20px;
+	display:flex;
+	justify-content:center;
+}
+
+.footer-container span {
+    display: inline-block;   /* span은 기본적으로 inline 요소이므로 높이와 너비를 조절하기 위해 inline-block으로 설정 */
+    padding: 10px;          /* 내부 여백 설정 */
+    text-align: center;     /* 텍스트 중앙 정렬 */
+}
+
+#box3{
+	width:750px;
+	background-color : transparent;
+	border: 1px solid #000; /* 테두리 설정 */
+}
+
+.container{
+	width: 750px;
+	display: flex;
+	align-items: center;
+}
+
+.container div{
+	width: 250px;
+	border: 1px solid gray;
+	text-align: center;
+}
+
+#box3 div{
+	height: 300px;
+	border-bottom 1px solid gray;
+}

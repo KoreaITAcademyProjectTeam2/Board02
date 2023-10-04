@@ -42,9 +42,11 @@
         </a>
       </span>
       
-      <span class="myProfile_box">
-        <img class="myProfile" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/profile.png"
-          alt="내 프로필" />
+      <span class="myPage">
+     	 <a href="/myPage">
+      	  	<img class="myPage" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/profile.png" 
+      	  	alt="마이페이지" />
+         </a>
       </span>
 
     </div>

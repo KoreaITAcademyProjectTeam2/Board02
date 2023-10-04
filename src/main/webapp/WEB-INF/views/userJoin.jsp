@@ -58,25 +58,14 @@ function emailCheck(email){
       <form>
       	<div class="email-form">
       		<input type="text" name="id" class="user_Join" placeholder="이메일" />
-        	<input type="submit" class="confirm" value="인증" /><p/>
       	</div>
-        <div class="email-form">
-        <input type="text" name="id" class="user_Join" placeholder="이메일 인증 번호" />
-        <input type="submit" class="confirm" value="확인" /><p/>
-        </div>
         
        <div class="email-form">
-       <input type="password" name="password" class="user_Join" placeholder="비밀번호" />
-       <div style="width: 54px;"></div> <!-- This is the spacer div -->
+       		<input type="password" name="password" class="user_Join" placeholder="비밀번호" />
        </div>
 
         <div class="email-form">
-        <input type="password" name="password" class="user_Join" placeholder="비밀번호 확인" />
-        <input type="submit" class="confirm" value="확인" onclick="pwd_Check();" /><p/>
-        </div>
-        <div class="email-form">
-        <input type="password" name="nickname" class="user_Join" placeholder="닉네임" />
-        <div style="width: 54px;"></div> <!-- This is the spacer div -->
+        	<input type="password" name="nickname" class="user_Join" placeholder="닉네임" />
         </div>
         </form>
     
