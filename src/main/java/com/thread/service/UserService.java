@@ -5,7 +5,11 @@ import java.util.List;
 import com.thread.domain.UserVO;
 
 public interface UserService {
+	
+	/* 로그인 */
+    public UserVO userLogin(UserVO user) throws Exception;
 
+    /*
 	public void newUser(UserVO user);
 
 	public List<UserVO> getList();
@@ -17,4 +21,6 @@ public interface UserService {
 	public boolean modifyUserName(UserVO user);
 
 	public boolean remove(String user_email);
+	
+	*/
 }

@@ -30,11 +30,11 @@
         </div>
       </header>
 
-      <form class="login-container" method="post" action="/main">
+      <form id="login_form" class="login-container" method="post" action="/main">
       <div class="email-form">
-        <input type="text" name="id" placeholder="이메일" />
+        <input type="text" name="user_email" placeholder="이메일" />
         </div>
-        <input type="password" name="password" placeholder="비밀번호" />
+        <input type="password" name="user_password" placeholder="비밀번호" />
 
         <input type="submit" class="loginBtn" value="로그인" />
     </form>

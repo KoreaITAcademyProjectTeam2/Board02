@@ -1,6 +1,8 @@
 package com.thread.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +20,17 @@ import lombok.extern.log4j.Log4j;
 public class UserServiceImpl implements UserService {
 
 	@Setter(onMethod_ = @Autowired)
-	private UserMapper mapper;
+	private UserMapper usermapper;
+	
+	/* 로그인 */
+    @Override
+    public UserVO userLogin(UserVO user) throws Exception {
+        
+        return usermapper.userLogin(user);
+    }
 
+    
+    /*
 	@Transactional
 	@Override
 	public void newUser(UserVO user) {
@@ -60,5 +71,5 @@ public class UserServiceImpl implements UserService {
 
 		return mapper.delete(user_email) == 1;
 	}
-
+*/
 }

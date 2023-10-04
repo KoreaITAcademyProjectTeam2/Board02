@@ -75,14 +75,14 @@ public class UserController {
 
 		log.info("Login Page");
 	}
-
+/*
 	@PostMapping("/login")
 	public String userJoinSuccess() {
 		log.info("go LoginPage");
 
 		return "redirect:./login";
 	}
-
+*/
 	@PostMapping("/userJoin")
 	public void userJoinPage() {
 		log.info("UserJoin Page");

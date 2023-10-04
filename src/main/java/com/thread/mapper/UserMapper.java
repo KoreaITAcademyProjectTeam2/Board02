@@ -22,16 +22,5 @@ public interface UserMapper {
 
 	public int delete(String user_email);
 
-	public List<UserVO> getList();
-
-	public UserVO get(String user_email);
-
-	public void insert(UserVO user);
-
-	public int update_user_password(UserVO user);
-
-	public int update_user_name(UserVO user);
-
-	public int delete(String user_email);
 
 }
