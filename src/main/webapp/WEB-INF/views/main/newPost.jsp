@@ -7,6 +7,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width" />
+  <meta charset="UTF-8">
   <title>main-page</title>
   <link href="/resources/styles/common.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/nav.css" rel="stylesheet" type="text/css" />
@@ -32,10 +33,11 @@
 	        <a href="/main" class="feed_picture">
 	          <p>이미지 등 게시글 내용</p>
 	        </a>
-	        <textarea rows="5" cols=50 name='content' placeholder="글 작성"></textarea>
+	        <textarea name='post_content' placeholder="글 내용"></textarea>
 	        <!--feedbottom-->
 	        <div class="feed_bottom">
 	          <div class="emoticon_box">
+	          <div class="tag-container"></div>
 	            <button class="buttonBox" type="submit">게시</button>
 	          </div>
 	        </div>

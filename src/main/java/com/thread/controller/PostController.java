@@ -28,19 +28,23 @@ public class PostController {
 	}
 
 	@PostMapping("/newPost")
-	public String makePost(PostVO post) {
-
+	public String makePost(PostVO post, @RequestParam("post_content") String post_content) {
+		post.setPost_content(post_content);
+		post.setPost_user_email("test1@example.com");
+		service.newPost(post);
 		log.info("make post complete");
 		return "redirect:/main";
 	}
 
-	@GetMapping("/getPost") // 특정 아이디를 가진 스레드에 접속한다.
-	public String viewPost(@RequestParam("post_id") Long post_id, Model model) {
-
+	@GetMapping({"/getPost", "/modifyPost"})
+	public void viewPost(@RequestParam("post_id") Long post_id, Model model) {
 		model.addAttribute("post", service.get(post_id));
-
 		log.info("check a thread " + post_id);
-		return "main/getPost";
 	}
-
+	
+	@PostMapping("/modifyPost")
+	public String modifyPost(PostVO post) {
+		log.info(service.modify(post));
+		return "/main/getPost?post_id="+post.getPost_id();
+	}
 }
