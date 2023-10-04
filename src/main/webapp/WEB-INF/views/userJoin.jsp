@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"
     session ="true"
     import="java.sql.*"
+    import = "java.util.*"
     %>
-<%@ page import = "java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,6 +28,13 @@ function emailCheck(email){
 	window.open(url, "EmailCheck", "width=300,height=150");
 }
 </script> -->
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous">
+</script>
+
 
 <script type="text/javascript">
    function pwd_Check(){
@@ -55,7 +63,7 @@ function emailCheck(email){
           <img class="logoPicture" src="resources/img/logo_text.png" alt="인스타 로고" />
         </div>
       </header>
-      <form>
+      <form id = "user_Join" method = "post">
       	<div class="email-form">
       		<input type="text" name="id" class="user_Join" placeholder="이메일" />
       	</div>
@@ -65,7 +73,8 @@ function emailCheck(email){
        </div>
 
         <div class="email-form">
-        	<input type="password" name="nickname" class="user_Join" placeholder="닉네임" />
+        	<input type="text" name="nickname" class="user_Join_nickname" placeholder="닉네임" />
+        	<input type = "submit" class = "confirm" value = "중복확인">
         </div>
         </form>
     
@@ -75,5 +84,31 @@ function emailCheck(email){
       </form>
     </footer>
 </div>
+
+<script>
+    /* 중복확인 버튼 클릭 메서드 */
+function checkId(){
+        var id = $('#nickname').val(); //id값이 "nickname"인 입력란의 값을 저장
+        $.ajax({
+            url:'./nicknameCheck', //Controller에서 요청 받을 주소
+            type:'post', //POST 방식으로 전달
+            data:{nickname:nickname},
+            success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
+                if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 닉네임 
+                    $('.nickname_ok').css("display","inline-block"); 
+                    $('.nickname_already').css("display", "none");
+                } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                    $('.nickname_already').css("display","inline-block");
+                    $('.nickname_ok').css("display", "none");
+                    alert("닉네임을 다시 입력해주세요");
+                    $('#nickname').val('');
+                }
+            },
+            error:function(){
+                alert("에러입니다");
+            }
+        });
+        };
+</script>
   </body>
 </html>

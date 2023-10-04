@@ -21,4 +21,7 @@ public interface UserMapper {
 
 	public int delete(String user_email);
 
+	/*
+	 * public int nicknameCheck(String nickname);
+	 */
 }
