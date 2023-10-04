@@ -45,7 +45,6 @@ login-container input {
   border-radius: 5px;
 }
 
-<<<<<<< HEAD
 /* 로그인 실패시 경고글 */
 .login_warn{
   background-color: transparent;
@@ -54,8 +53,10 @@ login-container input {
   font-size: 12px; 
 }
 
-h1 {
-=======
+/* h1 {
+  font-size: 50px;
+} */
+
 /* h1 {
 >>>>>>> f2912afb812be2a54089616773531c8fb800dc16
   font-size: 50px;
@@ -68,13 +69,10 @@ input {
 }
 
 footer {
-<<<<<<< HEAD
+
   /*position: relative;*/
-  top: 65px;
-=======
   position: relative;
   top : 10px;
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
   color: rgba(var(--fe0, 0, 55, 107), 1);
   font-size: 12px;
   text-align: center;

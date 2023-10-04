@@ -1,27 +1,5 @@
 package com.thread.service;
 
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.thread.domain.UserVO;
-import com.thread.mapper.UserMapper;
-
-@Service
-public class UserServiceImpl implements UserService{
-	
-	@Autowired
-	UserMapper usermapper;
-	
-	 /* 로그인 */
-    @Override
-    public UserVO userLogin(UserVO user) throws Exception {
-        
-        return usermapper.userLogin(user);
-    }
-=======
-import java.util.List;
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

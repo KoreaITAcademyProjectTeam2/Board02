@@ -29,17 +29,13 @@
           <img class="logoPicture" src="resources/img/logo_text.png" alt="인스타 로고" />
         </div>
       </header>
-<<<<<<< HEAD
-      <form id="login_form" class="login-container" method="post" action="/main">
-        <input type="text" name="user_email" class="id" placeholder="이메일" />
-        <input type="password" name="user_password" class="password" placeholder="비밀번호" />
-=======
+
       <form class="login-container" method="post" action="/main">
       <div class="email-form">
         <input type="text" name="id" placeholder="이메일" />
         </div>
         <input type="password" name="password" placeholder="비밀번호" />
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
+
         <input type="submit" class="loginBtn" value="로그인" />
     </form>
      <c:if test = "${result == 0 }">

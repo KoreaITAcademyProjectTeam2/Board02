@@ -1,16 +1,10 @@
 package com.thread.service;
 
-<<<<<<< HEAD
-=======
-import java.util.List;
 
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
+import java.util.List;
 import com.thread.domain.UserVO;
 
 public interface UserService {
-	
-	 /* 로그인 */
-    public UserVO userLogin(UserVO user) throws Exception;
 
 	public void newUser(UserVO user);
 

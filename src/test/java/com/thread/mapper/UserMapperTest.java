@@ -1,18 +1,13 @@
 package com.thread.mapper;
-<<<<<<< HEAD
-import org.apache.ibatis.annotations.Mapper;
-=======
 
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
+import org.apache.ibatis.annotations.Mapper;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.Mapping;
-=======
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
 
 import com.thread.domain.UserVO;
 
@@ -23,8 +18,7 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class UserMapperTest {
-<<<<<<< HEAD
-	
+
 	@Autowired
 	private UserMapper usermapper;
 
@@ -46,34 +40,8 @@ public class UserMapperTest {
         System.out.println("결과 값 : " + usermapper.userLogin(user));
         
     }
-
 }
-=======
 
-	@Setter(onMethod_ = @Autowired)
-	private UserMapper mapper;
 
-	@Test
-	public void testInsert() {
 
-		UserVO user = new UserVO();
-		user.setUser_email("user5@example.com");
-		user.setUser_password("password5");
-		user.setUser_name("username5");
 
-		mapper.insert(user);
-		log.info(user);
-	}
-
-	@Test
-	public void testGet() {
-		mapper.get("");
-	}
-
-	@Test
-	public void testGetList() {
-		mapper.getList();
-	}
-
-}
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16

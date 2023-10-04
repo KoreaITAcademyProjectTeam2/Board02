@@ -9,12 +9,11 @@
 
 </insert>
 
-<<<<<<< HEAD
  <!-- 로그인 -->
       <select id="userLogin" resultType="com.thread.domain.UserVO">
          select user_email, user_name from test.users where user_email = #{user_email} and user_password = #{user_password}
       </select>
-=======
+
 <select id="getList" resultType="com.thread.domain.UserVO">
 	<![CDATA[
 		SELECT * FROM users
@@ -43,6 +42,6 @@
 <delete id="delete">
 	DELETE FROM users WHERE user_email = #{user_email}
 </delete>
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
+
 
 </mapper>

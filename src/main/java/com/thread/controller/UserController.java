@@ -1,11 +1,8 @@
 package com.thread.controller;
 
-<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-=======
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,8 +25,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/*")
 @AllArgsConstructor
 public class UserController {
-<<<<<<< HEAD
-	
+
 	@Autowired
 	private UserService userservice;
 	
@@ -53,12 +49,7 @@ public class UserController {
         return "redirect:/main";
 
     }
-	
-    //로그인 이후 나오는 첫 페이지. 모든 글과 댓글이 보이도록 한다.
-    @GetMapping("/main")
-    public void mainView(){
-=======
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
+
 
 	@Autowired
 	private PostService service;
@@ -71,15 +62,11 @@ public class UserController {
 		log.info("Main Page Thread List");
 	}
 
+
 	@PostMapping("/main")
 	public String loginSuccess() {
 		log.info("go mainPage");
 
-<<<<<<< HEAD
-        log.info("Login Page");
-    }
-	/*
-=======
 		return "redirect:/main";
 	}
 
@@ -89,7 +76,6 @@ public class UserController {
 		log.info("Login Page");
 	}
 
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
 	@PostMapping("/login")
 	public String userJoinSuccess() {
 		log.info("go LoginPage");
@@ -101,17 +87,10 @@ public class UserController {
 	public void userJoinPage() {
 		log.info("UserJoin Page");
 	}
-<<<<<<< HEAD
-	
-	*/
-	
-	
-=======
 
 	@GetMapping("/myPage")
 	public void myPage() {
 		log.info("go MyPage");
 	}
 
->>>>>>> f2912afb812be2a54089616773531c8fb800dc16
 }
