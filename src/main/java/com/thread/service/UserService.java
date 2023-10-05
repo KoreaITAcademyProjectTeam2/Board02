@@ -20,6 +20,6 @@ public interface UserService {
 
 	public boolean remove(String user_email);
 
-	/* public int nicknameCheck(String user_name); */
+	public int nicknameCheck(String user_name);
 
 }

@@ -68,10 +68,11 @@ public class UserServiceImpl implements UserService {
 		return usermapper.delete(user_email) == 1;
 	}
 
-	/*
-	 * @Override public int nicknameCheck(String user_name) { int cnt =
-	 * usermapper.nicknameCheck(user_name); System.out.println("cnt: " + cnt);
-	 * return cnt; }
-	 */
+	@Override
+	public int nicknameCheck(String user_name) {
+		int cnt = usermapper.nicknameCheck(user_name);
+		System.out.println("cnt: " + cnt);
+		return cnt;
+	}
 
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thread.domain.UserVO;
@@ -79,6 +81,7 @@ public class UserController {
 	 * 
 	 * return "redirect:./login"; }
 	 */
+
 	@PostMapping("/userJoin")
 	public void userJoinPage() {
 		log.info("UserJoin Page");
@@ -89,12 +92,11 @@ public class UserController {
 		log.info("go MyPage");
 	}
 
-	/*
-	 * @PostMapping("/nicknameCheck")
-	 * 
-	 * @ResponseBody json값을 가져오기때문 public int
-	 * nicknameCheck(@RequestParam("user_name") String user_name) { int cnt =
-	 * userservice.nicknameCheck(user_name); return cnt; }
-	 */
+	@PostMapping("/nicknameCheck")
+	@ResponseBody /* json값을 가져오기때문 */
+	public int nicknameCheck(@RequestParam("user_name") String user_name) {
+		int cnt = userservice.nicknameCheck(user_name);
+		return cnt;
+	}
 
 }
