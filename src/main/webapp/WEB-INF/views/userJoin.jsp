@@ -54,6 +54,7 @@ function emailCheck(email){
 </script>
 
 </head>
+
 <body>
 	<div class="main-container">
 		<header class="logo">
