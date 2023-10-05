@@ -106,7 +106,7 @@
 	function loadMoreData() {
 		document.getElementById('loader').style.display = 'block';
 		
-		let currentCount = document.querySelectAll('.feed').length;
+		let currentCount = document.querySelectorAll('.feed').length;
 		
 		fetch('/main/loadMoreData?count=10&currentCount=' + currentCount)
 			.then(response => response.json())
@@ -119,7 +119,7 @@
 	
 
 	function appendDomData(data){
-		let postsContainer = document.getElementByClass('feed-container');
+		let currentCount = document.querySelectorAll('.feed').length;
 		let newContent = '';
 		
 		data.forEach(post => {
@@ -129,6 +129,6 @@
 		postContainer.insertAdjacentHTML('beforeend', newContent);
 	}
 
-	window.addEventListner('scroll', handleScroll);
+	window.addEventListener('scroll', handleScroll);
 </script>
 </body>

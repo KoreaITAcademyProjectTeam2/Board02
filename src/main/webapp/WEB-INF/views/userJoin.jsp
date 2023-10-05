@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" session="true" import="java.sql.*"
 	import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="icon" href="/resources/favicon.ico" type="image/x-icon">
@@ -78,9 +79,6 @@ function emailCheck(email){
 					<input type="button" class="confirm" value="중복확인" onclick = "nicknameCheck();">
 			</div>
 		</form>
-		<c:if test="${result >= 1 }">
-			<div class="login_warn">중복된 닉네임 입니다.</div>
-		</c:if>
 
 		<footer>
 			<form method="post" action="/login">
@@ -98,7 +96,7 @@ function emailCheck(email){
             type: 'post',
             data: { nickname: nickname },
             success: function(cnt) {
-                if (cnt == 0) {
+                if (cnt >= 1) {
                     alert("사용 가능한 닉네임입니다.");
                 } else {
                     alert("닉네임이 이미 사용 중입니다.");
