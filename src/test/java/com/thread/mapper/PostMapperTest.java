@@ -37,9 +37,13 @@ public class PostMapperTest {
 	
 	@Test
 	public void testGetList() {
-		mapper.getList();
+		mapper.getList(0L,10L);
 	}
 	
-	
+	@Test
+	public void testRemove() {
+		mapper.deleteComments(2L);
+		mapper.delete(2L);
+	}
 	
 }
