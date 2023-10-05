@@ -119,7 +119,7 @@
 	
 
 	function appendDomData(data){
-		let postsContainer = document.getElementById('posts');
+		let postsContainer = document.getElementByClass('feed-container');
 		let newContent = '';
 		
 		data.forEach(post => {

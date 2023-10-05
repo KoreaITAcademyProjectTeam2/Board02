@@ -56,7 +56,7 @@ public class UserController {
 	@GetMapping("/main")
 	public void mainView(Model model) {
 
-		model.addAttribute("list", service.getList());
+		model.addAttribute("list", service.getList(1L, 10L));
 		log.info("Main Page Thread List");
 	}
 
