@@ -8,7 +8,7 @@ public interface PostService {
 	
 	public void newPost(PostVO post);
 	
-	public List<PostVO> getList();
+	public List<PostVO> getList(Long count, Long currentCount);
 	
 	public PostVO get(Long post_id);
 	

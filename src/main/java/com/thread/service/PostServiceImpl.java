@@ -29,9 +29,9 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
-	public List<PostVO> getList() {
+	public List<PostVO> getList(Long count, Long currentCount) {
 		log.info("getList...");
-		return mapper.getList();
+		return mapper.getList(count, currentCount);
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class PostServiceImpl implements PostService{
 
 	@Override
 	public boolean remove(Long post_id) {
-		
+		mapper.deleteComments(post_id);
 		return mapper.delete(post_id)==3;
 	}
 

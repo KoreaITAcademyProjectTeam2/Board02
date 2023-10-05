@@ -25,7 +25,7 @@
       </div> -->
       <div class="feed-container">
       
-	      <div class="feed" >
+	      <div class="feed">
 	        <div class="feed_id">
 	            <div class="id_box">
 	              <div class="id_box_img">
@@ -37,66 +37,28 @@
 	              <!-- end id_container -->
 	            </div>
 	            <!-- end id_box -->
-				<div class="feed_action">
-					<a href="modifyPost?post_id=<c:out value="${post.post_id }" />" class="feed_action_box">수정</a>
-					
-				</div>
+	            <form action="removePost" method="POST"><button class="feed_action_box" type="submit" name="post_id" value="<c:out value="${post.post_id }" />">삭제</button></form>
 	        </div>
 	        <!-- end feed_id -->
+	        <form action="modifyPost" method="POST">
+			<input type="hidden" value="<c:out value="${post.post_id }"/>" name="post_id" readonly>
 			<div class="feed-post-box">
 				<div class="feed_picture">
 						<!-- (이미지 영역) -->
 				</div>
 				<div class="feed_text">
 					<textarea name="post_content"><c:out value="${post.post_content }"/></textarea>
-					
 				</div>
 			</div>
-
-	          
-	        <!--feedbottom-->
+			<!-- feed-post-box -->
 	        <div class="feed_bottom">
-	          
 	          <div class="emoticon_box">
-	          	<div class="feed_info">
-	          		<div class="feed_tag">태그</div>
-	          	</div>
-	            <div class="emoticon_box2">
-	              <div class="heart_box">
-	                <img class="heart" src="/resources/img/heart.png" alt="좋아요 이미지">
-	                <div class="emoticon_number">333</div>
-	                <!-- 좋아요 표시. -->
-	              </div>
-	              <div class="comment_box">
-	              	<img class="comment" src="/resources/img/comment.png" alt="댓글 이미지">
-	              	<div class="emoticon_number">333</div>
-	              	<!-- 댓글 작성 페이지로 넘어감. -->
-	              </div>
-	            </div>
-	          </div>
-
-	        </div>
-
-	        <!--/feedbottom-->
-	
-	        <div class="feed_article">
-	          <div class="feed_article_box">
-	            <div class="comments1_box">
-	              <div class="comment_user_id">아이디1</div>
-	              <div class="comments-comment">아이디1 댓글</div>
-	            </div>
+	          <div class="tag-container"></div>
+	            <button class="buttonBox" type="submit">수정</button>
 	          </div>
 	        </div>
-	        <!-- 게시글의 댓글 -->
-<!-- 	        <div class="inputContainer">
-	          <div class="type_comment">
-	            <input class="inputBox" type="text" placeholder="댓글 작성...">
-	          </div>
-	          <span>
-	            <button class="buttonBox" type="submit">게시</button>
-	          </span>
-	        </div>
-	        댓글 작성 폼 -->
+	        <!--/feed_bottom-->
+	        </form>
 	      </div>
 	      
       </div>

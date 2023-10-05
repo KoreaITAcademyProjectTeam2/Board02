@@ -30,7 +30,7 @@
 	      </div> -->
 		<div class="feed-container">
 			<c:forEach items="${list}" var="posts">
-			<div onclick='location.href="main/getPost?post_id=<c:out value="${posts.post_id }" />"' class="feed" >
+			<div class="feed" >
 				<div class="feed_id">
 					<div class="id_box">
 						<div class="id_box_img">
@@ -45,7 +45,7 @@
 					<div class="feed_picture">
 						(이미지 영역)
 					</div>
-					<div class="feed_text">
+					<div class="feed_text" onclick='location.href="main/getPost?post_id=<c:out value="${posts.post_id }" />"'>
 						<c:out value="${posts.post_content }"/>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 				<div class="feed_bottom">
 					<div class="emoticon_box">
 						<div class="feed_info">
-		          			<div>작성일</div>
+		          			<div>작성일-<span><c:out value="${posts.post_add_date }" /></span></div>
 		          			<div>태그</div>
 		          		</div>
 						<div class="emoticon_box2">
@@ -91,11 +91,44 @@
 			</div>
 			<!-- end feed-->
 			</c:forEach>
+			<div id="loader_container"><div id="loader" style="display: none;"></div></div>
 		</div>
 		<!-- end feed_container -->
 	    </article>
 	</div>
 <script>
+	function handleScroll() {
+		if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+			loadMoreData();
+		}
+	}
 	
+	function loadMoreData() {
+		document.getElementById('loader').style.display = 'block';
+		
+		let currentCount = document.querySelectAll('.feed').length;
+		
+		fetch('/main/loadMoreData?count=10&currentCount=' + currentCount)
+			.then(response => response.json())
+			.then(data => {
+				appendDataDOM(data);
+				
+				document.getElementById('loader').style.display = 'none';
+			});
+	}
+	
+
+	function appendDomData(data){
+		let postsContainer = document.getElementById('posts');
+		let newContent = '';
+		
+		data.forEach(post => {
+			newContent += '';
+		});
+		
+		postContainer.insertAdjacentHTML('beforeend', newContent);
+	}
+
+	window.addEventListner('scroll', handleScroll);
 </script>
 </body>

@@ -38,7 +38,7 @@
 	            <!-- end id_box -->
 				<div class="feed_action">
 					<a href="modifyPost?post_id=<c:out value="${post.post_id }" />" class="feed_action_box">수정</a>
-					
+					<form action="removePost" method="POST"><button class="feed_action_box" type="submit" name="post_id" value="<c:out value="${post.post_id }" />">삭제</button></form>
 				</div>
 	        </div>
 	        <!-- end feed_id -->
@@ -57,8 +57,9 @@
 	          
 	          <div class="emoticon_box">
 	          	<div class="feed_info">
-	          		<div class="feed_add_date">작성일</div>
-	          		<div class="feed_tag">태그</div>
+	          		<div class="feed_info_tags">작성일</div>
+	          		<div class="feed_info_tags" type="hide">수정일</div>
+	          		<div class="feed_info_tags">태그</div>
 	          	</div>
 	            <div class="emoticon_box2">
 	              <div class="heart_box">
