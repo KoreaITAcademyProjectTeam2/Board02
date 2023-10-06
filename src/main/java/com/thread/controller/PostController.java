@@ -57,7 +57,8 @@ public class PostController {
 	
 	@GetMapping("/loadPost")
 	public void loadPost(@RequestParam Long count, @RequestParam Long currentCount, Model model) {
-		model.addAttribute("list", postService.getList(count, currentCount));
+		log.info("post load");
+		/* model.addAttribute("list", postService.getList(count, currentCount)); */
 	}
 	
 }

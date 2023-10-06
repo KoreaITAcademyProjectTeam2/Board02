@@ -14,10 +14,7 @@
 	<![CDATA[
 		SELECT * 
 		FROM posts 
-		WHERE post_id >= #{currentCount} 
-		AND (#{count} + #{currentCount} 
-		IS NULL OR post_id < #{count} + #{currentCount}
-		);
+		LIMIT #{count} OFFSET #{currentCount}
 	]]>
 </select>
 

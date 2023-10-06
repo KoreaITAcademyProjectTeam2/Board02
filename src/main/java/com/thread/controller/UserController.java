@@ -59,7 +59,7 @@ public class UserController {
 	@GetMapping("/main")
 	public void mainView(Model model) {
 
-		model.addAttribute("list", service.getList(10L, 1L));
+		model.addAttribute("list", service.getList(5L, 0L));
 		log.info("Main Page Thread List");
 	}
 

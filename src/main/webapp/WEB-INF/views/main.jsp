@@ -98,7 +98,9 @@
 	</div>
 <script>
 	function handleScroll() {
-		if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+		console.log("handle scroll");
+		if((window.innerHeight + window.scrollY) >= document.body.offsetHeight * 0.95){
+			console.log('load data');
 			loadMoreData();
 		}
 	}
@@ -111,22 +113,24 @@
 		fetch('/main/loadPost?count=10&currentCount=' + currentCount)
 			.then(response => response.json())
 			.then(data => {
-				appendDataDOM(data);
+				appendDomData(data);
 				
 				document.getElementById('loader').style.display = 'none';
 			});
 	}
-	
 
 	function appendDomData(data){
 		let currentCount = document.querySelectorAll('.feed').length;
+		
+		let feedContainer = document.getElementById('feed-container');
+		
 		let newContent = '';
 		
 		data.forEach(post => {
-			newContent += '<div>asdfffff</div>';
+			newContent += '';
 		});
 		
-		postContainer.insertAdjacentHTML('beforeend', newContent);
+		feedContainer.insertAdjacentHTML('beforeend', newContent);
 	}
 
 	window.addEventListener('scroll', handleScroll);
