@@ -65,6 +65,7 @@ login-container input {
   border: none;
   font-size: 12px;
   text-align:center;
+  font-weight:bold;
 }
 
 /* h1 {
@@ -179,6 +180,8 @@ footer {
 .email-form{
 	display: flex;
 }
+
+
 
 
 /* .userJoin-container input {

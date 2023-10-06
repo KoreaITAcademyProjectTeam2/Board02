@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -100,9 +101,10 @@ public class UserController {
 
 	@ResponseBody /* json값을 가져오기때문 */
 	@PostMapping("/nicknameCheck")
-	public int nicknameCheck(@RequestParam("user_name") String user_name) {
-		int cnt = userservice.nicknameCheck(user_name);
-		return cnt;
+	public ResponseEntity<Integer> nicknameCheck(@RequestParam("user_name") String user_name) {
+		Integer cnt = userservice.nicknameCheck(user_name);
+		log.info("cnt" + cnt);
+		return ResponseEntity.ok(cnt);
 	}
 
 }

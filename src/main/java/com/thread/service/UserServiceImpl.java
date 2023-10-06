@@ -69,9 +69,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int nicknameCheck(String user_name) {
-		int cnt = usermapper.nicknameCheck(user_name);
-		System.out.println("cnt: " + cnt);
+	public Integer nicknameCheck(String user_name) {
+		Integer cnt = usermapper.nicknameCheck(user_name);
+		log.info("cnt: " + cnt);
 		return cnt;
 	}
 

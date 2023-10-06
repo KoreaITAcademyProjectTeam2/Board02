@@ -13,6 +13,17 @@
 	type="text/css" />
 <link href="/resources/styles/login.css" rel="stylesheet"
 	type="text/css" />
+	<style>
+	#user_name_message{
+	  background-color: transparent;
+	  color: red;
+	  border: none;
+	  font-size: 10px;
+	  text-align:center;
+	  font-weight:bold;
+	  }
+	
+	</style>
 <!--   잠시 보류
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">
@@ -77,7 +88,9 @@ function emailCheck(email){
 			<div class="email-form">
 				<input type="text" name="user_name" id = "user_name" class="user_Join_nickname" placeholder="닉네임" /> 
 					<input type="button" class="confirm" value="중복확인" onclick = "nicknameCheck();">
+					
 			</div>
+			<div id = "user_name_message"></div>
 		</form>
 
 		<footer>
@@ -91,20 +104,28 @@ function emailCheck(email){
 		/* 중복확인 버튼 클릭 메서드 */
     function nicknameCheck() {
         var user_name = $('#user_name').val();
+        var message = $("#user_name_message");
+
         $.ajax({
             url: 'nicknameCheck',
             type: 'post',
             data: { user_name: user_name },
             success: function(cnt) {
+            	var noSpecialChars = /^[가-힣a-zA-Z0-9]*$/;
+            	
                 if (cnt >= 1) {
-                    alert("닉네임이 이미 사용 중입니다.");
+                	message.text("중복된 닉네임입니다.");
                     $('#user_name').val('');
-                } else {
-                    alert("사용 가능한 닉네임입니다.");
+                    
+                } else if(user_name == "" || !noSpecialChars.test(user_name)){
+                	message.text("사용할 수 없는 닉네임입니다.");
+                    
+                }else {
+                	message.text("사용 가능한 닉네임입니다.");
                 }
             },
             error: function() {
-                alert("에러입니다");
+            	messageElement.text("에러입니다");
             }
         });
     };
