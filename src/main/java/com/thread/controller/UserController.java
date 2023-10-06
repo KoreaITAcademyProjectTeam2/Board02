@@ -99,12 +99,20 @@ public class UserController {
 		log.info("go MyPage");
 	}
 
-	@ResponseBody /* json값을 가져오기때문 */
+	@ResponseBody
 	@PostMapping("/nicknameCheck")
 	public ResponseEntity<Integer> nicknameCheck(@RequestParam("user_name") String user_name) {
 		Integer cnt = userservice.nicknameCheck(user_name);
 		log.info("cnt" + cnt);
 		return ResponseEntity.ok(cnt);
+	}
+
+	@ResponseBody
+	@PostMapping("/emailCheck")
+	public ResponseEntity<Integer> emailCheck(@RequestParam("user_email") String user_email) {
+		Integer ecnt = userservice.emailCheck(user_email);
+		log.info("cnt" + ecnt);
+		return ResponseEntity.ok(ecnt);
 	}
 
 }

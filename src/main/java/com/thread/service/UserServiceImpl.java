@@ -75,4 +75,11 @@ public class UserServiceImpl implements UserService {
 		return cnt;
 	}
 
+	@Override
+	public Integer emailCheck(String user_email) {
+		Integer ecnt = usermapper.emailCheck(user_email);
+		log.info("ecnt: " + ecnt);
+		return ecnt;
+	}
+
 }

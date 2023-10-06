@@ -23,4 +23,6 @@ public interface UserMapper {
 
 	public int nicknameCheck(String user_name);
 
+	public int emailCheck(String user_email);
+
 }

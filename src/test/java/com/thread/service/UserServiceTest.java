@@ -74,12 +74,20 @@ public class UserServiceTest {
 
 	@Test
 	public void testNickNameCheck() {
-		if (service.nicknameCheck("rlafdldfsa") >= 1) {
+		if (service.nicknameCheck("박민지") >= 1) {
 			log.info("중복되었습니다.");
 		} else {
 			log.info("사용할 수 있습니다.");
 		}
+	}
 
+	@Test
+	public void testEmailCheck() {
+		if (service.emailCheck("test1@example.com") >= 1) {
+			log.info("중복되었습니다.");
+		} else {
+			log.info("사용할 수 있습니다.");
+		}
 	}
 
 }

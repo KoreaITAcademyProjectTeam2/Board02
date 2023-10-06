@@ -181,7 +181,32 @@ footer {
 	display: flex;
 }
 
+#email_message {
+	background-color: transparent;
+	color: red;
+	border: none;
+	font-size: 10px;
+	text-align: center;
+	font-weight: bold;
+}
 
+#password_message {
+	background-color: transparent;
+	color: red;
+	border: none;
+	font-size: 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#user_name_message {
+	background-color: transparent;
+	color: red;
+	border: none;
+	font-size: 10px;
+	text-align: center;
+	font-weight: bold;
+}
 
 
 /* .userJoin-container input {

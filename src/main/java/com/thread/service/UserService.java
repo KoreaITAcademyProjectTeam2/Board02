@@ -22,4 +22,6 @@ public interface UserService {
 
 	public Integer nicknameCheck(String user_name);
 
+	public Integer emailCheck(String user_email);
+
 }
