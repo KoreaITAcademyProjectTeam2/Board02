@@ -83,6 +83,11 @@ public class UserController {
 	 * return "redirect:./login"; }
 	 */
 
+	@GetMapping("/userJoin")
+	public void userJoinForm() {
+		log.info("UserJoin Page");
+	}
+
 	@PostMapping("/userJoin")
 	public void userJoinPage() {
 		log.info("UserJoin Page");
@@ -93,8 +98,8 @@ public class UserController {
 		log.info("go MyPage");
 	}
 
-	@PostMapping("/nicknameCheck")
 	@ResponseBody /* json값을 가져오기때문 */
+	@PostMapping("/nicknameCheck")
 	public int nicknameCheck(@RequestParam("user_name") String user_name) {
 		int cnt = userservice.nicknameCheck(user_name);
 		return cnt;

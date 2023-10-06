@@ -75,7 +75,7 @@ function emailCheck(email){
 			</div>
 
 			<div class="email-form">
-				<input type="text" name="nickname" id = "nickname" class="user_Join_nickname" placeholder="닉네임" /> 
+				<input type="text" name="user_name" id = "user_name" class="user_Join_nickname" placeholder="닉네임" /> 
 					<input type="button" class="confirm" value="중복확인" onclick = "nicknameCheck();">
 			</div>
 		</form>
@@ -90,17 +90,17 @@ function emailCheck(email){
 	<script>
 		/* 중복확인 버튼 클릭 메서드 */
     function nicknameCheck() {
-        var nickname = $('#nickname').val();
+        var user_name = $('#user_name').val();
         $.ajax({
             url: 'nicknameCheck',
             type: 'post',
-            data: { nickname: nickname },
+            data: { user_name: user_name },
             success: function(cnt) {
                 if (cnt >= 1) {
-                    alert("사용 가능한 닉네임입니다.");
-                } else {
                     alert("닉네임이 이미 사용 중입니다.");
-                    $('#nickname').val('');
+                    $('#user_name').val('');
+                } else {
+                    alert("사용 가능한 닉네임입니다.");
                 }
             },
             error: function() {
