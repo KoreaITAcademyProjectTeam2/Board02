@@ -77,6 +77,12 @@ public class UserController {
 		log.info("Login Page");
 	}
 
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/login";
+	}
+
 	/*
 	 * @PostMapping("/login") public String userJoinSuccess() {
 	 * log.info("go LoginPage");

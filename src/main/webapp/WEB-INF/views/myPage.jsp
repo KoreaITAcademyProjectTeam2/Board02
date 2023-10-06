@@ -40,7 +40,7 @@
       </form>
       </div>
 	<div>
-	<a href = "logout.jsp" class = "small_text">로그아웃</a>
+	<a href="/logout" class="small_text">로그아웃</a>
       </div>	
 </div>
 </div>
