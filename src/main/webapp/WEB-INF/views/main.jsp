@@ -108,7 +108,7 @@
 		
 		let currentCount = document.querySelectAll('.feed').length;
 		
-		fetch('/main/loadMoreData?count=10&currentCount=' + currentCount)
+		fetch('/main/loadPost?count=10&currentCount=' + currentCount)
 			.then(response => response.json())
 			.then(data => {
 				appendDataDOM(data);
@@ -118,17 +118,17 @@
 	}
 	
 
-	function appendDomData(data){
+	function appendDataDOM(data){
 		let postsContainer = document.getElementByClass('feed-container');
 		let newContent = '';
 		
 		data.forEach(post => {
-			newContent += '';
+			newContent += '<div>asdfffff</div>';
 		});
 		
 		postContainer.insertAdjacentHTML('beforeend', newContent);
 	}
 
-	window.addEventListner('scroll', handleScroll);
+	/* window.addEventListener('scroll', handleScroll); */
 </script>
 </body>

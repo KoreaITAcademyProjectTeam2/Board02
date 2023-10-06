@@ -37,7 +37,7 @@ public class PostMapperTest {
 	
 	@Test
 	public void testGetList() {
-		mapper.getList(0L,10L);
+		log.info(mapper.getList(5L,1L));
 	}
 	
 	@Test

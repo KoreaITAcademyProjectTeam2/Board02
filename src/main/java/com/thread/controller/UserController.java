@@ -6,13 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.thread.domain.UserVO;
 
 import com.thread.service.PostService;
 import com.thread.service.UserService;
@@ -60,7 +55,7 @@ public class UserController {
 	@GetMapping("/main")
 	public void mainView(Model model) {
 
-		model.addAttribute("list", service.getList(1L, 10L));
+		model.addAttribute("list", service.getList(10L, 1L));
 		log.info("Main Page Thread List");
 	}
 
