@@ -28,7 +28,7 @@
 	            <input type="textarea">
 	        </form>
 	      </div> -->
-		<div class="feed-container">
+		<div id="feed-container">
 			<c:forEach items="${list}" var="posts">
 			<div class="feed" >
 				<div class="feed_id">
@@ -49,13 +49,12 @@
 						<c:out value="${posts.post_content }"/>
 					</div>
 				</div>
-	
-		          
-		        <!--feedbottom-->
+				<!-- /feed-post-box -->
+				
 				<div class="feed_bottom">
 					<div class="emoticon_box">
 						<div class="feed_info">
-		          			<div>작성일-<span><c:out value="${posts.post_add_date }" /></span></div>
+		          			<div>작성일: <span><fmt:formatDate value="${posts.post_add_date}" pattern="yyyy-MM-dd"/></span></div>
 		          			<div>태그</div>
 		          		</div>
 						<div class="emoticon_box2">
@@ -91,16 +90,29 @@
 			</div>
 			<!-- end feed-->
 			</c:forEach>
-			<div id="loader_container"><div id="loader" style="display: none;"></div></div>
 		</div>
 		<!-- end feed_container -->
+		<div id="loader_container"><div id="loader" style="display: none;"></div></div>
 	    </article>
 	</div>
 <script>
+
+	function debounce(func, delay) {
+		let timeout;
+		return function() {
+			const context = this;
+	        const args = arguments;
+	        clearTimeout(timeout);
+	        timeout = setTimeout(() => {
+	            timeout = null;
+	            func.apply(context, args);
+	        }, delay);
+		};
+	}
+
 	function handleScroll() {
 		console.log("handle scroll");
-		if((window.innerHeight + window.scrollY) >= document.body.offsetHeight * 0.95){
-			console.log('load data');
+		if((window.innerHeight + window.scrollY) >= document.body.offsetHeight * 0.99){
 			loadMoreData();
 		}
 	}
@@ -113,26 +125,118 @@
 		fetch('/main/loadPost?count=10&currentCount=' + currentCount)
 			.then(response => response.json())
 			.then(data => {
+
 				appendDomData(data);
 				
 				document.getElementById('loader').style.display = 'none';
+			})
+			.then(() => {
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						console.log("delay");
+						resolve()
+					}, 1000);
+				});
 			});
+	}
+	
+	function createUserBox(post){
+		console.log("create user box " + post);
+		return `
+			<div class="feed_id">
+			  <div class="id_box">
+			    <div class="id_box_img">(profile_img)</div>
+			    <div class="id_container">
+			      <div class="id_name">USER_NAME</div>
+			    </div>
+			  </div>
+			</div>
+		`;
+	}
+	
+	function createFeedPostBox(post){
+		return `
+        <div class="feed-post-box">
+          <div class="feed_picture">(이미지 영역)</div>
+          <div class="feed_text" data-postid="\${post.post_id}">\${post.post_content}</div>
+    	</div>
+		`;
+	}
+	
+	function createFeedBottom(post){
+		const postAddDate = new Date(post.post_add_date);
+		const formattedDate = postAddDate.toISOString().slice(0, 10);
+		return `
+			<div class="feed_bottom">
+			  <div class="emoticon_box">
+			    <div class="feed_info">
+				  <div>작성일: <span>\${formattedDate}</span></div>
+				  <div>태그-<span></span></div>
+				</div>
+				<div class="emoticon_box2">
+				  <div class="heart_box">
+				    <img class="heart" src="/resources/img/heart.png" alt="좋아요">
+				    <div class="emoticon_number">333</div>
+				  </div>
+				  <div class="comment_box">
+				    <img class="comment" src="/resources/img/comment.png" alt="댓글">
+				    <div class="emoticon_number">333</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		`;
+	}
+	
+	function createFeedArticle() { //게시글에 댓글을 추가
+	    return `
+	        <div class="feed_article">
+	            <div class="feed_article_box">
+	                <div class="comments1_box">
+	                    <div class="comment_user_id">댓글1 작성자</div>
+	                    <div class="comments-comment">댓글1 내용</div>
+	                </div>
+	            </div>
+	        </div>
+	    `;
 	}
 
 	function appendDomData(data){
+		
 		let currentCount = document.querySelectorAll('.feed').length;
+		const feedContainer = document.getElementById('feed-container');
 		
-		let feedContainer = document.getElementById('feed-container');
 		
-		let newContent = '';
 		
 		data.forEach(post => {
-			newContent += '';
+			
+			
+			const feedElement = document.createElement('div');
+			feedElement.classList.add('feed');
+			
+			const userBox = createUserBox(post);
+			const feedPostBox = createFeedPostBox(post);
+			const feedBottom = createFeedBottom(post);
+			const feedArticle = createFeedArticle();
+			
+			console.log(feedPostBox)
+			
+			feedElement.innerHTML = userBox + feedPostBox + feedBottom + feedArticle;
+			
+			feedElement.querySelector('.feed_text').addEventListener('click', function() {
+	            location.href = `main/getPost?post_id=${post.post_id}`;
+	        });
+			
+			feedContainer.appendChild(feedElement);
+			
+	        
 		});
-		
-		feedContainer.insertAdjacentHTML('beforeend', newContent);
-	}
+		console.log(data);
+		/* feedContainer.insertAdjacentHTML('beforeend', newContent); */
 
-	window.addEventListener('scroll', handleScroll);
+	}
+	const debounceHandleScroll = debounce(handleScroll, 300);
+	window.addEventListener('scroll', debounceHandleScroll);
+
 </script>
 </body>

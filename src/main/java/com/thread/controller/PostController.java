@@ -1,11 +1,14 @@
 package com.thread.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.thread.domain.PostVO;
 import com.thread.service.PostService;
@@ -55,10 +58,14 @@ public class PostController {
 		return "redirect:/main";	
 	}
 	
+	@ResponseBody
 	@GetMapping("/loadPost")
-	public void loadPost(@RequestParam Long count, @RequestParam Long currentCount, Model model) {
+	public List<PostVO> loadPost(@RequestParam("count") Long count, 
+			@RequestParam("currentCount") Long currentCount, Model model) {
+		List<PostVO> posts = postService.getList(count, currentCount);
 		log.info("post load");
-		/* model.addAttribute("list", postService.getList(count, currentCount)); */
+		return posts;
+		
 	}
 	
 }
