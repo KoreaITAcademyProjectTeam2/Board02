@@ -100,6 +100,16 @@ public class UserController {
 		log.info("UserJoin Page");
 	}
 
+	@PostMapping("/modify")
+	public void modify() {
+		log.info("modifyPage");
+	}
+
+	@GetMapping("/withdrawal")
+	public void withdrawal() {
+		log.info("withdrawalPage");
+	}
+
 	@GetMapping("/myPage")
 	public void myPage() {
 		log.info("go MyPage");
@@ -119,6 +129,28 @@ public class UserController {
 		Integer ecnt = userservice.emailCheck(user_email);
 		log.info("cnt" + ecnt);
 		return ResponseEntity.ok(ecnt);
+	}
+
+	@ResponseBody
+	@PostMapping("/updateUserName")
+	public boolean updateUserName(HttpSession session, @RequestParam("user_name") String user_name) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		if (currentUser == null) {
+			return false;
+		}
+		currentUser.setUser_name(user_name);
+		return userservice.modifyUserName(currentUser);
+	}
+
+	@ResponseBody
+	@PostMapping("/checkCurrentPassword")
+	public boolean checkCurrentPassword(HttpSession session, @RequestParam("password") String password) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		if (currentUser == null) {
+			return false;
+		}
+		UserVO dbUser = userservice.get(currentUser.getUser_email());
+		return dbUser.getUser_password().equals(password);
 	}
 
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
   <meta name="viewport" content="width=device-width" />
-  <title>main-page</title>
+  <title>myPage</title>
   <link rel="stylesheet" href="/resources/header.css">
   <link rel="stylesheet" href="/resources/styles/mypage.css">
   <link href="/resources/styles/common.css" rel="stylesheet" type="text/css" />
@@ -30,12 +30,12 @@
 <span id = box2></span>
 <div id = moreInfo>
 	<div>
-	<form method="post" action="/login">
+	<form method="post" action="/modify">
       <input type = "submit" value = "회원정보 수정" class = "small_text" />
       </form>
       </div>
 	<div>
-	<form method="post" action="/login">
+	<form method="get" action="/withdrawal">
       <input type = "submit" value = "회원정보 탈퇴" class = "small_text" />
       </form>
       </div>
