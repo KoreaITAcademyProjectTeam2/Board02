@@ -29,6 +29,10 @@
           <img class="logoPicture" src="resources/img/logo_text.png" alt="인스타 로고" />
         </div>
       </header>
+      
+      <% if(request.getAttribute("success") != null) { %>
+    <p class="success_message"><%= request.getAttribute("success") %></p>
+<% } %>
 
       <form id="login_form" class="login-container" method="post" action="/main">
       <div class="email-form">

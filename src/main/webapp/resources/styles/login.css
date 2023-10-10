@@ -83,6 +83,22 @@ login-container input {
   border-radius: 3px;
 }
 
+.error_message {
+    color: red;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 5px;
+}
+
+.success_message {
+    color: red;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 5px;
+}
+
 .user_Login {
 	display: block;
 	width: 260px;
@@ -195,6 +211,18 @@ footer {
 	font-family: -apple-;
 	border: 1px solid #dbdbdb;
 	border-radius: 3px;
+}
+
+.user_Join_Id{
+	display: block;
+	width: 150px;
+	height: 36px;
+	padding: 8px;
+	color: rgba(var(--i1d, 38, 38, 38), 1);
+	font-family: -apple-;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	margin-left:55px;
 }
 
 .user_Join_nickname {

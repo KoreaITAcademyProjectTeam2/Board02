@@ -31,6 +31,19 @@ public class UserController {
 	@Autowired
 	private UserService userservice;
 
+	@Autowired
+	private PostService service;
+
+	private boolean isValidInput(String input) {
+		return input != null && input.matches("^[가-힣a-zA-Z0-9]*$");
+	}
+
+	@GetMapping("/login")
+	public void loginPage() {
+
+		log.info("Login Page");
+	}
+
 	/* 로그인 */
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
@@ -53,8 +66,18 @@ public class UserController {
 
 	}
 
-	@Autowired
-	private PostService service;
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/login";
+	}
+
+	/*
+	 * @PostMapping("/login") public String userJoinSuccess() {
+	 * log.info("go LoginPage");
+	 * 
+	 * return "redirect:./login"; }
+	 */
 
 	// 로그인 이후 나오는 첫 페이지. 모든 글과 댓글이 보이도록 한다.
 	@GetMapping("/main")
@@ -71,25 +94,6 @@ public class UserController {
 		return "redirect:/main";
 	}
 
-	@GetMapping("/login")
-	public void loginPage() {
-
-		log.info("Login Page");
-	}
-
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/login";
-	}
-
-	/*
-	 * @PostMapping("/login") public String userJoinSuccess() {
-	 * log.info("go LoginPage");
-	 * 
-	 * return "redirect:./login"; }
-	 */
-
 	@GetMapping("/userJoin")
 	public void userJoinForm() {
 		log.info("UserJoin Page");
@@ -102,18 +106,31 @@ public class UserController {
 
 	@PostMapping("/registerUser")
 	public String registerUser(UserVO user, RedirectAttributes rttr) {
+
+		if (user.getUser_email().length() < 6 || user.getUser_email().length() > 12) {
+			rttr.addFlashAttribute("error", "아이디는 6자 이상 12자 이하로 설정해주세요.");
+			return "redirect:/userJoin";
+		}
+
+		if (!isValidInput(user.getUser_email()) || !isValidInput(user.getUser_password())
+				|| !isValidInput(user.getUser_name())) {
+			rttr.addFlashAttribute("error", "아이디, 비밀번호, 닉네임에 공백 또는 특수문자를 사용할 수 없습니다.");
+			return "redirect:/userJoin";
+		}
+
 		if (user.getUser_email().isEmpty() || user.getUser_password().isEmpty() || user.getUser_name().isEmpty()) {
 			rttr.addFlashAttribute("error", "모든 필드를 입력해주세요.");
 			return "redirect:/userJoin";
 		}
 
-		log.info("User registration: " + user);
-		log.info("User email: " + user.getUser_email());
-		log.info("User password: " + user.getUser_password());
-		log.info("User name: " + user.getUser_name());
 		userservice.newUser(user);
-		rttr.addFlashAttribute("result", "회원가입 성공!");
+		rttr.addFlashAttribute("success", "회원가입을 축하드립니다. 로그인해주세요");
 		return "redirect:/login";
+	}
+
+	@GetMapping("/myPage")
+	public void myPage() {
+		log.info("go MyPage");
 	}
 
 	@PostMapping("/modify")
@@ -124,11 +141,6 @@ public class UserController {
 	@GetMapping("/withdrawal")
 	public void withdrawal() {
 		log.info("withdrawalPage");
-	}
-
-	@GetMapping("/myPage")
-	public void myPage() {
-		log.info("go MyPage");
 	}
 
 	@ResponseBody
