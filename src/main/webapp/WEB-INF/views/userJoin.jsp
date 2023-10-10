@@ -27,14 +27,14 @@
 				<img class="logoPicture" src="resources/img/logo_text.png" alt="인스타 로고" />
 			</div>
 		</header>
-		<form id="user_Join" method="post">
+		<form id = "user_Join" method="post" action="/registerUser">
 			<div class="email-form">
 				<input type="text" name="user_email" id="user_email" class="user_Join" placeholder="이메일" />
 			</div>
 			<div id="email_message"></div>
 
 			<div class="email-form">
-				<input type="password" name="password" id = "password" class="user_Join" placeholder="비밀번호" />
+				<input type="password" name="user_password" id = "password" class="user_Join" placeholder="비밀번호" />
 			</div>
 			<div id="password_message"></div>
 
@@ -44,16 +44,17 @@
 
 			</div>
 			<div id="user_name_message"></div>
-		</form>
 
 		<footer>
-			<form method="post" action="/login">
-				<input type="submit" value="회원가입" class="small_text" />
-			</form>
+				<input type="submit" id = "submit" value="회원가입" class="small_text" />
+				<div id="submit_message"></div>
 		</footer>
+		</form>
 	</div>
 
 	<script>
+	
+	var nicknameVerified = false;
 	
 	$(document).ready(function() {
 		$('#user_email').on('blur', function() {
@@ -88,7 +89,28 @@
 	            message.text("");
 	        }
 	    });
+	    $('#user_Join').on('submit', function(e) {
+	        var email = $('#user_email').val().trim();
+	        var password = $('#password').val().trim();
+	        var nickname = $('#user_name').val().trim();
+	        var message = $("#submit_message");
+	        
+	        if(!nicknameVerified) { // 중복 확인 플래그 체크
+	            message.text("닉네임 중복 확인을 해주세요.");
+	            e.preventDefault();
+	            
+	            return false;
+	        }
+
+	        if(!email || !password || !nickname) {
+	            message.text("모든 필드를 입력해주세요.");
+	            e.preventDefault(); // 폼 제출 방지
+	            return false;
+	        }
+	    });
+
 	});
+	
 		/* 중복확인 버튼 클릭 메서드 */
     function nicknameCheck() {
         var user_name = $('#user_name').val();
@@ -104,16 +126,20 @@
                 if (cnt >= 1) {
                 	message.text("중복된 닉네임입니다.");
                     $('#user_name').val('');
+                    nicknameVerified = false;
                     
                 } else if(user_name == "" || !noSpecialChars.test(user_name)){
                 	message.text("사용할 수 없는 닉네임입니다.");
+                	nicknameVerified = false;
                     
                 }else {
                 	message.text("사용 가능한 닉네임입니다.");
+                	nicknameVerified = true;
                 }
             },
             error: function() {
             	message.text("에러입니다");
+            	nicknameVerified = false;
             }
         });
     };

@@ -38,7 +38,7 @@
 
         <input type="submit" class="loginBtn" value="로그인" />
     </form>
-     <c:if test = "${result == 0 }">
+     <c:if test = "\${result == 0 }">
              <div class = "login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
      </c:if>
 

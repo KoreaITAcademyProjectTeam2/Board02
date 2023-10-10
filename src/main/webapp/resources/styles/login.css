@@ -228,6 +228,15 @@ footer {
 	display: flex;
 }
 
+#submit_message {
+	background-color: transparent;
+	color: red;
+	border: none;
+	font-size: 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
 #email_message {
 	background-color: transparent;
 	color: red;
@@ -238,6 +247,24 @@ footer {
 }
 
 #password_message {
+	background-color: transparent;
+	color: red;
+	border: none;
+	font-size: 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#newPassword_message {
+	background-color: transparent;
+	color: red;
+	border: none;
+	font-size: 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#confirmPassword_message {
 	background-color: transparent;
 	color: red;
 	border: none;
@@ -272,6 +299,7 @@ footer {
 	text-align: center;
 	font-weight: bold;
 }
+
 
 
 /* .userJoin-container input {
