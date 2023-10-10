@@ -6,9 +6,6 @@ import com.thread.domain.UserVO;
 
 public interface UserMapper {
 
-	/* 로그인 */
-	public UserVO userLogin(UserVO user);
-
 	public List<UserVO> getList();
 
 	public UserVO get(String user_email);
@@ -20,9 +17,5 @@ public interface UserMapper {
 	public int update_user_name(UserVO user);
 
 	public int delete(String user_email);
-
-	public int nicknameCheck(String user_name);
-
-	public int emailCheck(String user_email);
 
 }

@@ -6,8 +6,6 @@ import com.thread.domain.UserVO;
 
 public interface UserService {
 
-	public UserVO userLogin(UserVO user) throws Exception;
-
 	public void newUser(UserVO user);
 
 	public List<UserVO> getList();
@@ -19,9 +17,4 @@ public interface UserService {
 	public boolean modifyUserName(UserVO user);
 
 	public boolean remove(String user_email);
-
-	public Integer nicknameCheck(String user_name);
-
-	public Integer emailCheck(String user_email);
-
 }

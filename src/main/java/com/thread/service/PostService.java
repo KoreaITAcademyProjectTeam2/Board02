@@ -8,13 +8,11 @@ public interface PostService {
 	
 	public void newPost(PostVO post);
 	
-	public List<PostVO> getList(Long count, Long currentCount);
+	public List<PostVO> getList();
 	
 	public PostVO get(Long post_id);
 	
 	public boolean modify(PostVO post);
 	
 	public boolean remove(Long post_id);
-	
-	public Long getLike(Long post_id);
 }

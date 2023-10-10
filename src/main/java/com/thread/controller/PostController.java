@@ -1,14 +1,11 @@
 package com.thread.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.thread.domain.PostVO;
 import com.thread.service.PostService;
@@ -22,8 +19,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class PostController {
 
-	private PostService postService;
-	
+	private PostService service;
+
 	@GetMapping("/newPost")
 	public void newPost() {
 
@@ -34,38 +31,20 @@ public class PostController {
 	public String makePost(PostVO post, @RequestParam("post_content") String post_content) {
 		post.setPost_content(post_content);
 		post.setPost_user_email("test1@example.com");
-		postService.newPost(post);
+		service.newPost(post);
 		log.info("make post complete");
 		return "redirect:/main";
 	}
 
 	@GetMapping({"/getPost", "/modifyPost"})
 	public void viewPost(@RequestParam("post_id") Long post_id, Model model) {
-		model.addAttribute("post", postService.get(post_id));
-		model.addAttribute("like", postService.getLike(post_id));
+		model.addAttribute("post", service.get(post_id));
 		log.info("check a thread " + post_id);
 	}
 	
 	@PostMapping("/modifyPost")
 	public String modifyPost(PostVO post) {
-		log.info(postService.modify(post));
-		return "redirect:/main/getPost?post_id="+post.getPost_id();
+		log.info(service.modify(post));
+		return "/main/getPost?post_id="+post.getPost_id();
 	}
-	
-	@PostMapping("/removePost")
-	public String removePost(@RequestParam Long post_id) {
-		postService.remove(post_id);
-		log.info(post_id +" remove complete");
-		return "redirect:/main";	
-	}
-	
-	@ResponseBody
-	@GetMapping("/loadPost")
-	public List<PostVO> loadPost(@RequestParam("count") Long count, 
-			@RequestParam("currentCount") Long currentCount, Model model) {
-		List<PostVO> posts = postService.getList(count, currentCount);
-		log.info("post load");
-		return posts;
-	}
-	
 }

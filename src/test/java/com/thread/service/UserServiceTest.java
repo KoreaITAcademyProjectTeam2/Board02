@@ -26,19 +26,14 @@ public class UserServiceTest {
 		log.info(service);
 	}
 
-	@Test
-	public void testNewUser() {
-		UserVO user = new UserVO();
-		user.setUser_email("user7@example.com");
-		user.setUser_name("qkqh");
-		user.setUser_password("12345");
-
-		service.newUser(user);
-
-		log.info("회원 생성: " + user.getUser_email());
-		log.info("닉네임 생성 : " + user.getUser_name());
-		log.info("비밀번호 생성 : " + user.getUser_password());
-	}
+	/*
+	 * @Test public void testNewUser() { UserVO user = new UserVO();
+	 * user.setUser_email("user1@example.com");
+	 * 
+	 * service.newUser(user);
+	 * 
+	 * log.info("회원 생성: " + user.getUser_email()); }
+	 */
 
 	@Test
 	public void testGet() {
@@ -47,47 +42,29 @@ public class UserServiceTest {
 
 	@Test
 	public void testModifyPassword() {
-		UserVO user = service.get("test3@example.com");
+		UserVO user = service.get("user5@example.com");
 
 		log.info("modify..." + user);
-		user.setUser_password("password6");
+		user.setUser_password("pwd05");
 		log.info("modify result..." + service.modifyPassword(user));
 	}
 
 	@Test
 	public void testModifyUserName() {
-		UserVO user = service.get("user6@example.com");
+		UserVO user = service.get("user5@example.com");
 
 		log.info("modify..." + user);
-		user.setUser_name("6 유저");
+		user.setUser_name("다섯번째 유저");
 		log.info("modify result..." + service.modifyUserName(user));
 	}
 
 	@Test
 	public void testRemove() {
-		UserVO user = service.get("user6@example.com");
+		UserVO user = service.get("user5@example.com");
 
 		log.info("remove..." + user);
-		user.setUser_email("여섯번째 유저");
-		log.info("remove result..." + service.remove("user6@example.com"));
-	}
-
-	@Test
-	public void testNickNameCheck() {
-		if (service.nicknameCheck("박민지") >= 1) {
-			log.info("중복되었습니다.");
-		} else {
-			log.info("사용할 수 있습니다.");
-		}
-	}
-
-	@Test
-	public void testEmailCheck() {
-		if (service.emailCheck("test1@example.com") >= 1) {
-			log.info("중복되었습니다.");
-		} else {
-			log.info("사용할 수 있습니다.");
-		}
+		user.setUser_email("다섯번째 유저");
+		log.info("remove result..." + service.remove("user5@example.com"));
 	}
 
 }

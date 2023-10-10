@@ -50,9 +50,4 @@ public class PostServiceTest {
 		post.setPost_content("서비스 테스트에서 수정.");
 		log.info("modify result..." + service.modify(post));
 	}
-	
-	@Test
-	public void testGetLike() {
-		log.info("Service Get Like: "+ service.getLike(4L));
-	}
 }

@@ -35,17 +35,12 @@ article {
 	margin-bottom: 20px;	
 }
 
-.feed-post-box:hover{
-	cursor: pointer;
-	border: 1px solid gray;
-}
-
 .feed_text {
 	padding: 0.3em;
 	text-align: left;
 }
 
-#feed-container{
+.feed-container{
 	
 	text-decoration: none; /* 밑줄 제거 */
     color: inherit; /* 기본 글자색 사용 */
@@ -86,7 +81,6 @@ article {
 	position: relative;
 	width: 100%;
 	padding: 0.5em;
-	justify-content: space-between;
 }
 
 .id_box {
@@ -107,22 +101,8 @@ article {
 	display: flex;
 	
 	width: 50%;
-	justify-content: right; 
+	text-align: right;
 }
-
-.feed_action_box{
-	all: unset;
-	padding: 0.1em 0.2em;
-	border: 0.1px solid gray;
-	border-radius: 0.3em;
-}
-
-.feed_action_box{
-	cursor: pointer;
-	color: gray;
-}
-
-
 
 .id_img {
 	width: 32px;
@@ -497,9 +477,4 @@ textarea {
 	padding: 0.5em 1em;
 	margin: 1em;
 	border: 1px solid #dbdbdb;
-}
-
-
-.none-display{
-	display: none;	
 }
