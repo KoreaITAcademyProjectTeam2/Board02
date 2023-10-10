@@ -65,7 +65,7 @@
 $(document).ready(function() {
     $('#password').on('keyup', function() {
         var password = $(this).val();
-        var message = $("#password_message");
+        var message = $("#newPassword_message");
         
         // AJAX를 사용하여 현재 비밀번호 일치 여부를 검사
         $.ajax({
@@ -86,6 +86,27 @@ $(document).ready(function() {
                 message.text("비밀번호 확인 중 오류가 발생했습니다.");
             }
         });
+    });
+    
+    $('#newPassword').on('keyup', function() {
+        var password = $(this).val();
+        var message = $("#newPassword_message");
+        
+        if (/\s/.test(password)) {
+            message.text("공백을 사용할 수 없습니다.");
+        } else {
+            message.text("");
+        }
+    });
+    $('#confirmPassword').on('keyup', function() {
+        var password = $(this).val();
+        var message = $("#confirmPassword_message");
+        
+        if (/\s/.test(password)) {
+            message.text("공백을 사용할 수 없습니다.");
+        } else {
+            message.text("");
+        }
     });
 });
 

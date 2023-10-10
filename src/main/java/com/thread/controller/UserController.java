@@ -96,8 +96,24 @@ public class UserController {
 	}
 
 	@PostMapping("/userJoin")
-	public void userJoinPage() {
+	public void userJoin() {
 		log.info("UserJoin Page");
+	}
+
+	@PostMapping("/registerUser")
+	public String registerUser(UserVO user, RedirectAttributes rttr) {
+		if (user.getUser_email().isEmpty() || user.getUser_password().isEmpty() || user.getUser_name().isEmpty()) {
+			rttr.addFlashAttribute("error", "모든 필드를 입력해주세요.");
+			return "redirect:/userJoin";
+		}
+
+		log.info("User registration: " + user);
+		log.info("User email: " + user.getUser_email());
+		log.info("User password: " + user.getUser_password());
+		log.info("User name: " + user.getUser_name());
+		userservice.newUser(user);
+		rttr.addFlashAttribute("result", "회원가입 성공!");
+		return "redirect:/login";
 	}
 
 	@PostMapping("/modify")
