@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thread.domain.PostVO;
+import com.thread.mapper.LikeMapper;
 import com.thread.mapper.PostMapper;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +21,9 @@ public class PostServiceImpl implements PostService{
 	
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private LikeMapper likeMapper;
 	
 	@Transactional
 	@Override
@@ -50,8 +54,15 @@ public class PostServiceImpl implements PostService{
 
 	@Override
 	public boolean remove(Long post_id) {
+		likeMapper.DeletePost(post_id);
 		mapper.deleteComments(post_id);
 		return mapper.delete(post_id)==3;
 	}
-
+	
+	
+	@Override
+	public Long getLike(Long post_id) {
+		return likeMapper.likeNumbers(post_id);
+	}
+	
 }

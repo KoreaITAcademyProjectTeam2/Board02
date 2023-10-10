@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.thread.domain.PostVO;
+import com.thread.domain.LikeVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -14,36 +14,29 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class PostMapperTest {
+public class LikeMapperTest {
 	
 	@Setter(onMethod_ = @Autowired)
-	private PostMapper mapper;
+	private LikeMapper mapper;
 	
 	@Test
-	public void testInsert() {
+	public void testLike() {
+		LikeVO like = new LikeVO();
+		like.setPost_like_id(4L);
+		like.setUser_like_email("test1@example.com");
 		
-		PostVO post = new PostVO();
-		post.setPost_content("새로 작성하는 내용");
-		post.setPost_user_email("user1@example.com");
-
-		mapper.insert(post);
-		log.info(post);
+		mapper.LikePost(like);
 	}
 	
 	@Test
-	public void testGet() {
-		mapper.get(3L);
+	public void testDislike() {
+		LikeVO like = new LikeVO();
+		like.setPost_like_id(4L);
 	}
 	
 	@Test
-	public void testGetList() {
-		log.info(mapper.getList(5L,1L));
+	public void testLikeNumbers() {
+		log.info("like 갯수: " + mapper.likeNumbers(4L));
+		
 	}
-	
-	@Test
-	public void testRemove() {
-		mapper.deleteComments(2L);
-		mapper.delete(2L);
-	}
-
 }

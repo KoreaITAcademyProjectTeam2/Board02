@@ -54,7 +54,7 @@
 				<div class="feed_bottom">
 					<div class="emoticon_box">
 						<div class="feed_info">
-		          			<div>작성일: <span><fmt:formatDate value="${posts.post_add_date}" pattern="yyyy-MM-dd"/></span></div>
+		          			<div>작성일:<span><fmt:formatDate value="${posts.post_add_date}" pattern="yyyy-MM-dd"/></span></div>
 		          			<div>태그</div>
 		          		</div>
 						<div class="emoticon_box2">
@@ -224,7 +224,7 @@
 			feedElement.innerHTML = userBox + feedPostBox + feedBottom + feedArticle;
 			
 			feedElement.querySelector('.feed_text').addEventListener('click', function() {
-	            location.href = `main/getPost?post_id=${post.post_id}`;
+	            location.href = `main/getPost?post_id=\${post.post_id}`;
 	        });
 			
 			feedContainer.appendChild(feedElement);

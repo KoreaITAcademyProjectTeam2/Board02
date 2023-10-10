@@ -42,6 +42,7 @@ public class PostController {
 	@GetMapping({"/getPost", "/modifyPost"})
 	public void viewPost(@RequestParam("post_id") Long post_id, Model model) {
 		model.addAttribute("post", postService.get(post_id));
+		model.addAttribute("like", postService.getLike(post_id));
 		log.info("check a thread " + post_id);
 	}
 	
@@ -65,7 +66,6 @@ public class PostController {
 		List<PostVO> posts = postService.getList(count, currentCount);
 		log.info("post load");
 		return posts;
-		
 	}
 	
 }
