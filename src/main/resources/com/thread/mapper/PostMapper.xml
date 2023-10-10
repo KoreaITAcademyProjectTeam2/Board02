@@ -6,13 +6,15 @@
 <mapper namespace="com.thread.mapper.PostMapper">
 
 <insert id="insert">
-    insert into posts(post_content, post_user_email)
-    values(#{post_content}, #{post_user_email})
+    INSERT INTO posts(post_content, post_user_email)
+    VALUES(#{post_content}, #{post_user_email})
 </insert>
 
 <select id="getList" resultType="com.thread.domain.PostVO">
 	<![CDATA[
-		SELECT * FROM posts
+		SELECT * 
+		FROM posts 
+		LIMIT #{count} OFFSET #{currentCount}
 	]]>
 </select>
 
@@ -38,6 +40,10 @@
 
 <delete id="delete">
 	DELETE FROM posts WHERE post_id = #{post_id}
+</delete>
+
+<delete id="deleteComments">
+	DELETE FROM comments WHERE comment_post_id = #{post_id}
 </delete>
 
 </mapper>

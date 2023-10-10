@@ -19,32 +19,38 @@ import lombok.extern.log4j.Log4j;
 public class UserServiceImpl implements UserService {
 
 	@Setter(onMethod_ = @Autowired)
-	private UserMapper mapper;
+	private UserMapper usermapper;
+
+	@Override
+	public UserVO userLogin(UserVO user) throws Exception {
+
+		return usermapper.userLogin(user);
+	}
 
 	@Transactional
 	@Override
 	public void newUser(UserVO user) {
 		log.info("new User..." + user);
-		mapper.insert(user);
+		usermapper.insert(user);
 	}
 
 	@Override
 	public List<UserVO> getList() {
 		log.info("getList...");
-		return mapper.getList();
+		return usermapper.getList();
 	}
 
 	@Override
 	public UserVO get(String user_email) {
 		log.info("get...");
-		return mapper.get(user_email);
+		return usermapper.get(user_email);
 	}
 
 	@Transactional
 	@Override
 	public boolean modifyPassword(UserVO user) {
 		log.info("modifyPassword... : " + user);
-		boolean modifyResult = mapper.update_user_password(user) == 1;
+		boolean modifyResult = usermapper.update_user_password(user) == 1;
 		return modifyResult;
 	}
 
@@ -52,14 +58,28 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean modifyUserName(UserVO user) {
 		log.info("modifyUserName... : " + user);
-		boolean modifyResult = mapper.update_user_name(user) == 1;
+		boolean modifyResult = usermapper.update_user_name(user) == 1;
 		return modifyResult;
 	}
 
 	@Override
 	public boolean remove(String user_email) {
 
-		return mapper.delete(user_email) == 1;
+		return usermapper.delete(user_email) == 1;
+	}
+
+	@Override
+	public Integer nicknameCheck(String user_name) {
+		Integer cnt = usermapper.nicknameCheck(user_name);
+		log.info("cnt: " + cnt);
+		return cnt;
+	}
+
+	@Override
+	public Integer emailCheck(String user_email) {
+		Integer ecnt = usermapper.emailCheck(user_email);
+		log.info("ecnt: " + ecnt);
+		return ecnt;
 	}
 
 }

@@ -1,9 +1,9 @@
 -- 게시글 좋아요
 CREATE TABLE post_likes(
-	post_like_id INT,
-    user_like_email VARCHAR(255),
-    FOREIGN KEY (like_post_id) REFERENCES posts(post_id),
-    FOREIGN KEY (like_user_name) REFERENCES users(user_id)
+    post_like_id INT,
+    user_like_email VARCHAR(255) UNIQUE,
+    FOREIGN KEY (post_like_id) REFERENCES posts(post_id),
+    FOREIGN KEY (user_like_email) REFERENCES users(user_email)
 );
 -- 댓글 좋아요
 CREATE TABLE comment_likes(
