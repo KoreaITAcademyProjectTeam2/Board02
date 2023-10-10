@@ -29,8 +29,8 @@
 		</header>
 		
 		<% if(request.getAttribute("error") != null) { %>
-    <p class="error_message"><%= request.getAttribute("error") %></p>
-<% } %>
+    		<p class="error_message"><%= request.getAttribute("error") %></p>
+		<% } %>
 		<form id = "user_Join" method="post" action="/registerUser">
 			<div class="email-form">
 				<input type="text" name="user_email" id="user_email" class="user_Join_Id" placeholder="아이디" />
