@@ -58,11 +58,6 @@
 		          			<div>태그</div>
 		          		</div>
 						<div class="emoticon_box2">
-							<div class="heart_box">
-								<img class="heart" src="/resources/img/heart.png" alt="좋아요 이미지">
-			                	<div class="emoticon_number">333</div>
-			                	<!-- 좋아요 표시. -->
-							</div>
 							<div class="comment_box">
 								<img class="comment" src="/resources/img/comment.png" alt="댓글 이미지">
 								<div class="emoticon_number">333</div>
@@ -141,7 +136,6 @@
 	}
 	
 	function createUserBox(post){
-		console.log("create user box " + post);
 		return `
 			<div class="feed_id">
 			  <div class="id_box">
@@ -174,10 +168,6 @@
 				  <div>태그-<span></span></div>
 				</div>
 				<div class="emoticon_box2">
-				  <div class="heart_box">
-				    <img class="heart" src="/resources/img/heart.png" alt="좋아요">
-				    <div class="emoticon_number">333</div>
-				  </div>
 				  <div class="comment_box">
 				    <img class="comment" src="/resources/img/comment.png" alt="댓글">
 				    <div class="emoticon_number">333</div>
@@ -231,7 +221,6 @@
 			
 	        
 		});
-		console.log(data);
 		/* feedContainer.insertAdjacentHTML('beforeend', newContent); */
 
 	}

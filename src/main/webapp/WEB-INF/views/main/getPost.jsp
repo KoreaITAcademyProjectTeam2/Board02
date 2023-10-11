@@ -37,8 +37,8 @@
 	            </div>
 	            <!-- end id_box -->
 				<div class="feed_action">
-					<a href="modifyPost?post_id=<c:out value="${post.post_id }" />" class="feed_action_box">수정</a>
-					<form action="removePost" method="POST"><button class="feed_action_box" type="submit" name="post_id" value="<c:out value="${post.post_id }" />">삭제</button></form>
+					<a href="modifyPost?post_id=<c:out value="${post.post.post_id }" />" class="feed_action_box">수정</a>
+					<form action="removePost" method="POST"><button class="feed_action_box" type="submit" name="post_id" value="<c:out value="${post.post.post_id }" />">삭제</button></form>
 				</div>
 	        </div>
 	        <!-- end feed_id -->
@@ -47,7 +47,7 @@
 						(이미지 영역)
 				</div>
 				<div class="feed_text">
-					<c:out value="${post.post_content }"/>
+					<c:out value="${post.post.post_content }"/>
 				</div>
 			</div>
 
@@ -62,14 +62,9 @@
 	          		<div class="feed_info_tags">태그</div>
 	          	</div>
 	            <div class="emoticon_box2">
-	              <div class="heart_box">
-	                <img class="heart" src="/resources/img/heart.png" alt="좋아요 이미지">
-	                <div class="emoticon_number">333</div>
-	                <!-- 좋아요 표시. -->
-	              </div>
 	              <div class="comment_box">
 	              	<img class="comment" src="/resources/img/comment.png" alt="댓글 이미지">
-	              	<div class="emoticon_number">333</div>
+	              	<div class="emoticon_number">${post.commentCount }</div>
 	              	<!-- 댓글 작성 페이지로 넘어감. -->
 	              </div>
 	            </div>

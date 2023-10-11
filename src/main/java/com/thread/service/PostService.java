@@ -16,5 +16,5 @@ public interface PostService {
 	
 	public boolean remove(Long post_id);
 	
-	public Long getLike(Long post_id);
+	public int getCommentCount(Long post_id);
 }

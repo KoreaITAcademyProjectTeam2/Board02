@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.thread.domain.PostDTO;
 import com.thread.domain.PostVO;
 import com.thread.service.PostService;
 
@@ -23,6 +24,7 @@ import lombok.extern.log4j.Log4j;
 public class PostController {
 
 	private PostService postService;
+	private PostDTO postDTO;
 	
 	@GetMapping("/newPost")
 	public void newPost() {
@@ -41,8 +43,12 @@ public class PostController {
 
 	@GetMapping({"/getPost", "/modifyPost"})
 	public void viewPost(@RequestParam("post_id") Long post_id, Model model) {
-		model.addAttribute("post", postService.get(post_id));
-		model.addAttribute("like", postService.getLike(post_id));
+		
+		postDTO.setPost(postService.get(post_id));
+		postDTO.setCommentCount(postService.getCommentCount(post_id));
+		
+		model.addAttribute("post", postDTO);
+		
 		log.info("check a thread " + post_id);
 	}
 	

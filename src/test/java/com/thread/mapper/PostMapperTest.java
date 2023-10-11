@@ -45,5 +45,9 @@ public class PostMapperTest {
 		mapper.deleteComments(2L);
 		mapper.delete(2L);
 	}
-
+	
+	@Test
+	public void testGetCommentCount() {
+		log.info("comment count: " + mapper.getCommentCount(17L));
+	}
 }

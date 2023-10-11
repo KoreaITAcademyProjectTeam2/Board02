@@ -19,4 +19,6 @@ public interface PostMapper {
     public int delete(Long post_id);
     
     public int deleteComments(Long post_id);
+    
+    public int getCommentCount(Long post_id);
 }
