@@ -20,7 +20,6 @@ public class PostServiceImpl implements PostService{
 	
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
-
 	@Transactional
 	@Override
 	public void newPost(PostVO post) {

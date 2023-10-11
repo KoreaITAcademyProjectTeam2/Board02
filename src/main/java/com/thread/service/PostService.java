@@ -15,6 +15,7 @@ public interface PostService {
 	public boolean modify(PostVO post);
 	
 	public boolean remove(Long post_id);
+
 	
 	public int getCommentCount(Long post_id);
 

@@ -21,6 +21,12 @@ public interface UserMapper {
 
 	public int delete(String user_email);
 
+	public int deleteCommentsByUserEmail(String user_email);
+
+	public int deleteUserPosts(String user_email);
+
+	public int deleteUserComments(String user_email);
+
 	public int nicknameCheck(String user_name);
 
 	public int emailCheck(String user_email);
