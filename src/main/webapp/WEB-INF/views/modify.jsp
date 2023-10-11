@@ -63,9 +63,11 @@
 	
 <script>
 $(document).ready(function() {
+	var isPasswordMatching = false;
+	
     $('#password').on('keyup', function() {
         var password = $(this).val();
-        var message = $("#newPassword_message");
+        var message = $("#password_message");
         
         // AJAX를 사용하여 현재 비밀번호 일치 여부를 검사
         $.ajax({
@@ -74,9 +76,11 @@ $(document).ready(function() {
             data: { password: password },
             success: function(data) {
                 if(data) {
+                	isPasswordMatching = true;
                     message.text("현재 비밀번호가 일치합니다.");
                     message.css('color', 'green');
                 } else {
+                	isPasswordMatching = false;
                     message.text("현재 비밀번호가 일치하지 않습니다.");
                     message.css('color', 'red');
                 }
@@ -86,6 +90,12 @@ $(document).ready(function() {
                 message.text("비밀번호 확인 중 오류가 발생했습니다.");
             }
         });
+    });
+    
+    $('#newPassword').on('focus', function() {
+        if(isPasswordMatching) {
+            $("#password_message").text("");
+        }
     });
     
     $('#newPassword').on('keyup', function() {
@@ -99,16 +109,81 @@ $(document).ready(function() {
         }
     });
     $('#confirmPassword').on('keyup', function() {
-        var password = $(this).val();
-        var message = $("#confirmPassword_message");
+        var newPassword = $('#newPassword').val();
+        var confirmPassword = $(this).val();
+        var message = $("#password_confirm_message");
         
-        if (/\s/.test(password)) {
-            message.text("공백을 사용할 수 없습니다.");
+        if(newPassword === confirmPassword) {
+            message.text("비밀번호가 일치합니다.");
+            message.css('color', 'green');
         } else {
-            message.text("");
+            message.text("비밀번호가 일치하지 않습니다.");
+            message.css('color', 'red');
         }
     });
+    
+    $('#password, #newPassword, #confirmPassword').on('keyup', function() {
+        $("#password_change_message").text("");
+    });
+    
+    $('#newPassword, #confirmPassword').on('keyup', function() {
+        var newPassword = $('#newPassword').val();
+        var confirmPassword = $('#confirmPassword').val();
+        var confirmPasswordMessage = $("#confirmPassword_message");
+
+        // 새 비밀번호와 비밀번호 확인이 일치하는 경우
+        if (newPassword && confirmPassword && newPassword === confirmPassword) {
+            confirmPasswordMessage.text("비밀번호가 일치합니다.").css('color', 'green');
+        } else {
+            confirmPasswordMessage.text("");  // 메시지 숨기기
+        }
+    });
+
+    // 새 비밀번호 입력 필드에 추가 입력이 발생할 때 메시지 클리어
+    $('#newPassword').on('keyup', function() {
+        $("#confirmPassword_message").text("");  // 메시지 숨기기
+    });
+
 });
+
+
+function modifyPassword() {
+    var currentPassword = $('#password').val();
+    var newPassword = $('#newPassword').val();
+    var confirmPassword = $('#confirmPassword').val();
+    var message = $("#password_change_message");
+    
+    $("#confirmPassword_message").text("");
+
+    if(newPassword !== confirmPassword) {
+        message.text("비밀번호가 일치하지 않습니다.");
+        message.css('color', 'red');
+        return;
+    }
+
+    // AJAX 요청을 사용하여 서버에 비밀번호 변경 요청을 보냅니다.
+    $.ajax({
+        type: "POST",
+        url: "/updateUserPassword",  // 해당 URL을 서버에서 처리해야 합니다.
+        data: { 
+            currentPassword: currentPassword, 
+            newPassword: newPassword 
+        },
+        success: function(response) {
+            if(response) {
+                message.text("비밀번호가 변경되었습니다.");
+                message.css('color','green');
+            } else {
+                message.text("현재 비밀번호를 다시 확인해주세요.");
+            }
+        },
+        error: function(error) {
+            console.error("Error:", error);
+            message.text("비밀번호 변경 중 오류가 발생했습니다.");
+        }
+    });
+}
+
 
 
 
