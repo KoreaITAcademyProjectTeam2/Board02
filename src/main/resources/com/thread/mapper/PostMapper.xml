@@ -46,4 +46,10 @@
 	DELETE FROM comments WHERE comment_post_id = #{post_id}
 </delete>
 
+<select id="getCommentCount" resultType="int">
+  SELECT COUNT(*) 
+  FROM comments
+  WHERE comment_post_id = #{post_id}
+</select>
+
 </mapper>

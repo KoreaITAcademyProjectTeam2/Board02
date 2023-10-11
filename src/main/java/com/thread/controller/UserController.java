@@ -51,7 +51,7 @@ public class UserController {
 
 		HttpSession session = request.getSession();
 		UserVO lvo = userservice.userLogin(user);
-
+		
 		if (lvo == null) { // 일치하지 않는 아이디, 비밀번호 입력 경우
 
 			int result = 0;
