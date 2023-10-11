@@ -28,12 +28,6 @@ public class CommentController {
 	@Inject
 	private CommentService commentService;
 	
-	@Autowired
-	private CommentMapper commentMapper;
-	
-	@Autowired
-	private PostMapper postMapper;
-	
 	// 댓글 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String commentWirte(CommentVO vo) throws Exception {
@@ -70,20 +64,6 @@ public class CommentController {
 	    return "redirect:/main/getPost?post_id=" + vo.getComment_post_id();
 	}
 	
-	// 댓글 목록
-	@RequestMapping("/main/getPost")
-	public String getPost(@RequestParam("post_id") Long post_id, Model model) {
-	    // 게시물 정보 가져오기
-	    PostVO post = postMapper.get(post_id);
-	    model.addAttribute("post", post);
-
-	    // 댓글 목록 가져오기
-	    List<CommentVO> commentList = commentMapper.getListWithPaging(post_id);
-	    model.addAttribute("commentList", commentList);
-
-	    return "getPost";
-	}
-
 
 
 }
