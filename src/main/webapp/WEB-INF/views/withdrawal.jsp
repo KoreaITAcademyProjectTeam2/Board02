@@ -27,10 +27,7 @@
 		</header>
 		
 		<div class = "withdrawal_Main_Message">
-		사용하고 계신 이메일(user_email)은 탈퇴할 경우 재사용 및 복구가 불가능합니다.<br/>
-		탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.<br/>
-		탈퇴 후에는 이메일(user_email)로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.<br/>
-		게시판형 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다.<br/>
+		탈퇴 후에는 작성했던 게시글, 댓글 모두 자동 삭제되므로 신중히 선택 후 동의버튼을 눌러 탈퇴해주세요.<br/>
 			<input type ="radio" name = "agree" value = "agree">안내 사항을 모두 확인하였으며, 이에 동의합니다.
 
 		</div>
@@ -45,12 +42,33 @@
 		</form>
 		</footer>
 	</div>
-	<!-- <script>
-		function removeUser() {
-			if(window.confirm("탈퇴하시겠습니까?")){
-				location.href="/withdrawal"
-			}
-		} -->
+	<script>
+	
+	function removeUser() {
+    // 사용자가 동의했는지 확인합니다.
+    if ($("input[name='agree']:checked").val() === 'agree') {
+        if (window.confirm("탈퇴하시겠습니까?")) {
+            $.ajax({
+                type: "POST",
+                url: "/removeUser",
+                success: function(response) {
+                    if (response) {
+                        alert("성공적으로 제거되었습니다!");
+                        location.href = "/login"; // 제거 후 사용자를 리다이렉트하려는 위치
+                    } else {
+                        alert("제거 중 오류가 발생했습니다!");
+                    }
+                },
+                error: function(error) {
+                    alert("요청을 처리하는 중 오류가 발생했습니다.");
+                }
+            });
+        }
+    } else {
+        alert("계속하기 전에 약관에 동의해주세요.");
+    }
+}
+	
 	
 	
 	
