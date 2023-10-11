@@ -106,7 +106,7 @@
 	}
 
 	function handleScroll() {
-		console.log("handle scroll");
+		
 		if((window.innerHeight + window.scrollY) >= document.body.offsetHeight * 0.99){
 			loadMoreData();
 		}
@@ -128,7 +128,7 @@
 			.then(() => {
 				return new Promise((resolve) => {
 					setTimeout(() => {
-						console.log("delay");
+						
 						resolve()
 					}, 1000);
 				});
@@ -209,7 +209,7 @@
 			const feedBottom = createFeedBottom(post);
 			const feedArticle = createFeedArticle();
 			
-			console.log(feedPostBox)
+			
 			
 			feedElement.innerHTML = userBox + feedPostBox + feedBottom + feedArticle;
 			
