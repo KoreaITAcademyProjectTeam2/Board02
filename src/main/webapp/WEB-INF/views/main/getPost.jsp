@@ -31,7 +31,7 @@
 	                (profile_img)
 	              </div>
 	              <div class="id_container">
-	                <div class="id_name">USER_NAME</div>
+	                <div class="id_name"><c:out value="${post.userName }" /></div>
 	              </div>
 	              <!-- end id_container -->
 	            </div>
@@ -58,8 +58,7 @@
 	          <div class="emoticon_box">
 	          	<div class="feed_info">
 	          		<div class="feed_info_tags">작성일</div>
-	          		<div class="feed_info_tags" type="hide">수정일</div>
-	          		<div class="feed_info_tags">태그</div>
+	          		<div class="feed_info_tags" hidden>수정일</div>
 	          	</div>
 	            <div class="emoticon_box2">
 	              <div class="comment_box">
@@ -90,7 +89,7 @@
            <div class="inputContainer">
              <div class="type_comment">
                <!-- 게시글 ID도 함께 전송합니다 -->
-               <input type='hidden' name='comment_post_id' value='${empty post ? 0 : post.post_id}'>
+               <input type='hidden' name='comment_post_id' value='${empty post ? 0 : post.post.post_id}'>
                
                <!-- 사용자가 입력한 새로운 댓글 내용 -->
                

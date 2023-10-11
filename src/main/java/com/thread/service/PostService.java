@@ -17,4 +17,6 @@ public interface PostService {
 	public boolean remove(Long post_id);
 	
 	public int getCommentCount(Long post_id);
+
+	String getUser(Long post_id);
 }

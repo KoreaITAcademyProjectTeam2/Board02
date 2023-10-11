@@ -42,6 +42,13 @@
 	DELETE FROM posts WHERE post_id = #{post_id}
 </delete>
 
+<select id="getUser" resultType="String">
+	SELECT u.user_name
+	FROM users u
+	JOIN posts p ON u.user_email = p.post_user_email
+	WHERE p.post_id = #{post_id}
+</select>
+
 <delete id="deleteComments">
 	DELETE FROM comments WHERE comment_post_id = #{post_id}
 </delete>
