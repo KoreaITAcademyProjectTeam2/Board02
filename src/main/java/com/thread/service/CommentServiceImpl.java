@@ -1,5 +1,7 @@
 package com.thread.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,14 @@ public class CommentServiceImpl implements CommentService {
 
     private static final Logger log = LoggerFactory.getLogger(CommentServiceImpl.class);
 
-    @Autowired
     private CommentMapper commentMapper;
 
+    
+    @Autowired
+    public CommentServiceImpl(CommentMapper commentMapper) {
+        this.commentMapper = commentMapper;
+    }
+    
     @Transactional
     @Override
     public void comment(CommentVO vo) {
@@ -69,5 +76,15 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentVO getById(Long comment_id) {
     	return commentMapper.getById(comment_id);
+    }
+    
+    @Override
+    public List<CommentVO> getCommentsByPostId(Long post_id) {
+        return commentMapper.getListWithPaging(post_id);
+    }
+
+    @Override
+    public List<CommentVO> getListWithPaging(Long post_id) {
+        return commentMapper.getListWithPaging(post_id);
     }
 }

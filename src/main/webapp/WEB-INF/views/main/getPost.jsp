@@ -16,12 +16,6 @@
   <div class='none'></div>
   <div class="main_body">
     <article id="posts">
-      <!-- <div class="story">
-        게시글 추가
-        <form action="/newPost" method="post" id="">
-            <input type="textarea">
-        </form>
-      </div> -->
       <div class="feed-container">
       
 	      <div class="feed" >
@@ -50,7 +44,9 @@
 					<c:out value="${post.post.post_content }"/>
 				</div>
 			</div>
-
+			
+			
+		
 	          
 	        <!--feedbottom-->
 	        <div class="feed_bottom">
@@ -73,16 +69,6 @@
 	        
 	        
 	       <!--/feedbottom-->
-   
-           <div class="feed_article">
-             <c:forEach items="${comments}" var="comment">
-              <div class="feed_article_box">
-              <div class="comments1_box">
-                <div class="comment_user_id">${comment.comment_user_email}</div>
-                <div class="comments-comment">${comment.comment_content}</div>
-              </div>
-              </div>
-           </c:forEach>
 
            <!-- 게시글의 댓글 -->
           <form action="/comment/write" method="post">
@@ -106,7 +92,32 @@
 	      </div>
 	      
       </div>
+      <span>
+        <button class="buttonBox" type="submit">게시</button>
+      </span>
+    </div>
+  </form>
 
+  <!-- 댓글 목록 -->
+<div id="commentList" class="commentList">
+  <c:forEach items="${commentList}" var="comment">
+    <div class="commentItem">
+      <div class="profilePic">
+        <img src="(프로필 이미지 경로)" alt="프로필 이미지">
+      </div>
+      <div class="commentContent">
+        <p>${comment.comment_content}</p>
+      </div>
+      <div class="userInfo">
+        <p><strong>${comment.comment_user_email}</strong></p>
+        <p><fmt:formatDate value="${comment.comment_add_date}" pattern="yyyy-MM-dd" /></p>
+      </div>
+    </div>
+  </c:forEach>
+</div>
+
+
+	</div>
     </article>
 
   </div>

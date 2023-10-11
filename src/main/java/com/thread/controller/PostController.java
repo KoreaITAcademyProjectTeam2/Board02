@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.thread.domain.CommentVO;
+import com.thread.domain.PostVO;
+import com.thread.domain.UserVO;
+import com.thread.service.CommentService;
 import com.thread.domain.PostDTO;
 import com.thread.domain.PostVO;
 import com.thread.domain.UserVO;
@@ -29,6 +33,7 @@ public class PostController {
 	
 	@Autowired
 	private PostService postService;
+	private CommentService commentService;
 	
 	@Autowired
 	private PostDTO postDTO;
@@ -51,6 +56,9 @@ public class PostController {
 
 	@GetMapping({"/getPost", "/modifyPost"})
 	public void viewPost(@RequestParam("post_id") Long post_id, Model model) {
+		List<CommentVO> commentList = commentService.getListWithPaging(post_id);
+        model.addAttribute("commentList", commentList);
+
 		
 		postDTO.setPost(postService.get(post_id));
 		postDTO.setCommentCount(postService.getCommentCount(post_id));
