@@ -50,4 +50,9 @@ public class PostMapperTest {
 	public void testGetCommentCount() {
 		log.info("comment count: " + mapper.getCommentCount(17L));
 	}
+	
+	@Test
+	public void testGetUser() {
+		log.info("post3 user: " + mapper.getUser(18L));
+	}
 }

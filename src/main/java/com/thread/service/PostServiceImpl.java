@@ -59,6 +59,9 @@ public class PostServiceImpl implements PostService{
 		return mapper.getCommentCount(post_id);
 	}
 	
-
+	@Override
+	public String getUser(Long post_id) {
+		return mapper.getUser(post_id);
+	}
 	
 }

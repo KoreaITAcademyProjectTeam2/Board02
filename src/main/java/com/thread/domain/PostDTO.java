@@ -9,4 +9,5 @@ import lombok.Data;
 public class PostDTO {
 	private PostVO post;
 	private int commentCount;
+	private String userName;
 }

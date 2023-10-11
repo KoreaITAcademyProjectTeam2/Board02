@@ -2,6 +2,9 @@ package com.thread.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.thread.domain.PostDTO;
 import com.thread.domain.PostVO;
+import com.thread.domain.UserVO;
 import com.thread.service.PostService;
 
 import lombok.AllArgsConstructor;
@@ -22,8 +26,11 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/main/*")
 @AllArgsConstructor
 public class PostController {
-
+	
+	@Autowired
 	private PostService postService;
+	
+	@Autowired
 	private PostDTO postDTO;
 	
 	@GetMapping("/newPost")
@@ -33,9 +40,10 @@ public class PostController {
 	}
 
 	@PostMapping("/newPost")
-	public String makePost(PostVO post, @RequestParam("post_content") String post_content) {
+	public String makePost(HttpSession session, PostVO post, @RequestParam("post_content") String post_content) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
 		post.setPost_content(post_content);
-		post.setPost_user_email("test1@example.com");
+		post.setPost_user_email(currentUser.getUser_email());
 		postService.newPost(post);
 		log.info("make post complete");
 		return "redirect:/main";
@@ -46,7 +54,7 @@ public class PostController {
 		
 		postDTO.setPost(postService.get(post_id));
 		postDTO.setCommentCount(postService.getCommentCount(post_id));
-		
+		postDTO.setUserName(postService.getUser(post_id));
 		model.addAttribute("post", postDTO);
 		
 		log.info("check a thread " + post_id);
@@ -68,7 +76,7 @@ public class PostController {
 	@ResponseBody
 	@GetMapping("/loadPost")
 	public List<PostVO> loadPost(@RequestParam("count") Long count, 
-			@RequestParam("currentCount") Long currentCount, Model model) {
+			@RequestParam("currentCount") Long currentCount) {
 		List<PostVO> posts = postService.getList(count, currentCount);
 		log.info("post load");
 		return posts;

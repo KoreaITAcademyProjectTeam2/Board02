@@ -20,5 +20,9 @@ public interface PostMapper {
     
     public int deleteComments(Long post_id);
     
+    public String getUser(Long post_id);
+    
     public int getCommentCount(Long post_id);
+    
+    public List<Integer> getCommentCountList(@Param("count")Long count, @Param("currentCount")Long currentCount);
 }
