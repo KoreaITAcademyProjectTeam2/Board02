@@ -138,7 +138,7 @@ public class UserController {
 		log.info("modifyPage");
 	}
 
-	@GetMapping("/withdrawal")
+	@PostMapping("/withdrawal")
 	public void withdrawal() {
 		log.info("withdrawalPage");
 	}
@@ -195,6 +195,17 @@ public class UserController {
 			return userservice.modifyPassword(dbUser);
 		}
 		return false;
+	}
+
+	@ResponseBody
+	@PostMapping("/removeUser")
+	public boolean removeUser(HttpSession session) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		if (currentUser == null) {
+			return false;
+		}
+		log.info("User Email: " + currentUser.getUser_email());
+		return userservice.remove(currentUser.getUser_email());
 	}
 
 }

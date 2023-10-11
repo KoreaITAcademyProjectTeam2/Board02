@@ -20,8 +20,6 @@ public class PostServiceImpl implements PostService{
 	
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
-	
-	
 	@Transactional
 	@Override
 	public void newPost(PostVO post) {
@@ -54,6 +52,15 @@ public class PostServiceImpl implements PostService{
 		mapper.deleteComments(post_id);
 		return mapper.delete(post_id)==3;
 	}
-	
 
+	@Override
+	public int getCommentCount(Long post_id) {
+		return mapper.getCommentCount(post_id);
+	}
+	
+	@Override
+	public String getUser(Long post_id) {
+		return mapper.getUser(post_id);
+	}
+	
 }

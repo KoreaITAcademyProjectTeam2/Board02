@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,9 @@ import com.thread.domain.CommentVO;
 import com.thread.domain.PostVO;
 import com.thread.domain.UserVO;
 import com.thread.service.CommentService;
+import com.thread.domain.PostDTO;
+import com.thread.domain.PostVO;
+import com.thread.domain.UserVO;
 import com.thread.service.PostService;
 
 import lombok.AllArgsConstructor;
@@ -26,9 +30,13 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/main/*")
 @AllArgsConstructor
 public class PostController {
-
+	
+	@Autowired
 	private PostService postService;
 	private CommentService commentService;
+	
+	@Autowired
+	private PostDTO postDTO;
 	
 	@GetMapping("/newPost")
 	public void newPost() {
@@ -48,11 +56,15 @@ public class PostController {
 
 	@GetMapping({"/getPost", "/modifyPost"})
 	public void viewPost(@RequestParam("post_id") Long post_id, Model model) {
-		model.addAttribute("post", postService.get(post_id));
-
 		List<CommentVO> commentList = commentService.getListWithPaging(post_id);
         model.addAttribute("commentList", commentList);
 
+		
+		postDTO.setPost(postService.get(post_id));
+		postDTO.setCommentCount(postService.getCommentCount(post_id));
+		postDTO.setUserName(postService.getUser(post_id));
+		model.addAttribute("post", postDTO);
+		
 		log.info("check a thread " + post_id);
 	}
 	
@@ -72,7 +84,7 @@ public class PostController {
 	@ResponseBody
 	@GetMapping("/loadPost")
 	public List<PostVO> loadPost(@RequestParam("count") Long count, 
-			@RequestParam("currentCount") Long currentCount, Model model) {
+			@RequestParam("currentCount") Long currentCount) {
 		List<PostVO> posts = postService.getList(count, currentCount);
 		log.info("post load");
 		return posts;
