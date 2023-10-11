@@ -36,7 +36,7 @@
 
       <form id="login_form" class="login-container" method="post" action="/main">
       <div class="email-form">
-        <input type="text" class="user_Login" name="user_email" placeholder="이메일" />
+        <input type="text" class="user_Login" name="user_email" placeholder="아이디" />
         </div>
         <input type="password" class="user_Login" name="user_password" placeholder="비밀번호" />
 
@@ -67,7 +67,7 @@
     /* 로그인 버튼 클릭 메서드 */
     $(".loginBtn").click(function(){
         
-        //alert("로그인 버튼 작동");
+        /* alert("로그인 버튼 작동"); */
         
         /* 로그인 메서드 서버 요청 */
         $("#login_form").attr("action", "/login");
