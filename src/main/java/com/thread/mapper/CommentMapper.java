@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -23,7 +22,10 @@ public interface CommentMapper {
 	@Update("UPDATE comments SET comment_content = #{comment_content}, comment_modify_date = NOW() WHERE comment_id = #{comment_id}")
 	int update(CommentVO comment);
 
-	public List<CommentVO> getListWithPaging(@Param("post_id") Long post_id);
+	@Select("SELECT * FROM comments WHERE comment_post_id = #{post_id}")
+    List<CommentVO> getListWithPaging(Long post_id);
+	
+//	public List<CommentVO> getListWithPaging(@Param("post_id") Long post_id);
 
 //	public int insert(CommentVO vo);
 

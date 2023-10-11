@@ -503,3 +503,74 @@ textarea {
 .none-display{
 	display: none;	
 }
+
+
+#commentList {
+  width: 600px;
+  height: auto;
+  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+  border-radius: 0.5em;
+  margin-bottom: 20px;
+}
+
+
+.commentHeader {
+  text-align: left;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+  width: 25%;
+}
+
+.commentContent {
+  text-align: left;
+  display: inline-block;
+  width: 75%;
+  margin: 0;
+}
+
+
+.commentItem {
+  border-bottom: 1px solid #dbdbdb; /* 선 추가 */
+  padding: 10px 0; /* 댓글 간 간격 조정 */
+}
+
+
+.commentItem:last-child {
+  border-bottom: none; /* 마지막 댓글에는 선을 표시하지 않음 */
+}
+
+
+.commentItem {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 10px 0;
+}
+
+.profilePic {
+  width: 48px; /* 프로필 이미지의 너비 조절 */
+  margin-right: 10px;
+}
+
+.commentDetails {
+  flex: 1; /* 남은 공간을 댓글 내용에 할당 */
+}
+
+.commentAuthor {
+  font-weight: 600;
+  margin: 0;
+  font-size: 14px;
+}
+
+.commentDate {
+  font-size: 12px;
+  color: #8e8e8e;
+}
+
+.commentContent {
+  margin: 0;
+  font-size: 14px;
+}
+

@@ -51,8 +51,4 @@ public class PostServiceTest {
 		log.info("modify result..." + service.modify(post));
 	}
 	
-	@Test
-	public void testGetLike() {
-		log.info("Service Get Like: "+ service.getLike(4L));
-	}
 }

@@ -15,6 +15,5 @@ public interface PostService {
 	public boolean modify(PostVO post);
 	
 	public boolean remove(Long post_id);
-	
-	public Long getLike(Long post_id);
+
 }

@@ -2,6 +2,8 @@ package com.thread.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.thread.domain.CommentVO;
 import com.thread.domain.PostVO;
+import com.thread.domain.UserVO;
+import com.thread.service.CommentService;
 import com.thread.service.PostService;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +28,7 @@ import lombok.extern.log4j.Log4j;
 public class PostController {
 
 	private PostService postService;
+	private CommentService commentService;
 	
 	@GetMapping("/newPost")
 	public void newPost() {
@@ -31,9 +37,10 @@ public class PostController {
 	}
 
 	@PostMapping("/newPost")
-	public String makePost(PostVO post, @RequestParam("post_content") String post_content) {
+	public String makePost(HttpSession session, PostVO post, @RequestParam("post_content") String post_content) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
 		post.setPost_content(post_content);
-		post.setPost_user_email("test1@example.com");
+		post.setPost_user_email(currentUser.getUser_email());
 		postService.newPost(post);
 		log.info("make post complete");
 		return "redirect:/main";
@@ -42,7 +49,10 @@ public class PostController {
 	@GetMapping({"/getPost", "/modifyPost"})
 	public void viewPost(@RequestParam("post_id") Long post_id, Model model) {
 		model.addAttribute("post", postService.get(post_id));
-		model.addAttribute("like", postService.getLike(post_id));
+
+		List<CommentVO> commentList = commentService.getListWithPaging(post_id);
+        model.addAttribute("commentList", commentList);
+
 		log.info("check a thread " + post_id);
 	}
 	
