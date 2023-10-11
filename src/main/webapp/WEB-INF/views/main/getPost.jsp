@@ -76,27 +76,39 @@
 	          </div>
 
 	        </div>
+	        
+	        
+	       <!--/feedbottom-->
+   
+           <div class="feed_article">
+             <c:forEach items="${comments}" var="comment">
+              <div class="feed_article_box">
+              <div class="comments1_box">
+                <div class="comment_user_id">${comment.comment_user_email}</div>
+                <div class="comments-comment">${comment.comment_content}</div>
+              </div>
+              </div>
+           </c:forEach>
 
-	        <!--/feedbottom-->
-	
-	        <div class="feed_article">
-	          <div class="feed_article_box">
-	            <div class="comments1_box">
-	              <div class="comment_user_id">아이디1</div>
-	              <div class="comments-comment">아이디1 댓글</div>
-	            </div>
-	          </div>
-	        </div>
-	        <!-- 게시글의 댓글 -->
-	        <div class="inputContainer">
-	          <div class="type_comment">
-	            <input class="inputBox" type="text" placeholder="댓글 작성..." name="comment_post">
-	          </div>
-	          <span>
-	            <button class="buttonBox" type="submit">게시</button>
-	          </span>
-	        </div>
-	        <!-- 댓글 작성 -->
+           <!-- 게시글의 댓글 -->
+          <form action="/comment/write" method="post">
+           <div class="inputContainer">
+             <div class="type_comment">
+               <!-- 게시글 ID도 함께 전송합니다 -->
+               <input type='hidden' name='comment_post_id' value='${empty post ? 0 : post.post_id}'>
+               
+               <!-- 사용자가 입력한 새로운 댓글 내용 -->
+               
+               <input class="inputBox" type="text" placeholder="댓글 작성..." name="comment_content">
+             </div>
+             <span>
+               <!-- '게시' 버튼 클릭 시 위에서 정의한 action URL로 폼 데이터 전송 -->
+               <button class="buttonBox" type="submit">게시</button>
+             </span>
+           </div>
+         </form> 
+
+           <!-- 댓글 작성 -->
 	      </div>
 	      
       </div>

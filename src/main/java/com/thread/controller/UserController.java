@@ -181,4 +181,20 @@ public class UserController {
 		return dbUser.getUser_password().equals(password);
 	}
 
+	@ResponseBody
+	@PostMapping("/updateUserPassword")
+	public boolean updateUserPassword(HttpSession session, @RequestParam("currentPassword") String currentPassword,
+			@RequestParam("newPassword") String newPassword) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		if (currentUser == null) {
+			return false;
+		}
+		UserVO dbUser = userservice.get(currentUser.getUser_email());
+		if (dbUser.getUser_password().equals(currentPassword)) {
+			dbUser.setUser_password(newPassword);
+			return userservice.modifyPassword(dbUser);
+		}
+		return false;
+	}
+
 }

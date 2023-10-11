@@ -292,7 +292,16 @@ footer {
 	font-weight: bold;
 }
 
-#confirmPassword_message {
+#password_confirm_message {
+	background-color: transparent;
+	color: red;
+	border: none;
+	font-size: 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#password_change_message {
 	background-color: transparent;
 	color: red;
 	border: none;

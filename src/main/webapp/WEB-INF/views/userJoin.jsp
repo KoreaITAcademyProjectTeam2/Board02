@@ -99,6 +99,7 @@
 	        
 	        if (!validateInput(email)) {
 	            $("#email_message").text("공백 또는 특수문자를 사용할 수 없습니다.");
+	            $("#email_message").css('color', 'red');
 	            e.preventDefault();
 	            return false;
 	        } else {
@@ -107,6 +108,7 @@
 	        
 	        if (!validateInput(password)) {
 	            $("#password_message").text("공백 또는 특수문자를 사용할 수 없습니다.");
+	            $("#password_message").css('color', 'red');
 	            e.preventDefault();
 	            return false;
 	        } else {
@@ -115,6 +117,7 @@
 
 	        if (!validateInput(nickname)) {
 	            $("#user_name_message").text("공백 또는 특수문자를 사용할 수 없습니다.");
+	            $("#user_name_message").css('color', 'red');
 	            e.preventDefault();
 	            return false;
 	        } else {
@@ -174,11 +177,13 @@
             	
                 if (ecnt >= 1) {
                 	message.text("중복된 아이디입니다.");
+                	message.css('color', 'red');
                     $('#user_email').val('');
                     idVerified = false;
                     
                 } else if(user_email == "" || !noSpecialChars.test(user_email)){
                 	message.text("사용할 수 없는 아이디입니다.");
+                	message.css('color', 'red');
                 	idVerified = false;
                     
                 }else {
@@ -189,6 +194,7 @@
 	        },
 	        error: function() {
 	            message.text("에러입니다");
+	            message.css('color', 'red');
 	            idVerified = false;
 	        }
 	    });
@@ -209,11 +215,13 @@
             	
                 if (cnt >= 1) {
                 	message.text("중복된 닉네임입니다.");
+                	message.css('color', 'red');
                     $('#user_name').val('');
                     nicknameVerified = false;
                     
                 } else if(user_name == "" || !noSpecialChars.test(user_name)){
                 	message.text("사용할 수 없는 닉네임입니다.");
+                	message.css('color', 'red');
                 	nicknameVerified = false;
                     
                 }else {
@@ -224,6 +232,7 @@
             },
             error: function() {
             	message.text("에러입니다");
+            	message.css('color', 'red');
             	nicknameVerified = false;
             }
         });
