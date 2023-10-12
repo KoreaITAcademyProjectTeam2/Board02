@@ -28,7 +28,7 @@
 		
 		<div class = "withdrawal_Main_Message">
 		탈퇴 후에는 작성했던 게시글, 댓글 모두 자동 삭제되므로 신중히 선택 후 동의버튼을 눌러 탈퇴해주세요.<br/>
-			<input type ="radio" name = "agree" value = "agree">안내 사항을 모두 확인하였으며, 이에 동의합니다.
+			<input type ="radio" name = "agree" value = "agree"><b>안내 사항을 모두 확인하였으며, 이에 동의합니다.</b>
 
 		</div>
 		
