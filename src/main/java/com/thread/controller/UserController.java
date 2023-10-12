@@ -129,8 +129,11 @@ public class UserController {
 	}
 
 	@GetMapping("/myPage")
-	public void myPage() {
-		log.info("go MyPage");
+	public String myPage(HttpSession session, Model model) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		int userPostCount = service.countPostsByUser(currentUser.getUser_email());
+		model.addAttribute("userPostCount", userPostCount);
+		return "myPage";
 	}
 
 	@PostMapping("/modify")
