@@ -42,8 +42,4 @@ public interface CommentMapper {
 	@Select("SELECT COUNT(*) FROM comments WHERE post_id = #{post_Id}")
 	int countCommentsByPostId(Long post_Id);
 
-//	public int insert(CommentVO vo);
-
-	// 쓰레드기능으로 바꿔줄 것
-	// public int getCountBypost_id(Long post_id);
 }
