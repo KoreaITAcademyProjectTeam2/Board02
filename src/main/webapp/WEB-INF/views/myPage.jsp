@@ -44,7 +44,7 @@
       </form>
       </div>
 	<div>
-	<form method="get" action="/withdrawal">
+	<form method="post" action="/withdrawal">
       <input type = "submit" value = "회원정보 탈퇴" class = "small_text" />
       </form>
       </div>
