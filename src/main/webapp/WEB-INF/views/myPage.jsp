@@ -29,8 +29,13 @@
 
 	<div class="middle-container">
 <span id = roundbox></span>
-<span id="box">닉네임<br/><b>user1</b></span>
-<span id = box>게시물 수<br/><b>100+</b></span>
+<% 
+    // 세션에서 사용자 객체 가져오기
+    com.thread.domain.UserVO loggedInUser = (com.thread.domain.UserVO)session.getAttribute("member"); 
+%>
+
+<span id="box">닉네임<br/><b><%= loggedInUser.getUser_name() %></b></span>
+<span id="box">게시물 수<br/><b>${userPostCount}</b></span>
 <span id = box2></span>
 <div id = moreInfo>
 	<div>

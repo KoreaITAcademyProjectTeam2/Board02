@@ -59,4 +59,9 @@
   WHERE comment_post_id = #{post_id}
 </select>
 
+<select id="countPostsByUser" resultType="int">
+    SELECT COUNT(*) FROM posts WHERE post_user_email = #{user_email}
+</select>
+
+
 </mapper>
