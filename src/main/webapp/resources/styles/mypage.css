@@ -42,7 +42,7 @@
 	text-align:center;
 }
 
-.footer-container{
+.footer-container{ /*아래 박스 전체*/
 	margin-top:20px;
 	display:flex;
 	justify-content:center;
@@ -53,9 +53,15 @@
     padding: 10px;          /* 내부 여백 설정 */
     text-align: center;     /* 텍스트 중앙 정렬 */
 }
-
+/*왼쪽 박스*/
 #box3{
 	width:750px;
+	background-color : transparent;
+	border: 1px solid #000; /* 테두리 설정 */
+}
+/*오른쪽 박스*/
+#box4{
+	width:-750px;
 	background-color : transparent;
 	border: 1px solid #000; /* 테두리 설정 */
 }
@@ -66,13 +72,50 @@
 	align-items: center;
 }
 
-.container div{
-	width: 250px;
-	border: 1px solid gray;
+/*아래 박스 글 위치 조정*/
+.container div{ 
+	width: 375px;
+	border: 1px solid gray;	
 	text-align: center;
 }
 
-#box3 div{
+/* #box3 div{
+	height: 300px;
+	border-bottom 1px solid gray;
+}  */
+
+#box4 div{
 	height: 300px;
 	border-bottom 1px solid gray;
 }
+
+ /* 검색창 숨기기 */
+    .search_box {
+      display: none;
+    }
+
+    /* tags 창 숨기기 */
+    .tag_list {
+      display: none;
+    }
+    
+    /* 상단 오른쪽 아이콘 숨기기 */
+    .home {
+      display: none;
+    }	
+    
+    .header_button {
+      display: none;
+    }	
+    
+    .myPage{
+      display: none;
+    }	
+    /* 상단 오른쪽 아이콘 숨기기 끝 */
+    
+    /* 댓글창 스타일 설정 */
+    .feed_article {
+      max-height: 120px; /* 원하는 높이로 설정 */
+      overflow-y: auto;
+      /* 추가적인 스타일을 필요에 따라 설정하세요 */
+    }
