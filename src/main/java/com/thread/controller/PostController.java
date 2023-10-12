@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.thread.domain.CommentVO;
-import com.thread.domain.PostVO;
-import com.thread.domain.UserVO;
-import com.thread.service.CommentService;
 import com.thread.domain.PostDTO;
 import com.thread.domain.PostVO;
 import com.thread.domain.UserVO;
+import com.thread.service.CommentService;
 import com.thread.service.PostService;
 
 import lombok.AllArgsConstructor;
@@ -30,14 +28,14 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/main/*")
 @AllArgsConstructor
 public class PostController {
-	
+
 	@Autowired
 	private PostService postService;
 	private CommentService commentService;
-	
+
 	@Autowired
 	private PostDTO postDTO;
-	
+
 	@GetMapping("/newPost")
 	public void newPost() {
 
@@ -54,40 +52,38 @@ public class PostController {
 		return "redirect:/main";
 	}
 
-	@GetMapping({"/getPost", "/modifyPost"})
+	@GetMapping({ "/getPost", "/modifyPost" })
 	public void viewPost(@RequestParam("post_id") Long post_id, Model model) {
 		List<CommentVO> commentList = commentService.getListWithPaging(post_id);
-        model.addAttribute("commentList", commentList);
+		model.addAttribute("commentList", commentList);
 
-		
 		postDTO.setPost(postService.get(post_id));
 		postDTO.setCommentCount(postService.getCommentCount(post_id));
 		postDTO.setUserName(postService.getUser(post_id));
 		model.addAttribute("post", postDTO);
-		
+
 		log.info("check a thread " + post_id);
 	}
-	
+
 	@PostMapping("/modifyPost")
 	public String modifyPost(PostVO post) {
 		log.info(postService.modify(post));
-		return "redirect:/main/getPost?post_id="+post.getPost_id();
+		return "redirect:/main/getPost?post_id=" + post.getPost_id();
 	}
-	
+
 	@PostMapping("/removePost")
 	public String removePost(@RequestParam Long post_id) {
 		postService.remove(post_id);
-		log.info(post_id +" remove complete");
-		return "redirect:/main";	
+		log.info(post_id + " remove complete");
+		return "redirect:/main";
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/loadPost")
-	public List<PostVO> loadPost(@RequestParam("count") Long count, 
-			@RequestParam("currentCount") Long currentCount) {
+	public List<PostVO> loadPost(@RequestParam("count") Long count, @RequestParam("currentCount") Long currentCount) {
 		List<PostVO> posts = postService.getList(count, currentCount);
 		log.info("post load");
 		return posts;
 	}
-	
+
 }

@@ -16,10 +16,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service
 @AllArgsConstructor
-public class PostServiceImpl implements PostService{
-	
+public class PostServiceImpl implements PostService {
+
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
+
 	@Transactional
 	@Override
 	public void newPost(PostVO post) {
@@ -38,7 +39,7 @@ public class PostServiceImpl implements PostService{
 		log.info("get...");
 		return mapper.get(post_id);
 	}
-	
+
 	@Transactional
 	@Override
 	public boolean modify(PostVO post) {
@@ -50,17 +51,22 @@ public class PostServiceImpl implements PostService{
 	@Override
 	public boolean remove(Long post_id) {
 		mapper.deleteComments(post_id);
-		return mapper.delete(post_id)==3;
+		return mapper.delete(post_id) == 3;
 	}
 
 	@Override
 	public int getCommentCount(Long post_id) {
 		return mapper.getCommentCount(post_id);
 	}
-	
+
 	@Override
 	public String getUser(Long post_id) {
 		return mapper.getUser(post_id);
 	}
-	
+
+	@Override
+	public int countPostsByUser(String user_email) {
+		return mapper.countPostsByUser(user_email);
+	}
+
 }

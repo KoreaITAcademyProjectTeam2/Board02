@@ -16,8 +16,8 @@
 
     <!-- 내가 고친부분 -->
     <div class="search_box">
-      <form class="search-form" action="">
-          <input type="search" class="search-input" placeholder="   🔎 검색">
+      <form class="search-form" action="/main/search">
+          <input type="search" class="search-input" placeholder="   🔎 검색" name="q">
           <button type="submit" class="search-btn">button</button>
       </form>
     </div>
