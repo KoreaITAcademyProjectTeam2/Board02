@@ -71,6 +71,7 @@ body {
 
 .logoPicture {
   margin: 50px 0px;
+  margin-bottom:70px;
 }
 
 login-container input {
@@ -214,6 +215,18 @@ footer {
 	border-radius: 3px;
 }
 
+.user_Join_Password {
+	display: block;
+	width: 150px;
+	height: 36px;
+	padding: 8px;
+	color: rgba(var(--i1d, 38, 38, 38), 1);
+	font-family: -apple-;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	margin-right: 55px;
+}
+
 .user_Join_Id{
 	display: block;
 	width: 150px;
@@ -223,7 +236,6 @@ footer {
 	font-family: -apple-;
 	border: 1px solid #dbdbdb;
 	border-radius: 3px;
-	margin-left:55px;
 }
 
 .user_Join_nickname {
@@ -235,7 +247,6 @@ footer {
 	font-family: -apple-;
 	border: 1px solid #dbdbdb;
 	border-radius: 3px;
-	margin-left:55px;
 }
 
 .confirm{

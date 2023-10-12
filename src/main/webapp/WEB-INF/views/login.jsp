@@ -46,14 +46,6 @@
              <div class = "login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
      </c:if>
 
-    
-
-    <footer>
-    
-      <form method="post" action="password_check.html">
-      <input type = "submit" value = "비밀번호를 잊으셨나요?" name = "pwd_check" class = "small_text" />
-		</form>
-    </footer>
 </div>
 
 <div class="user-container">
