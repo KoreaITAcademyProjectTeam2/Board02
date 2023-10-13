@@ -29,7 +29,7 @@
 	        </form>
 	      </div> -->
 		<div id="feed-container">
-			<c:forEach items="${list}" var="posts">
+			<c:forEach items="${list}" var="postDTOs">
 			<div class="feed" >
 				<div class="feed_id">
 					<div class="id_box">
@@ -45,8 +45,8 @@
 					<div class="feed_picture">
 						(이미지 영역)
 					</div>
-					<div class="feed_text" onclick='location.href="main/getPost?post_id=<c:out value="${posts.post_id }" />"'>
-						<c:out value="${posts.post_content }"/>
+					<div class="feed_text" onclick='location.href="main/getPost?post_id=<c:out value="${postDTOs.post.post_id }" />"'>
+						<c:out value="${postDTOs.post.post_content }"/>
 					</div>
 				</div>
 				<!-- /feed-post-box -->
@@ -54,7 +54,7 @@
 				<div class="feed_bottom">
 					<div class="emoticon_box">
 						<div class="feed_info">
-		          			<div>작성일:<span><fmt:formatDate value="${posts.post_add_date}" pattern="yyyy-MM-dd"/></span></div>
+		          			<div>작성일:<span><fmt:formatDate value="${postDTOs.post.post_add_date}" pattern="yyyy-MM-dd"/></span></div>
 		          			<div>태그</div>
 		          		</div>
 						<div class="emoticon_box2">
@@ -135,7 +135,7 @@
 			});
 	}
 	
-	function createUserBox(post){
+	function createUserBox(postDTOs){
 		return `
 			<div class="feed_id">
 			  <div class="id_box">
@@ -148,17 +148,17 @@
 		`;
 	}
 	
-	function createFeedPostBox(post){
+	function createFeedPostBox(postDTOs){
 		return `
         <div class="feed-post-box">
           <div class="feed_picture">(이미지 영역)</div>
-          <div class="feed_text" data-postid="\${post.post_id}">\${post.post_content}</div>
+          <div class="feed_text" data-postid="\${postDTOs.post.post_id}">\${postDTOs.post.post_content}</div>
     	</div>
 		`;
 	}
 	
-	function createFeedBottom(post){
-		const postAddDate = new Date(post.post_add_date);
+	function createFeedBottom(postDTOs){
+		const postAddDate = new Date(postDTOs.post.post_add_date);
 		const formattedDate = postAddDate.toISOString().slice(0, 10);
 		return `
 			<div class="feed_bottom">
@@ -214,7 +214,7 @@
 			feedElement.innerHTML = userBox + feedPostBox + feedBottom + feedArticle;
 			
 			feedElement.querySelector('.feed_text').addEventListener('click', function() {
-	            location.href = `main/getPost?post_id=\${post.post_id}`;
+	            location.href = `main/getPost?post_id=\${postDTOs.post.post_id}`;
 	        });
 			
 			feedContainer.appendChild(feedElement);

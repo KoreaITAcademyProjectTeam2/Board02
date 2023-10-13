@@ -1,5 +1,8 @@
 package com.thread.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.thread.domain.PostDTO;
+import com.thread.domain.PostVO;
 import com.thread.domain.UserVO;
 import com.thread.service.PostService;
 import com.thread.service.UserService;
@@ -86,9 +91,17 @@ public class UserController {
 		if(currentUser == null) {
 			return "login";
 		}
+		List<PostVO> postVOs = service.getList(5L, 0L);
+		List<PostDTO> postDTOs = new ArrayList<>();
 		
+		for( PostVO postVO: postVOs) {
+			PostDTO postDTO = new PostDTO();
+			postDTO.setPost(postVO);
+			postDTO.setCommentCount(service.getCommentCount(postVO.getPost_id()));
+			postDTOs.add(postDTO);
+		}
 		
-		model.addAttribute("list", service.getList(5L, 0L));
+		model.addAttribute("list", postDTOs);
 		log.info("Main Page Thread List");
 		return "main";
 	}
