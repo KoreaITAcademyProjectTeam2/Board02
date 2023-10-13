@@ -44,29 +44,18 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public int commentModify(CommentVO vo) {
-
-    	log.info("modify......" + vo);
-
-    	// CommentVO 객체가 유효한지 검사합니다.
-    	if (vo == null || vo.getComment_content() == null) {
-    	    throw new IllegalArgumentException("댓글 정보가 유효하지 않습니다");
-    	}
-
-    	return commentMapper.update(vo);
+        return commentMapper.update(vo);
     }
 
-	@Transactional
-	@Override
-	public int commentRemove(Long comment_id) {
 
-		log.info("remove...." + comment_id);
+    @Transactional
+    @Override
+    public int commentRemove(Long comment_id) {
+        return commentMapper.delete(comment_id);
+    }
 
-		CommentVO vo = commentMapper.read(comment_id);
 
-		commentMapper.modifyCommentCnt(vo.getComment_post_id(), -1);
-		return commentMapper.delete(comment_id);
 
-	}
 	
     @Override
     public int getCommentCount(Long post_Id) {

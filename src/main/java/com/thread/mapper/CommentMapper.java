@@ -27,8 +27,9 @@ public interface CommentMapper {
 
 //	public int insert(CommentVO vo);
 
-	public void modifyCommentCnt(Long long1, int i);
-
+    @Select("SELECT COUNT(*) FROM comments WHERE comment_post_id = #{post_id}")
+    int modifyCommentCnt(Long post_id);
+    
 	public void updateCommentCnt(String comment_content, int i);
 
 	@Insert("INSERT INTO comments (comment_content, comment_add_date, comment_modify_date, comment_user_email, comment_post_id) "

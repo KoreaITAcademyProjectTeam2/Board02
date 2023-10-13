@@ -113,9 +113,9 @@
 									<p/>
 								</div>
 								<div class="commentActions">
-									<a href="comment/modify?comment_id=${comment.comment_id}"
-										class="commentAction modify">수정</a> <a
-										href="comment/remove?comment_id=${comment.comment_id}"
+									<a href="/comment/modify?comment_id=${comment.comment_id}"
+										class="commentAction modify">수정</a>
+									<a href="/comment/remove?comment_id=${comment.comment_id}"
 										class="commentAction delete">삭제</a>
 								</div>
 							</div>
@@ -163,6 +163,35 @@
 	        element.innerText = formatRelativeDate(rawDate);
 	    });
 	</script>
+	
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    // '수정' 버튼 클릭 시 실행할 함수 정의
+		    $('.modify-button').click(function() {
+		        // '수정' 버튼이 속한 댓글 div를 찾음
+		        var commentDiv = $(this).closest('.comment');
+		        // 댓글의 ID를 가져옴
+		        var commentId = commentDiv.data('id');
+		        // 댓글 내용을 가져옴
+		        var commentContent = commentDiv.find('.comment-content').text();
+		
+		        // 텍스트를 텍스트 입력 요소로 바꿈
+		        commentDiv.find('.comment-content').replaceWith('<input type="text" value="' + commentContent + '">');
+		
+		         // '수정' 및 '삭제' 버튼을 '확인' 버튼으로 바꿈
+		         $(this).replaceWith('<button class="confirm-button">확인</button>');
+			     // 삭제버튼은 숨김 처리함.
+			     commentDiv.find('.delete-button').hide();
+		    
+			     // 확인 버튼 클릭 시 이벤트 핸들러 추가 
+			     commentDiv.find('.confirm-button').click(function() {
+			         // 여기에 댓글 업데이트를 위한 AJAX 요청 코드가 들어갑니다...
+			     });
+		    });
+		});
+	</script>
+
 
 </body>
 

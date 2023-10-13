@@ -4,7 +4,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,21 +40,23 @@ public class CommentController {
 	    }
 	}
 
-	
 	// 댓글 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public String commentModifyForm(@RequestParam Long comment_id, Model model) throws Exception {
-	    CommentVO vo = commentService.getById(comment_id);
-	    model.addAttribute("comment", vo);
-	    return "comment/modify";
+	public String commentModify(CommentVO vo) throws Exception {
+	    commentService.commentModify(vo);
+	    return "redirect:/main/getPost?post_id=" + vo.getComment_post_id();
 	}
 
 	// 댓글 삭제
 	@RequestMapping(value = "/remove", method = RequestMethod.GET)
-	public String commentRemoveForm(@RequestParam Long comment_id, Model model) throws Exception {
+	public String commentRemove(@RequestParam Long comment_id) throws Exception {
 	    CommentVO vo = commentService.getById(comment_id);
-	    model.addAttribute("comment", vo);
-	    return "comment/remove";
+	    if (vo != null) {
+	        commentService.commentRemove(comment_id);
+	        return "redirect:/main/getPost?post_id=" + vo.getComment_post_id();
+	    } else {
+	        // 적절한 에러 처리
+	        return "redirect:/error";
+	    }
 	}
-
 }
