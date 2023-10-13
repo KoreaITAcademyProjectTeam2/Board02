@@ -85,7 +85,9 @@
 						<div class="inputContainer">
 							<div class="type_comment">
 								<input type='hidden' name='comment_post_id'
-									value='${empty post ? 0 : post.post.post_id}'> <input
+									value='${empty post ? 0 : post.post.post_id}'>
+									<input type="hidden" name="comment_user_email" value="${userEmail}">
+									<input
 									class="inputBox" type="text" placeholder="댓글 작성..."
 									name="comment_content">
 							</div>
@@ -103,9 +105,10 @@
 									<img src="(프로필 이미지 경로)" alt="프로필">
 								</div>
 								<div class="commentContent">
-									<p class="commentAuthor">${comment.comment_user_email}</p>
+									<p class="commentAuthor">${comment.comment_user_email}
 									<fmt:formatDate value="${comment.comment_add_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="formattedDate"/>
 										<span class="commentDate" data-date="${formattedDate}"></span>
+									</p>
 									<p>${comment.comment_content}</p>
 									<p/>
 								</div>

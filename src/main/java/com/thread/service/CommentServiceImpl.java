@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
 
         // CommentVO 객체가 유효한지 검사합니다.
         // 만약 필요한 정보가 없다면 예외를 발생시킵니다.
-        if (vo == null || vo.getComment_content() == null) {
+        if (vo == null || vo.getComment_content() == null || vo.getComment_post_id() == null) {
             throw new IllegalArgumentException("댓글 정보가 유효하지 않습니다");
         }
 
