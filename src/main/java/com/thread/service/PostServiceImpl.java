@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.thread.domain.CommentVO;
 import com.thread.domain.PostVO;
 import com.thread.mapper.PostMapper;
 
@@ -67,6 +68,16 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public int countPostsByUser(String user_email) {
 		return mapper.countPostsByUser(user_email);
+	}
+
+	@Override
+	public String getFirstCommentUser(Long post_id) {
+		return mapper.getFirstCommentUser(post_id);
+	}
+
+	@Override
+	public CommentVO getFirstComment(Long post_id) {
+		return mapper.getFirstComment(post_id);
 	}
 
 }

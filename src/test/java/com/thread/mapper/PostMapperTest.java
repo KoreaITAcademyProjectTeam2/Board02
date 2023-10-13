@@ -55,4 +55,15 @@ public class PostMapperTest {
 	public void testGetUser() {
 		log.info("post3 user: " + mapper.getUser(18L));
 	}
+	
+	@Test
+	public void testGetFirstCommentUser() {
+		log.info("");
+		log.info("post3 first comment user: " + mapper.getFirstCommentUser(3L));
+	}
+	
+	@Test
+	public void testGetFirstComment() {
+		log.info("post3 first comment" + mapper.getFirstComment(3L));
+	}
 }

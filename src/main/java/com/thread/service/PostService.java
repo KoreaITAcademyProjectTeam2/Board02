@@ -2,6 +2,7 @@ package com.thread.service;
 
 import java.util.List;
 
+import com.thread.domain.CommentVO;
 import com.thread.domain.PostVO;
 
 public interface PostService {
@@ -22,4 +23,7 @@ public interface PostService {
 
 	int countPostsByUser(String user_email);
 
+	public String getFirstCommentUser(Long post_id);
+	
+	public CommentVO getFirstComment(Long post_id);
 }

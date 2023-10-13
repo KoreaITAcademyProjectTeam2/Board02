@@ -98,6 +98,9 @@ public class UserController {
 			PostDTO postDTO = new PostDTO();
 			postDTO.setPost(postVO);
 			postDTO.setCommentCount(service.getCommentCount(postVO.getPost_id()));
+			postDTO.setUserName(service.getUser(postVO.getPost_id()));
+			postDTO.setFirstComment(service.getFirstComment(postVO.getPost_id()));
+			postDTO.setFirstCommentUser(service.getFirstCommentUser(postVO.getPost_id()));
 			postDTOs.add(postDTO);
 		}
 		

@@ -63,5 +63,21 @@
     SELECT COUNT(*) FROM posts WHERE post_user_email = #{user_email}
 </select>
 
+<select id="getFirstComment" resultType="com.thread.domain.CommentVO">
+	SELECT *
+	FROM comments c
+	WHERE c.comment_post_id = #{post_id}
+	ORDER BY c.comment_add_date ASC
+	LIMIT 1;
+</select>
+
+<select id="getFirstCommentUser" resultType="String">
+	SELECT u.user_name
+	FROM comments c
+	JOIN users u ON c.comment_user_email = u.user_email
+	WHERE c.comment_post_id = #{post_id}
+	ORDER BY c.comment_add_date ASC
+	LIMIT 1;
+</select>
 
 </mapper>

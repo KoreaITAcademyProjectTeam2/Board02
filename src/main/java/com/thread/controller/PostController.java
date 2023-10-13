@@ -37,7 +37,7 @@ public class PostController {
 
 	@Autowired
 	private PostDTO postDTO;
-
+	
 	@GetMapping("/newPost")
 	public void newPost() {
 
@@ -47,6 +47,11 @@ public class PostController {
 	@PostMapping("/newPost")
 	public String makePost(HttpSession session, PostVO post, @RequestParam("post_content") String post_content) {
 		UserVO currentUser = (UserVO) session.getAttribute("member");
+		
+		if(currentUser == null) {
+			return "redirect:/login";
+		}
+		
 		post.setPost_content(post_content);
 		post.setPost_user_email(currentUser.getUser_email());
 		postService.newPost(post);
@@ -68,15 +73,23 @@ public class PostController {
 	}
 
 	@PostMapping("/modifyPost")
-	public String modifyPost(PostVO post) {
-		log.info(postService.modify(post));
-		return "redirect:/main/getPost?post_id=" + post.getPost_id();
+	public String modifyPost(HttpSession session, PostVO post) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		if(currentUser.getUser_email() == postService.getUser(post.getPost_id())) {
+			log.info(postService.modify(post));
+			return "redirect:/main/getPost?post_id=" + post.getPost_id();
+		}
+		return "redirect:/main";
 	}
 
 	@PostMapping("/removePost")
-	public String removePost(@RequestParam Long post_id) {
-		postService.remove(post_id);
-		log.info(post_id + " remove complete");
+	public String removePost(HttpSession session, @RequestParam Long post_id) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		
+		if(currentUser.getUser_email() == postService.getUser(post_id)) {
+			postService.remove(post_id);
+			log.info(post_id + " remove complete");	
+		}
 		return "redirect:/main";
 	}
 
@@ -90,10 +103,12 @@ public class PostController {
 			PostDTO postDTO = new PostDTO();
 			postDTO.setPost(postVO);
 			postDTO.setCommentCount(postService.getCommentCount(postVO.getPost_id()));
+			postDTO.setUserName(postService.getUser(postVO.getPost_id()));
+			postDTO.setFirstComment(postService.getFirstComment(postVO.getPost_id()));
+			postDTO.setFirstCommentUser(postService.getFirstCommentUser(postVO.getPost_id()));
 			postDTOs.add(postDTO);
 		}
 		log.info("post load");
 		return postDTOs;
 	}
-
 }
