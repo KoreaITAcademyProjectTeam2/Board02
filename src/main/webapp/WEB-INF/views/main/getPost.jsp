@@ -103,10 +103,11 @@
 									<img src="(프로필 이미지 경로)" alt="프로필">
 								</div>
 								<div class="commentContent">
-									<p class="commentAuthor">${comment.comment_user_email}
-										<span class="commentDate"> 작성일 </span>
+									<p class="commentAuthor">${comment.comment_user_email}</p>
+									<fmt:formatDate value="${comment.comment_add_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="formattedDate"/>
+										<span class="commentDate" data-date="${formattedDate}"></span>
 									<p>${comment.comment_content}</p>
-									<p />
+									<p/>
 								</div>
 								<div class="commentActions">
 									<a href="comment/modify?comment_id=${comment.comment_id}"
@@ -123,11 +124,12 @@
 	</div>
 
 	<script type="text/javascript">
-		// 작성일을 상대적인 형식으로 변환하고 출력
+		/* // 작성일을 상대적인 형식으로 변환하고 출력
 		const dateString = "${comment.comment_add_date}";
-		document.write(formatRelativeDate(dateString));
+		document.write(formatRelativeDate(dateString)); */
 
 		function formatRelativeDate(dateString) {
+			
 			const now = new Date();
 			const date = new Date(dateString);
 			const timeDiff = now - date;
@@ -138,16 +140,25 @@
 			const hours = minutes / 60;
 			const days = hours / 24;
 
-			if (seconds < 60) {
-				return Math.floor(seconds) + '초 전';
-			} else if (minutes < 60) {
-				return Math.floor(minutes) + '분 전';
-			} else if (hours < 24) {
-				return Math.floor(hours) + '시간 전';
-			} else {
-				return Math.floor(days) + '일 전';
-			}
+			if (seconds < 0) {
+		        return '방금 전'; // 게시된 시간이 현재 시간보다 미래인 경우
+		    } else if (seconds < 60) {
+		        return Math.floor(seconds) + '초 전';
+		    } else if (minutes < 60) {
+		        return Math.floor(minutes) + '분 전';
+		    } else if (hours < 24) {
+		        return Math.floor(hours) + '시간 전';
+		    } else {
+		        return Math.floor(days) + '일 전';
+		    }
 		}
+
+		
+		const commentDates = document.querySelectorAll(".commentDate");
+	    commentDates.forEach(element => {
+	        const rawDate = element.getAttribute("data-date");
+	        element.innerText = formatRelativeDate(rawDate);
+	    });
 	</script>
 
 </body>
