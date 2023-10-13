@@ -58,12 +58,12 @@ public class UploadController {
 		}
 	}
 	
-	@GetMapping("/uploadAjax")
+	@GetMapping(value = "/uploadAjax", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void uploadAjax() {
 		log.info("upload Ajax");
 	}
 	
-	@PostMapping(value= "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value= "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		

@@ -81,10 +81,16 @@ public class UserController {
 
 	// 로그인 이후 나오는 첫 페이지. 모든 글과 댓글이 보이도록 한다.
 	@GetMapping("/main")
-	public void mainView(Model model) {
-
+	public String mainView(HttpSession session, Model model) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		if(currentUser == null) {
+			return "login";
+		}
+		
+		
 		model.addAttribute("list", service.getList(5L, 0L));
 		log.info("Main Page Thread List");
+		return "main";
 	}
 
 	@PostMapping("/main")
