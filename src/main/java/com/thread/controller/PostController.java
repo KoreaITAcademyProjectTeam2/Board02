@@ -1,12 +1,10 @@
 package com.thread.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,21 +79,11 @@ public class PostController {
 	}
 
 	@ResponseBody
-	@GetMapping(value = "/loadPost", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<PostDTO> loadPost(@RequestParam("count") Long count, @RequestParam("currentCount") Long currentCount) {
-		List<PostVO> postVOs = postService.getList(count, currentCount);
-		List<PostDTO> postDTOs = new ArrayList<>();
-		
-		for(PostVO post: postVOs) {
-			PostDTO postDTO = new PostDTO();
-			postDTO.setPOST(postVO);
-			
-			postDTO.setCommentCount();
-			
-		}
-		
+	@GetMapping("/loadPost")
+	public List<PostVO> loadPost(@RequestParam("count") Long count, @RequestParam("currentCount") Long currentCount) {
+		List<PostVO> posts = postService.getList(count, currentCount);
 		log.info("post load");
-		return postDTOs;
+		return posts;
 	}
 
 }
