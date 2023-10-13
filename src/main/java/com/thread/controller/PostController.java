@@ -33,6 +33,7 @@ public class PostController {
 
 	@Autowired
 	private PostService postService;
+	@Autowired
 	private CommentService commentService;
 
 	@Autowired
@@ -85,8 +86,8 @@ public class PostController {
 	public List<PostDTO> loadPost(@RequestParam("count") Long count, @RequestParam("currentCount") Long currentCount) {
 		List<PostVO> postVOs = postService.getList(count, currentCount);
 		List<PostDTO> postDTOs = new ArrayList<>();
-		
-		for( PostVO postVO: postVOs) {
+
+		for (PostVO postVO : postVOs) {
 			PostDTO postDTO = new PostDTO();
 			postDTO.setPost(postVO);
 			postDTO.setCommentCount(postService.getCommentCount(postVO.getPost_id()));

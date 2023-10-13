@@ -51,7 +51,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public boolean remove(Long post_id) {
 		mapper.deleteComments(post_id);
-		return mapper.delete(post_id) == 3;
+		return mapper.delete(post_id) == 1;
 	}
 
 	@Override
