@@ -39,13 +39,13 @@ public class PostController {
 	@Autowired
 	private PostDTO postDTO;
 	
-	@GetMapping("/newPost")
+	@GetMapping(value = "/newPost", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void newPost() {
 
 		log.info("make post");
 	}
 
-	@PostMapping("/newPost")
+	@PostMapping(value = "/newPost", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String makePost(HttpSession session, PostVO post, @RequestParam("post_content") String post_content) {
 		UserVO currentUser = (UserVO) session.getAttribute("member");
 		
@@ -112,4 +112,5 @@ public class PostController {
 		log.info("post load");
 		return postDTOs;
 	}
+	
 }

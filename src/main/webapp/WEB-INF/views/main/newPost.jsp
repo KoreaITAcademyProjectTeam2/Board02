@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="/resources/header/header.jsp"%>
-<%@ include file="/resources/header/aside.jsp"%>
+<%-- <%@ include file="/resources/header/aside.jsp"%> --%>
 
 <head>
   <meta name="viewport" content="width=device-width" />
@@ -43,13 +43,13 @@
   <div class="main_body">
     <article>
       <div class="feed-container">
-      	
+      	<button id="uploadBtn">Upload</button>
         <form class="feed" action="/main/newPost" method="POST">
           <div class="feed_picture">
             <div class="uploadResult">
               <ul>
                 <!-- 이곳에 이미지 추가 -->
-                이미이미이미지
+                
               </ul>
             </div>
 	      </div>
@@ -100,55 +100,88 @@ $(document).ready(function() {
 		}
 		
 		$.ajax({
-			url: '/uploadAjaxAction',
+			url: '/main/newPost/uploadAjaxAction',
 			processData: false,
 			contentType: false,
 			data: formData,
 			type: 'POST',
 			dataType: 'json',
 			success: function(result){
-				console.log(result);
+				console.log("result: " + result);
 				showUploadedFile(result);
 				
 				$(".uploadDiv").html(cloneObj.html());
 			}
 		});
 		
-		function showUploadedFile(uploadResultArr){
-			let str = "";
-			
-			$(uploadResultArr).each(function(i, obj) {
-				str += "<li>" + obj.fileName + "</li>"
-				const fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
-				
-				str += "<li><img src='/display?fileName="+fileCallPath+"'></li>"
-			});
-			
-
-			uploadResult.append(str);
-		}
-		
-		function checkExtension(fileName, fileSize){
-
-			const regex = new RegExp("(.*?)\.(jpg|jpeg|png|gif)$", "i");
-
-			const maxSize = 5242880;
-
-			if(fileSize >= maxSize){
-				alert("파일 사이즈 초과");
-				return false;
-			}
-			
-			if(regex.test(fileName)){
-				return true;
-			}
-			
-			console.log("업로드 실패");
-			
-			return false;
-		}
-		
 	});
+	
+	$("input[name='uploadFile']").on("change", function(){
+		let formData = new FormData();
+		
+		let inputFile = this;
+		
+		let files = inputFile.files;
+		
+		for(let i = 0; i < files.length; i++){
+			if(checkExtension(files[i].name, files[i].size)){
+				formData.append("uploadFile", files[i]);
+			}
+			else{
+				break;
+			}
+		}
+		
+		$.ajax({
+			url: '/main/newPost/uploadAjaxAction',
+			processData: false,
+			contentType: false,
+			data: formData,
+			type: 'POST',
+			dataType: 'json',
+			success: function(result){
+				console.log("result: " + result);
+				showUploadedFile(result);
+				
+				$(".uploadDiv").html(cloneObj.html());
+			}
+		});
+	});
+
+	function showUploadedFile(uploadResultArr){
+		let str = "";
+		
+		$(uploadResultArr).each(function(i, obj) {
+			str += "<li>" + obj.fileName + "</li>"
+			const fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
+			
+			str += "<li><img src='/main/newPost/display?fileName="+fileCallPath+"'></li>"
+		});
+		
+
+		uploadResult.append(str);
+	}
+});
+
+function checkExtension(fileName, fileSize){
+
+	const regex = new RegExp("(.*?)\.(jpg|jpeg|png|gif)$", "i");
+
+	const maxSize = 5242880;
+
+	if(fileSize >= maxSize){
+		alert("파일 사이즈 초과");
+		return false;
+	}
+	
+	if(regex.test(fileName)){
+		return true;
+	}
+	
+	console.log("업로드 실패");
+	
+	return false;
+}
 </script>
 
 

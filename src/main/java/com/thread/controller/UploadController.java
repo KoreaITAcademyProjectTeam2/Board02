@@ -15,10 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,39 +29,8 @@ import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 @Log4j
+@RequestMapping("*/newPost/*")
 public class UploadController {
-	
-	@GetMapping("/uploadForm")
-	public void uploadForm() {
-		log.info("upload form");
-	}
-	
-	@PostMapping("/uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
-		
-		String uploadFolder = "C:\\upload";
-		
-		log.info(uploadFile.toString());
-		
-		for(MultipartFile multipartFile : uploadFile) {
-			log.info("--------------------");
-			log.info("Upload File Name: " + multipartFile.getOriginalFilename());
-			log.info("Upload File Size: " + multipartFile.getSize());
-			
-			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
-			
-			try {
-				multipartFile.transferTo(saveFile);
-			} catch(Exception e) {
-				log.error(e.getMessage());
-			}
-		}
-	}
-	
-	@GetMapping(value = "/uploadAjax", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void uploadAjax() {
-		log.info("upload Ajax");
-	}
 	
 	@PostMapping(value= "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -100,7 +69,7 @@ public class UploadController {
 				
 				FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
 				
-				Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+				Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 400, 400);
 				
 				thumbnail.close();
 				
