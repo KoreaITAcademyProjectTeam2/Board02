@@ -1,4 +1,5 @@
 body {
+	height: 101%;
 }
 
 .none {
@@ -492,7 +493,7 @@ article {
 
 
 textarea {
-	height: 100%;
+	
 	width: 95%;
 	padding: 0.5em 1em;
 	margin: 1em;
@@ -562,15 +563,76 @@ textarea {
   font-weight: 600;
   margin: 0;
   font-size: 14px;
+  margin-bottom: 10px;
 }
 
 .commentDate {
-  font-size: 12px;
+  font-size: 0.8px;
   color: #8e8e8e;
+  margin-left: 10px;
 }
 
 .commentContent {
   margin: 0;
   font-size: 14px;
+  margin-top: 5px;
 }
 
+.commentActions {
+  margin-left: auto; /* 우측 정렬 */
+  margin-right: 10px; /* 수정과 삭제 버튼 간 간격 조절 */
+}
+
+.commentAction {
+	padding: 0.2em;
+	color: #888888;
+	background-color: #FAFAFA;
+	border: 1px solid #888888;
+	border-radius: 0.1em;
+}
+
+.commentAction.delete {
+	padding: 0.2em;
+	color: #FF0000;
+	background-color: #FAFAFA;
+	border: 1px solid #FF0000;
+	border-radius: 0.1em;
+}
+
+.commentAction.delete:hover {
+    background-color: #ff6666;
+}
+
+
+.commentActions .commentAction {
+    padding: 0.2em;
+    color: #888888;
+    background-color: #FAFAFA;
+    border: 1px solid #888888;
+    border-radius: 0.1em;
+    font-size: 7px;
+}
+
+.commentActions .commentAction.delete {
+    color: #FF0000;
+    border: 1px solid #FF0000;
+    font-size: 7px;
+}
+
+.commentActions .commentAction.delete :hover {
+    background-color: #f0f0f0;
+  	color: #FF0000;
+  	border-color: #fofofo;
+  	font-size: 7px;
+}
+
+.commentActions .commentAction.modify {
+    color: color: #8e8e8e; 
+    border: 1px solid color: #8e8e8e;
+    font-size: 7px;
+}
+
+.commentActions .commentAction.modify :hover {
+    background-color: #8e8e8e; 
+    font-size: 7px;
+}

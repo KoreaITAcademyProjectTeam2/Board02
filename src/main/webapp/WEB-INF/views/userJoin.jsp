@@ -39,7 +39,7 @@
 			<div id="email_message"></div>
 
 			<div class="email-form">
-				<input type="password" name="user_password" id = "password" class="user_Join" placeholder="비밀번호" />
+				<input type="password" name="user_password" id = "password" class="user_Join_Password" placeholder="비밀번호" />
 			</div>
 			<div id="password_message"></div>
 

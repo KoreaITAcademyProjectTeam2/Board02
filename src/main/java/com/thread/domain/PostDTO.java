@@ -10,4 +10,6 @@ public class PostDTO {
 	private PostVO post;
 	private int commentCount;
 	private String userName;
+	private String firstCommentUser;
+	private CommentVO firstComment;
 }

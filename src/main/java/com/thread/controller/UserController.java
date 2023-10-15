@@ -1,5 +1,8 @@
 package com.thread.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.thread.domain.PostDTO;
+import com.thread.domain.PostVO;
 import com.thread.domain.UserVO;
 import com.thread.service.PostService;
 import com.thread.service.UserService;
@@ -61,7 +66,7 @@ public class UserController {
 		}
 
 		session.setAttribute("member", lvo); // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-
+		
 		return "redirect:/main";
 
 	}
@@ -81,10 +86,27 @@ public class UserController {
 
 	// 로그인 이후 나오는 첫 페이지. 모든 글과 댓글이 보이도록 한다.
 	@GetMapping("/main")
-	public void mainView(Model model) {
-
-		model.addAttribute("list", service.getList(5L, 0L));
+	public String mainView(HttpSession session, Model model) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		if(currentUser == null) {
+			return "login";
+		}
+		List<PostVO> postVOs = service.getList(5L, 0L);
+		List<PostDTO> postDTOs = new ArrayList<>();
+		
+		for( PostVO postVO: postVOs) {
+			PostDTO postDTO = new PostDTO();
+			postDTO.setPost(postVO);
+			postDTO.setCommentCount(service.getCommentCount(postVO.getPost_id()));
+			postDTO.setUserName(service.getUser(postVO.getPost_id()));
+			postDTO.setFirstComment(service.getFirstComment(postVO.getPost_id()));
+			postDTO.setFirstCommentUser(service.getFirstCommentUser(postVO.getPost_id()));
+			postDTOs.add(postDTO);
+		}
+		
+		model.addAttribute("list", postDTOs);
 		log.info("Main Page Thread List");
+		return "main";
 	}
 
 	@PostMapping("/main")
@@ -129,8 +151,11 @@ public class UserController {
 	}
 
 	@GetMapping("/myPage")
-	public void myPage() {
-		log.info("go MyPage");
+	public String myPage(HttpSession session, Model model) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		int userPostCount = service.countPostsByUser(currentUser.getUser_email());
+		model.addAttribute("userPostCount", userPostCount);
+		return "myPage";
 	}
 	
 	@PostMapping("/searchPwd")

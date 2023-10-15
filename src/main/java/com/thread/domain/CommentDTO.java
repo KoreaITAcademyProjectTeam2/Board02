@@ -12,5 +12,5 @@ public class CommentDTO {
   private int comment_id;
   private String comment_user_email;
   private int comment_post_id;
-  private int likecount;
+
 }

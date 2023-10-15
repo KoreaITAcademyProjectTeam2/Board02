@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/resources/header/header.jsp"%>
-<%@ include file="/resources/header/aside.jsp"%>
+<%-- <%@ include file="/resources/header/aside.jsp"%> --%>
 
 <head>
   <meta name="viewport" content="width=device-width" />
@@ -29,7 +29,7 @@
 	        </form>
 	      </div> -->
 		<div id="feed-container">
-			<c:forEach items="${list}" var="posts">
+			<c:forEach items="${list}" var="postDTOs">
 			<div class="feed" >
 				<div class="feed_id">
 					<div class="id_box">
@@ -37,7 +37,7 @@
 		                	(profile_img)
 		                </div>
 					<div class="id_container">
-						<div class="id_name">USER_NAME</div>
+						<div class="id_name">${postDTOs.userName }</div>
 					</div>
 					</div>
 				</div>
@@ -45,8 +45,8 @@
 					<div class="feed_picture">
 						(이미지 영역)
 					</div>
-					<div class="feed_text" onclick='location.href="main/getPost?post_id=<c:out value="${posts.post_id }" />"'>
-						<c:out value="${posts.post_content }"/>
+					<div class="feed_text" onclick='location.href="main/getPost?post_id=<c:out value="${postDTOs.post.post_id }" />"'>
+						<c:out value="${postDTOs.post.post_content }"/>
 					</div>
 				</div>
 				<!-- /feed-post-box -->
@@ -54,13 +54,13 @@
 				<div class="feed_bottom">
 					<div class="emoticon_box">
 						<div class="feed_info">
-		          			<div>작성일:<span><fmt:formatDate value="${posts.post_add_date}" pattern="yyyy-MM-dd"/></span></div>
-		          			<div>태그</div>
+		          			<div>작성일:<span><fmt:formatDate value="${postDTOs.post.post_add_date}" pattern="yyyy-MM-dd"/></span></div>
+		          			
 		          		</div>
 						<div class="emoticon_box2">
 							<div class="comment_box">
 								<img class="comment" src="/resources/img/comment.png" alt="댓글 이미지">
-								<div class="emoticon_number">333</div>
+								<div class="emoticon_number">${postDTOs.commentCount }</div>
 							</div>
 							<!-- comment_box -->
 						</div>
@@ -72,11 +72,13 @@
 		
 		        <div class="feed_article">
 		        	<div class="feed_article_box">
+		        	<c:if test="${not empty postDTOs.firstComment.comment_content }">
 						<div class="comments1_box">
-							<div class="comment_user_id">아이디1</div>
-							<div class="comments-comment">아이디1 댓글</div>
+							<div class="comment_user_id">${postDTOs.firstCommentUser }</div>
+							<div class="comments-comment">${postDTOs.firstComment.comment_content }</div>
 						</div>
 						<!-- comments1_box -->
+					</c:if>
 					</div>
 					<!-- feed_article_box -->
 				</div>
@@ -106,7 +108,7 @@
 	}
 
 	function handleScroll() {
-		console.log("handle scroll");
+		
 		if((window.innerHeight + window.scrollY) >= document.body.offsetHeight * 0.99){
 			loadMoreData();
 		}
@@ -128,49 +130,48 @@
 			.then(() => {
 				return new Promise((resolve) => {
 					setTimeout(() => {
-						console.log("delay");
+						
 						resolve()
 					}, 1000);
 				});
 			});
 	}
 	
-	function createUserBox(post){
+	function createUserBox(postDTOs){
 		return `
 			<div class="feed_id">
 			  <div class="id_box">
 			    <div class="id_box_img">(profile_img)</div>
 			    <div class="id_container">
-			      <div class="id_name">USER_NAME</div>
+			      <div class="id_name">\${postDTOs.userName }</div>
 			    </div>
 			  </div>
 			</div>
 		`;
 	}
 	
-	function createFeedPostBox(post){
+	function createFeedPostBox(postDTOs){
 		return `
         <div class="feed-post-box">
           <div class="feed_picture">(이미지 영역)</div>
-          <div class="feed_text" data-postid="\${post.post_id}">\${post.post_content}</div>
+          <div class="feed_text" data-postid="\${postDTOs.post.post_id}">\${postDTOs.post.post_content}</div>
     	</div>
 		`;
 	}
 	
-	function createFeedBottom(post){
-		const postAddDate = new Date(post.post_add_date);
+	function createFeedBottom(postDTOs){
+		const postAddDate = new Date(postDTOs.post.post_add_date);
 		const formattedDate = postAddDate.toISOString().slice(0, 10);
 		return `
 			<div class="feed_bottom">
 			  <div class="emoticon_box">
 			    <div class="feed_info">
 				  <div>작성일: <span>\${formattedDate}</span></div>
-				  <div>태그-<span></span></div>
 				</div>
 				<div class="emoticon_box2">
 				  <div class="comment_box">
 				    <img class="comment" src="/resources/img/comment.png" alt="댓글">
-				    <div class="emoticon_number">333</div>
+				    <div class="emoticon_number">\${postDTOs.commentCount}</div>
 				  </div>
 				</div>
 			  </div>
@@ -178,14 +179,16 @@
 		`;
 	}
 	
-	function createFeedArticle() { //게시글에 댓글을 추가
+	function createFeedArticle(postDTOs) { //게시글에 댓글을 추가
 	    return `
 	        <div class="feed_article">
 	            <div class="feed_article_box">
+	            <c:if test="${not empty postDTOs.firstCommentUser }">
 	                <div class="comments1_box">
-	                    <div class="comment_user_id">댓글1 작성자</div>
-	                    <div class="comments-comment">댓글1 내용</div>
+	                    <div class="comment_user_id">\${postDTOs.firstCommentUser }</div>
+	                    <div class="comments-comment">${postDTOs.firstComment.comment_content}</div>
 	                </div>
+	            </c:if>
 	            </div>
 	        </div>
 	    `;
@@ -207,14 +210,14 @@
 			const userBox = createUserBox(post);
 			const feedPostBox = createFeedPostBox(post);
 			const feedBottom = createFeedBottom(post);
-			const feedArticle = createFeedArticle();
+			const feedArticle = createFeedArticle(post);
 			
-			console.log(feedPostBox)
+			
 			
 			feedElement.innerHTML = userBox + feedPostBox + feedBottom + feedArticle;
 			
 			feedElement.querySelector('.feed_text').addEventListener('click', function() {
-	            location.href = `main/getPost?post_id=\${post.post_id}`;
+	            location.href = `main/getPost?post_id=\${post.post.post_id}`;
 	        });
 			
 			feedContainer.appendChild(feedElement);
