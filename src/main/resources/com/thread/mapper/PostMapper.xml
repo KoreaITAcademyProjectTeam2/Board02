@@ -91,5 +91,4 @@
 	ORDER BY c.comment_add_date ASC
 	LIMIT 1;
 </select>
-
 </mapper>

@@ -29,9 +29,9 @@ public interface PostMapper {
 	public List<Integer> getCommentCountList(@Param("count") Long count, @Param("currentCount") Long currentCount);
 
 	int countPostsByUser(String user_email);
-	
+
 	public String getFirstCommentUser(Long post_id);
-	
+
 	public CommentVO getFirstComment(Long post_id);
 
 }
