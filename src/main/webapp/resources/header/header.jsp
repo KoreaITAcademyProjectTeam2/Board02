@@ -15,10 +15,11 @@
 
 
     <!-- 내가 고친부분 -->
+    <!-- 검색 영역 -->
     <div class="search_box">
-      <form class="search-form" action="">
-          <input type="search" class="search-input" placeholder="   🔎 검색">
-          <button type="submit" class="search-btn">button</button>
+      <form class="search_form" id="moveForm" action="../main/search" method="get">
+          <input type="text" name="keyword" placeholder="   🔎 검색" >
+          <button type="submit" class="search_btn">button</button>
       </form>
     </div>
 
@@ -51,6 +52,25 @@
 
     </div>
   </div>
+  
+  <!-- 검색수 안내 -->
+  <c:if test="${not empty keyword }">
+  	<div class="alert text-center">
+  		<strong>${totalRow}</strong>개의 자료가 검색되었습니다.
+  	</div>
+  </c:if>
+  
+  <!-- card section -->
+  <section id="card-list" class="card-list">
+  	<div class="container">
+  		<div class="row card-list-container thumbnails"></div>
+  	</div>
+  </section>
+  
+  <div class="back-drop">
+  	<img src="../resources"/>
+  </div>
+  
 </header>
   
   <!--/header-->

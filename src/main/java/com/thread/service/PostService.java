@@ -2,6 +2,7 @@ package com.thread.service;
 
 import java.util.List;
 
+import com.thread.domain.Criteria;
 import com.thread.domain.PostVO;
 
 public interface PostService {
@@ -20,4 +21,12 @@ public interface PostService {
 	public int getCommentCount(Long post_id);
 
 	String getUser(Long post_id);
+
+	public List<PostVO> getSearchList(Long count, Long currentCount);
+	
+	 /* 검색 목록 
+    public static List<PostVO> searchGetList(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.thread.domain.Criteria;
 import com.thread.domain.PostVO;
 
 public interface PostMapper {
@@ -25,4 +26,8 @@ public interface PostMapper {
     public int getCommentCount(Long post_id);
     
     public List<Integer> getCommentCountList(@Param("count")Long count, @Param("currentCount")Long currentCount);
+    
+    
+    //검색
+    //public List<PostVO> searchGetList(Criteria cri);
 }
