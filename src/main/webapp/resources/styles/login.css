@@ -22,7 +22,7 @@ body {
 }
 
 .withdrawal_Message{
-	margin: 35px 0px;
+	margin: 25px 0px;
 	font-weight: bold;
 	font-family: -apple-;
 }
@@ -32,7 +32,7 @@ body {
 	padding-left: 20px;
 	padding-right: 20px;
 	text-align:center;
-	margin-top:50px;
+	margin-top:60px;
 }
 .withdrawal_Main_Message input{
 	font-size : 12px;
@@ -157,7 +157,7 @@ footer {
 
   /*position: relative;*/
   position: relative;
-  top : 10px;
+  top : 5px;
   color: rgba(var(--fe0, 0, 55, 107), 1);
   font-size: 12px;
   text-align: center;

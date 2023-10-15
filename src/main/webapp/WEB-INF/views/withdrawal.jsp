@@ -41,6 +41,13 @@
 			<input type="button" class="withdrawalBtn" value="회원탈퇴" onclick = "removeUser();"/>
 		</form>
 		</footer>
+		
+		<form id="user_Join" method="post" action="main">
+		<footer>
+				<input type="submit" id = "submit" value="메인으로" class="small_text" />
+				<div id="submit_message"></div>
+		</footer>
+		</form>
 	</div>
 	<script>
 	

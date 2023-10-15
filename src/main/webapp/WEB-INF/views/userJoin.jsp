@@ -51,7 +51,7 @@
 			<div id="user_name_message"></div>
 
 		<footer>
-				<input type="submit" id = "submit" value="회원가입" class="small_text" />
+				<input type="submit" id = "submit" value="메인으로" class="small_text" />
 				<div id="submit_message"></div>
 		</footer>
 		</form>
