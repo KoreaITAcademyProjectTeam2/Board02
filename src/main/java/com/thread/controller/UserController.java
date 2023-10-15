@@ -158,6 +158,11 @@ public class UserController {
 		model.addAttribute("userPostCount", userPostCount);
 		return "myPage";
 	}
+	
+	@PostMapping("/searchPwd")
+	public void searchPwdPage() {
+		log.info("SearchPwd Page");
+	}
 
 	@PostMapping("/modify")
 	public void modify() {

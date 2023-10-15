@@ -1,11 +1,14 @@
 package com.thread.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.thread.domain.Criteria;
 import com.thread.domain.PostVO;
 
 import lombok.Setter;
@@ -56,6 +59,19 @@ public class PostMapperTest {
 		log.info("post3 user: " + mapper.getUser(18L));
 	}
 	
+	//검색
+	/*@Test
+    public void searchGetListTest() throws Exception{
+        
+        Criteria cri = new Criteria(3,10);    // 3페이지 & 10개 행 표시
+        cri.setKeyword("테스트");
+        
+        List<PostVO> list = mapper.searchGetList(cri);
+        
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println("list" + i + ".........." + list.get(i));
+        }
+	}*/
 	@Test
 	public void testGetFirstCommentUser() {
 		log.info("");
