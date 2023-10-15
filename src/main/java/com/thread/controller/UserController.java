@@ -158,7 +158,7 @@ public class UserController {
 		model.addAttribute("userPostCount", userPostCount);
 		return "myPage";
 	}
-	
+
 	@PostMapping("/searchPwd")
 	public void searchPwdPage() {
 		log.info("SearchPwd Page");
@@ -175,7 +175,7 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@PostMapping("/nicknameCheck")
+	@PostMapping(value = "/nicknameCheck", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Integer> nicknameCheck(@RequestParam("user_name") String user_name) {
 		Integer cnt = userservice.nicknameCheck(user_name);
 		log.info("cnt" + cnt);
@@ -183,7 +183,7 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@PostMapping("/emailCheck")
+	@PostMapping(value = "/emailCheck", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Integer> emailCheck(@RequestParam("user_email") String user_email) {
 		Integer ecnt = userservice.emailCheck(user_email);
 		log.info("cnt" + ecnt);

@@ -51,7 +51,7 @@
 			<div id="user_name_message"></div>
 
 		<footer>
-				<input type="submit" id = "submit" value="메인으로" class="small_text" />
+				<input type="submit" id = "submit" value="회원가입" class="small_text" />
 				<div id="submit_message"></div>
 		</footer>
 		</form>
@@ -222,7 +222,7 @@
                 } else if(user_name == "" || !noSpecialChars.test(user_name)){
                 	message.text("사용할 수 없는 닉네임입니다.");
                 	message.css('color', 'red');
-                	nicknameVerified = false;
+                	nicknameVerified = true;
                     
                 }else {
                 	message.text("사용 가능한 닉네임입니다.");
