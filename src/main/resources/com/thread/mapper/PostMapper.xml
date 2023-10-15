@@ -68,7 +68,9 @@
             where post_content like concat('%',#{keyword}, '%')
         </if>
         order by post_content desc 
-        limit #{skip}, #{amount}    
+        limit #{skip}, #{amount}   
+        
+</select> 
 <select id="countPostsByUser" resultType="int">
     SELECT COUNT(*) FROM posts WHERE post_user_email = #{user_email}
 </select>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.thread.domain.CommentVO;
 import com.thread.domain.Criteria;
 import com.thread.domain.PostVO;
 

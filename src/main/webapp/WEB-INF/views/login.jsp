@@ -40,11 +40,13 @@
         </div>
         <input type="password" class="user_Login" name="user_password" placeholder="비밀번호" />
 
-        <input type="submit" class="loginBtn" value="로그인" />
-    </form>
-     <c:if test = "\${result == 0 }">
+        <input type="submit" class="loginBtn" value="로그인" id="login_check_input_box_false"/>
+      <!-- <input class="login_check_input" disabled="disabled"> -->  
+           <c:if test = "${result == 0 }">
              <div class = "login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
      </c:if>
+    </form>
+
 
     
 
