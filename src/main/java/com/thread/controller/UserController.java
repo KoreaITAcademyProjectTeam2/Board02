@@ -132,6 +132,11 @@ public class UserController {
 	public void myPage() {
 		log.info("go MyPage");
 	}
+	
+	@PostMapping("/searchPwd")
+	public void searchPwdPage() {
+		log.info("SearchPwd Page");
+	}
 
 	@PostMapping("/modify")
 	public void modify() {

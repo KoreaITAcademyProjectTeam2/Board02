@@ -50,7 +50,7 @@
 
     <footer>
     
-      <form method="post" action="password_check.html">
+      <form method="post" action="/searchPwd">
       <input type = "submit" value = "비밀번호를 잊으셨나요?" name = "pwd_check" class = "small_text" />
 		</form>
     </footer>
