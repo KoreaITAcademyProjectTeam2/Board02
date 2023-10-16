@@ -1,19 +1,14 @@
 package com.thread.service;
 
 import java.util.List;
-import java.util.logging.LogManager;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.thread.domain.Criteria;
 import com.thread.domain.CommentVO;
 import com.thread.domain.PostVO;
 import com.thread.mapper.PostMapper;
-import com.thread.mapper.SearchMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;

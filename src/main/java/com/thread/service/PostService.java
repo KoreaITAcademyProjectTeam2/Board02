@@ -2,7 +2,6 @@ package com.thread.service;
 
 import java.util.List;
 
-import com.thread.domain.Criteria;
 import com.thread.domain.CommentVO;
 import com.thread.domain.PostVO;
 
