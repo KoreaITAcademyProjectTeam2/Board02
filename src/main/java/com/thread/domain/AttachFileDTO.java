@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class AttachFileDTO {
-	private String fileName;
+	private String file_name;
 	private String uploadPath;
 	private String uuid;
-	private int file_post_id;
+	private Long file_post_id;
 }

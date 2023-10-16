@@ -56,7 +56,7 @@ public class UploadController {
 			
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
 			
-			attachDTO.setFileName(uploadFileName);
+			attachDTO.setFile_name(uploadFileName);
 			
 			UUID uuid = UUID.randomUUID();
 			
@@ -86,12 +86,12 @@ public class UploadController {
 	
 	@PostMapping("/deleteFile")
 	@ResponseBody
-	public ResponseEntity<String> deleteFile(String fileName, String type){
-		log.info("deleteFile: "+fileName);
+	public ResponseEntity<String> deleteFile(String file_name, String type){
+		log.info("deleteFile: "+file_name);
 		File file;
 		log.info("type: " +type);
 		try {
-			file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File("c:\\upload\\" + URLDecoder.decode(file_name, "UTF-8"));
 			
 			file.delete();
 			

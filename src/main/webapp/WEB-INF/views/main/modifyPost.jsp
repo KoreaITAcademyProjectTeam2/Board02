@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/resources/header/header.jsp"%>
-<%@ include file="/resources/header/aside.jsp"%>
+<%-- <%@ include file="/resources/header/aside.jsp"%> --%>
 <head>
   <meta name="viewport" content="width=device-width" />
   <meta charset="UTF-8">
@@ -116,4 +116,39 @@ function submitForm() {
 }
 
 </script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    (function(){
+	        const post_id = '<c:out value="${post.post.post_id}"/>';
+	        
+	        $.getJSON("/main/getAttachList", {post_id: post_id}, function(arr){
+	        	let str = "";
+	        	console.log(arr);
+	            $(arr).each(function(i, attach){
+	            	const fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.file_name);
+	            	
+	            	str += "<div data-index='" + i + "'>";
+	    			str += "<li>" + attach.file_name + "</li>";
+	    			str += "<li><img src='/display?fileName="+fileCallPath+"'></li>";
+	    			
+	    			str += "<span data-file=\'" + fileCallPath + "\' data-type='image'> x </span>";
+	    			
+	    			str += "<input type='hidden' name='attachList[" + i + "].file_name' value='" + attach.file_name + "'>";
+	    			str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + attach.uuid + "'>";
+	    			str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + attach.uploadPath + "'>";
+	    			
+	    			str += "</div>";
+	    			
+	    			console.log("attachFileName: "+attach.file_name);
+	            });
+	            
+		        $(".uploadResult ul").html(str);
+	        });
+	        
+	        
+	    })();
+	});
+	
+	
+	</script>
 </body>

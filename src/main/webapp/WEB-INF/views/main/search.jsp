@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/resources/header/header.jsp"%>
-<%@ include file="/resources/header/aside.jsp"%>
+<%-- <%@ include file="/resources/header/aside.jsp"%> --%>
 
 <head>
   <meta name="viewport" content="width=device-width" />
@@ -27,6 +27,7 @@
 <body>
 <div class='none'></div>
 <div class="main_body">
+<article>
 <!-- 게시물 o -->
 <c:if test="${listcheck != 'empty'}">
 <div id="feed-container">
@@ -91,7 +92,7 @@
 		</c:if>
 		<!-- end feed_container -->
 		<div id="loader_container"><div id="loader" style="display: none;"></div></div>
-
+</article>
 	</div>
 				
 	<form id="moveForm" action="/search" method="get" >

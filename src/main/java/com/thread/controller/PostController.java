@@ -6,7 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.thread.domain.AttachFileDTO;
 import com.thread.domain.CommentVO;
 import com.thread.domain.Criteria;
 import com.thread.domain.PageDTO;
@@ -60,10 +63,15 @@ public class PostController {
 			return "redirect:/login";
 		}
 		
+		if(post.getAttachList() != null) {
+			post.getAttachList().forEach(attach -> log.info(attach));
+		}
+		
 		post.setPost_content(post_content);
 		post.setPost_user_email(currentUser.getUser_email());
+		
 		postService.newPost(post);
-		log.info("make post complete");
+
 		return "redirect:/main";
 	}
 
@@ -93,6 +101,9 @@ public class PostController {
 		postDTO.setPost(postService.get(post_id));
 		postDTO.setCommentCount(postService.getCommentCount(post_id));
 		postDTO.setUserName(postService.getUser(post_id));
+		
+		postDTO.getPost().getAttachList().forEach(attach -> log.info(attach));
+		
 		model.addAttribute("post", postDTO);
 
 		log.info("check a thread " + post_id);
@@ -174,4 +185,12 @@ public class PostController {
 		return posts;
 	}
 
+	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<AttachFileDTO>> getAttachList(Long post_id){
+		log.info("postID: " + post_id);
+		return new ResponseEntity<>(postService.getAttachList(post_id), HttpStatus.OK);
+		
+	}
+	
 }

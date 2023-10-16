@@ -19,15 +19,29 @@ public class PostMapperTest {
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
 
+	@Setter(onMethod_ = @Autowired)
+	private AttachFileMapper attachMapper;
+	
 	@Test
 	public void testInsert() {
 
 		PostVO post = new PostVO();
 		post.setPost_content("새로 작성하는 내용");
-		post.setPost_user_email("user1@example.com");
+		post.setPost_user_email("gkgkgk");
 
 		mapper.insert(post);
 		log.info(post);
+		log.info("post id: " + post.getPost_id());
+	}
+	
+	@Test
+	public void testInsertWithFile() {
+		PostVO post = new PostVO();
+		
+		
+		post.setPost_content("이미지 샹것");
+		post.setPost_user_email("gkgkgk");
+		
 	}
 
 	@Test
@@ -76,5 +90,10 @@ public class PostMapperTest {
 	@Test
 	public void testGetFirstComment() {
 		log.info("post3 first comment" + mapper.getFirstComment(3L));
+	}
+	
+	@Test
+	public void testGetLastPostId() {
+		log.info("Last Post ID : " + mapper.LastPostId());
 	}
 }

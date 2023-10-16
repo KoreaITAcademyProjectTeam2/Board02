@@ -2,6 +2,7 @@ package com.thread.service;
 
 import java.util.List;
 
+import com.thread.domain.AttachFileDTO;
 import com.thread.domain.CommentVO;
 import com.thread.domain.PostVO;
 
@@ -35,4 +36,6 @@ public interface PostService {
 	public String getFirstCommentUser(Long post_id);
 	
 	public CommentVO getFirstComment(Long post_id);
+
+	List<AttachFileDTO> getAttachList(Long post_id);
 }

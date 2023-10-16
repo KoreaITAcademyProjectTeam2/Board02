@@ -41,11 +41,11 @@
 					</div>
 					</div>
 				</div>
-				<div class="feed-post-box">
+				<div class="feed-post-box" onclick='location.href="main/getPost?post_id=<c:out value="${postDTOs.post.post_id }" />"'>
 					<div class="feed_picture">
 						(이미지 영역)
 					</div>
-					<div class="feed_text" onclick='location.href="main/getPost?post_id=<c:out value="${postDTOs.post.post_id }" />"'>
+					<div class="feed_text" >
 						<c:out value="${postDTOs.post.post_content }"/>
 					</div>
 				</div>

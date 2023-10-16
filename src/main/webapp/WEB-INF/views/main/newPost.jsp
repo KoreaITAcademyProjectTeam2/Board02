@@ -12,6 +12,7 @@
   <link href="/resources/styles/common.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/nav.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/body.css" rel="stylesheet" type="text/css" />
+  
   <style type="text/css">
 	.uploadResult{
 	width: 100%;

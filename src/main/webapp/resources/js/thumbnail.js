@@ -40,6 +40,8 @@ $(document).ready(function() {
 			dataType: 'json',
 			success: function(result){
 				console.log("result: " + result);
+				console.log("result.uuid " + result[0].uuid);
+				
 				showUploadedFile(result);
 				
 				$(".uploadDiv").html(cloneObj.html());
@@ -52,13 +54,21 @@ $(document).ready(function() {
 		let type = $(this).data("type");
 		console.log(targetFile);
 		
+		const clickedDiv = $(this).parent();
+
+		const index = clickedDiv.data("index");
+
+		console.log("targetFile: " + targetFile); 
+		console.log("index: " + index);
+		console.log("type: " + type);
 		$.ajax({
 			url: '/deleteFile',
-			data: {fileName: targetFile, type: type},
+			data: {file_name: targetFile, type: type},
 			dataType: 'text',
 			type: 'POST',
 			success: function(result){
-				alert(result);
+	            clickedDiv.remove(); // Remove the span element
+	            alert(result);
 			}
 		});
 	});
@@ -68,11 +78,22 @@ $(document).ready(function() {
 		let str = "";
 		
 		$(uploadResultArr).each(function(i, obj) {
-			str += "<li>" + obj.fileName + "</li>"
-			const fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
+			
+			console.log("fileName" + obj.file_name);
+			console.log("uuid: " + obj.uuid);
+		
+			str += "<div data-index='" + i + "'>";
+			str += "<li>" + obj.file_name + "</li>";
+			const fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.file_name);
 			
 			str += "<li><img src='/display?fileName="+fileCallPath+"'></li>";
-			str += "<span data-file=\'" + fileCallPath + "\' data-type='image'> x </span>"
+			str += "<span data-file=\'" + fileCallPath + "\' data-type='image'> x </span>";
+			
+			str += "<input type='hidden' name='attachList[" + i + "].file_name' value='" + obj.file_name + "'>";
+			str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + obj.uuid + "'>";
+			str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + obj.uploadPath + "'>";
+			
+			str += "</div>";
 		});
 		
 

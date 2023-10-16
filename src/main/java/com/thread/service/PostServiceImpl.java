@@ -1,13 +1,16 @@
 package com.thread.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.thread.domain.AttachFileDTO;
 import com.thread.domain.CommentVO;
 import com.thread.domain.PostVO;
+import com.thread.mapper.AttachFileMapper;
 import com.thread.mapper.PostMapper;
 
 import lombok.AllArgsConstructor;
@@ -22,31 +25,65 @@ public class PostServiceImpl implements PostService {
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
 
+	@Setter(onMethod_ = @Autowired)
+	private AttachFileMapper attachMapper;
+	
 	@Transactional
 	@Override
 	public void newPost(PostVO post) {
-		log.info("new Post..." + post);
+		
 		mapper.insert(post);
+		Long generatedPostId = mapper.LastPostId();
+		if(post.getAttachList() == null || post.getAttachList().size() <= 0) {
+			return;
+		}
+		
+		post.getAttachList().forEach(attach -> {
+			attach.setFile_post_id(generatedPostId);
+			
+			attachMapper.insert(attach); 
+		}); 
+		
+		
 	}
 
 	@Override
 	public List<PostVO> getList(Long count, Long currentCount) {
 		log.info("getList...");
+		List<PostVO> posts = new ArrayList<PostVO>();
+		posts.forEach(post -> {
+			if(attachMapper.findByPostId(post.getPost_id()) != null) {
+				post.setAttachList(attachMapper.findByPostId(post.getPost_id()));
+			}
+		});
 		return mapper.getList(count, currentCount);
 	}
 
 	@Override
 	public PostVO get(Long post_id) {
 		log.info("get...");
-		return mapper.get(post_id);
+		PostVO post = mapper.get(post_id);
+		post.setAttachList(attachMapper.findByPostId(post_id));
+		return post;
 	}
 
 	@Transactional
 	@Override
 	public boolean modify(PostVO post) {
 		log.info("modify... : " + post);
-		boolean modifyResult = mapper.update(post) == 1;
-		return modifyResult;
+		
+		if(post.getAttachList() == null) {
+			return mapper.update(post) == 1;
+		}
+		
+		post.getAttachList().forEach(attach -> {
+			attach.setFile_post_id(post.getPost_id());
+			
+			attachMapper.insert(attach); 
+		}); 
+		post.setAttachList(attachMapper.findByPostId(post.getPost_id()));
+		
+		return mapper.update(post) == 1;
 	}
 
 	@Override
@@ -104,5 +141,9 @@ public class PostServiceImpl implements PostService {
 	public String getUserEmail(Long post_id) {
 		return mapper.userEmail(post_id);
 	}
-
+	
+	@Override
+	public List<AttachFileDTO> getAttachList(Long post_id){
+		return attachMapper.findByPostId(post_id);
+	}
 }

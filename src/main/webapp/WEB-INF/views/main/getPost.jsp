@@ -29,7 +29,29 @@
 .profilePic {
 	margin-right: 10px;
 }
+
 </style>
+  <style type="text/css">
+	.uploadResult{
+	width: 100%;
+	background-color: white;
+	}
+	
+	.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;}
+	
+	.uploadResult ul li{
+	list-style: none;
+	padding: 10px;
+	}
+	
+	.uploadResult ul li img {
+	width: 40px;
+	}
+  </style>
 
 </head>
 
@@ -56,7 +78,13 @@
 						</div>
 					</div>
 					<div class="feed-post-box">
-						<div class="feed_picture">(이미지 영역)</div>
+						<div class="feed_picture">
+							<div class="uploadResult">
+              					<ul>
+                <!-- 이곳에 이미지 추가 -->
+              					</ul>
+            				</div>
+						</div>
 						<div class="feed_text">
 							<c:out value="${post.post.post_content }" />
 						</div>
@@ -195,7 +223,35 @@ crossorigin="anonymous"></script>
 		    });
 		});
 	</script>
-
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    (function(){
+	        const post_id = '<c:out value="${post.post.post_id}"/>';
+			
+	        
+	        
+	        $.getJSON("/main/getAttachList", {post_id: post_id}, function(arr){
+	        	let str = "";
+	        	console.log(arr);
+	            $(arr).each(function(i, attach){
+	            	const fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.file_name);
+	            	
+	            	str += "<div>";
+	    			str += "<li>" + attach.file_name + "</li>";
+	    			str += "<li><img src='/display?fileName="+fileCallPath+"'></li>";
+	    			str += "</div>";
+	    			
+	    			console.log(attach.file_name);
+	            });
+	            
+		        $(".uploadResult ul").html(str);
+	        });
+	        
+	        
+	    })();
+	});
+	</script>
+	<!-- <script src="/resources/js/attachList.js"></script> -->
 
 </body>
 

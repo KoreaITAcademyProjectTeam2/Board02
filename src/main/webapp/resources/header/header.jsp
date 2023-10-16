@@ -70,10 +70,7 @@
   		<div class="row card-list-container thumbnails"></div>
   	</div>
   </section>
-  
-  <div class="back-drop">
-  	<img src="../resources"/>
-  </div>
+
   
 </header>
   <!--/header-->

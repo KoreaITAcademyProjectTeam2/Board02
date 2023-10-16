@@ -35,4 +35,5 @@ public interface PostMapper {
 
 	public CommentVO getFirstComment(Long post_id);
 
+	public Long LastPostId();
 }

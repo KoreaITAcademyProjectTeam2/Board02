@@ -14,6 +14,7 @@
 	<![CDATA[
 		SELECT * 
 		FROM posts 
+		ORDER BY post_id DESC
 		LIMIT #{count} OFFSET #{currentCount}
 	]]>
 </select>
@@ -97,4 +98,12 @@
 	ORDER BY c.comment_add_date ASC
 	LIMIT 1;
 </select>
+
+<select id="LastPostId" resultType="Long">
+	SELECT post_id
+	FROM posts
+	ORDER BY post_id DESC 
+	LIMIT 1;
+</select>
+
 </mapper>

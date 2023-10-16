@@ -29,7 +29,7 @@ public class PostServiceTest {
 	@Test
 	public void testNewPost() {
 		PostVO post = new PostVO();
-		post.setPost_user_email("user1@example.com");
+		post.setPost_user_email("gkgkgk");
 		post.setPost_content("서비스 테스트 내용.");
 
 		service.newPost(post);
