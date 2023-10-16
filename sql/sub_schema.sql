@@ -24,6 +24,8 @@ CREATE TABLE tags(
 CREATE TABLE attachment(
 	file_post_id INT,
     file_name VARCHAR(255),
+    uuid VARCHAR(255),
+    uploadPath VARCHAR(255),
     FOREIGN KEY (file_post_id) REFERENCES posts(post_id)
 );
 

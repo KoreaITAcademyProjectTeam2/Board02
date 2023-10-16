@@ -49,6 +49,12 @@
 	WHERE p.post_id = #{post_id}
 </select>
 
+<select id="userEmail" resultType="String">
+	SELECT post_user_email
+	FROM posts
+	WHERE post_id = #{post_id}
+</select>
+
 <delete id="deleteComments">
 	DELETE FROM comments WHERE comment_post_id = #{post_id}
 </delete>

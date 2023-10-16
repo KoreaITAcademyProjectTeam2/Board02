@@ -11,6 +11,27 @@
   <link href="/resources/styles/nav.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/body.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/comments.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+	.uploadResult{
+	width: 100%;
+	background-color: white;
+	}
+	
+	.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;}
+	
+	.uploadResult ul li{
+	list-style: none;
+	padding: 10px;
+	}
+	
+	.uploadResult ul li img {
+	width: 40px;
+	}
+  </style>
 </head>
 
 <body>
@@ -32,22 +53,31 @@
 	                (profile_img)
 	              </div>
 	              <div class="id_container">
-	                <div class="id_name">USER_NAME</div>
+	                <div class="id_name">${post.userName }</div>
 	              </div>
 	              <!-- end id_container -->
 	            </div>
 	            <!-- end id_box -->
-	            <form action="removePost" method="POST"><button class="feed_action_box" type="submit" name="post_id" value="<c:out value="${post.post.post_id }" />">삭제</button></form>
+	            <form action="removePost" method="POST" onsubmit="return submitForm()">
+	            	<button class="feed_action_box" type="submit" name="post_id" value="<c:out value="${post.post.post_id }" />">삭제</button>
+	            </form>
 	        </div>
 	        <!-- end feed_id -->
 	        <form action="modifyPost" method="POST">
 			<input type="hidden" value="<c:out value="${post.post.post_id }"/>" name="post_id" readonly>
 			<div class="feed-post-box">
 				<div class="feed_picture">
-						<!-- (이미지 영역) -->
+					<div class="uploadResult">
+		              <ul>
+		                <!-- 이곳에 이미지 추가 -->		                
+		              </ul>
+		            </div>
 				</div>
 				<div class="feed_text">
-					<textarea name="post_content"><c:out value="${post.post.post_content }"/></textarea>
+					<textarea name="post_content" id="postContent"><c:out value="${post.post.post_content }"/></textarea>
+					<div class="uploadDiv">
+			          <input type="file" name="uploadFile" accept="image/*" multiple>
+			        </div>
 				</div>
 			</div>
 			<div class="feed_bottom">
@@ -73,8 +103,17 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" 
 integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" 
 crossorigin="anonymous"></script> 
- 
+ <script src="/resources/js/thumbnail.js"></script>
 <script>
+function submitForm() {
+	const textAreaContent = document.getElementById("postContent").value;
+	
+	if(textAreaContent.trim() === ''){
+		alert("내용이 존재하지 않습니다.");
+		return false;
+	}
+	return true;
+}
 
 </script>
 </body>

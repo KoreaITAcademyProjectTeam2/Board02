@@ -22,6 +22,8 @@ public interface PostMapper {
 	public int deleteComments(Long post_id);
 
 	public String getUser(Long post_id);
+	
+	public String userEmail(Long post_id);
 
 	public int getCommentCount(Long post_id);
 

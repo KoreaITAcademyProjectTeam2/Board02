@@ -2,13 +2,16 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/resources/header.css">
 <link rel="icon" href="/resources/favicon.ico" type="image/x-icon">
+<%
+	com.thread.domain.UserVO loggedInUser = (com.thread.domain.UserVO)session.getAttribute("member");
+%>
 <header>
   <div class="header-container">
     
     <div class="left_box">
       <span class="logo_box">
         <a href="/main">
-        	<img src="">로고 들어가야함
+        	<img src="/resources/img/logo.png"}>
         </a>
         </span>
     </div>
@@ -47,10 +50,10 @@
       	  	<img class="myPage" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/profile.png" 
       	  	alt="마이페이지" />
          </a>
+         <span><%= loggedInUser.getUser_name() %></span>
       </span>
 
     </div>
   </div>
 </header>
-  
   <!--/header-->

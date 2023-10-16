@@ -3,6 +3,8 @@ package com.thread.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 @Log4j
-@RequestMapping("*/newPost/*")
+@RequestMapping("/*")
 public class UploadController {
 	
 	@PostMapping(value= "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -80,7 +82,33 @@ public class UploadController {
 			}
 		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
-		
+	}
+	
+	@PostMapping("/deleteFile")
+	@ResponseBody
+	public ResponseEntity<String> deleteFile(String fileName, String type){
+		log.info("deleteFile: "+fileName);
+		File file;
+		log.info("type: " +type);
+		try {
+			file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+			
+			file.delete();
+			
+			if(type.equals("image")) {
+				String largeFileName = file.getAbsolutePath().replace("s_", "");
+				
+				log.info("large File Name: " + largeFileName);
+				
+				file = new File(largeFileName);
+				
+				file.delete();
+			}
+		} catch(UnsupportedEncodingException e){
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 	
 	@GetMapping("/display")

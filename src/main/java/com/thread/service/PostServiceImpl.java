@@ -80,4 +80,9 @@ public class PostServiceImpl implements PostService {
 		return mapper.getFirstComment(post_id);
 	}
 
+	@Override
+	public String getUserEmail(Long post_id) {
+		return mapper.userEmail(post_id);
+	}
+
 }

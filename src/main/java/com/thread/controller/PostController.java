@@ -60,7 +60,7 @@ public class PostController {
 		return "redirect:/main";
 	}
 
-	@GetMapping({ "/getPost", "/modifyPost" })
+	@GetMapping("/getPost")
 	public void viewPost(@RequestParam("post_id") Long post_id, Model model) {
 		List<CommentVO> commentList = commentService.getListWithPaging(post_id);
 		model.addAttribute("commentList", commentList);
@@ -73,10 +73,29 @@ public class PostController {
 		log.info("check a thread " + post_id);
 	}
 
+	@GetMapping("/modifyPost")
+	public String getModifyPost(@RequestParam("post_id") Long post_id, HttpSession session, Model model) {
+		UserVO currentUser = (UserVO) session.getAttribute("member");
+		
+		log.info(currentUser.getUser_email() + " user : post " + postService.getUserEmail(post_id));
+		
+		if(!currentUser.getUser_email().equals(postService.getUserEmail(post_id))) {
+			return "redirect:/main/getPost?post_id=" + post_id;
+		}
+
+		postDTO.setPost(postService.get(post_id));
+		postDTO.setCommentCount(postService.getCommentCount(post_id));
+		postDTO.setUserName(postService.getUser(post_id));
+		model.addAttribute("post", postDTO);
+
+		log.info("check a thread " + post_id);
+		return "main/modifyPost";
+	}
+	
 	@PostMapping("/modifyPost")
 	public String modifyPost(HttpSession session, PostVO post) {
 		UserVO currentUser = (UserVO) session.getAttribute("member");
-		if(currentUser.getUser_email() == postService.getUser(post.getPost_id())) {
+		if(currentUser.getUser_email().equals(postService.getUserEmail(post.getPost_id()))) {
 			log.info(postService.modify(post));
 			return "redirect:/main/getPost?post_id=" + post.getPost_id();
 		}
@@ -86,8 +105,9 @@ public class PostController {
 	@PostMapping("/removePost")
 	public String removePost(HttpSession session, @RequestParam Long post_id) {
 		UserVO currentUser = (UserVO) session.getAttribute("member");
-		
-		if(currentUser.getUser_email() == postService.getUser(post_id)) {
+		log.info("current user: "+currentUser.getUser_email());
+		log.info("post user: "+postService.getUserEmail(post_id));
+		if(currentUser.getUser_email().equals(postService.getUserEmail(post_id))) {
 			postService.remove(post_id);
 			log.info(post_id + " remove complete");	
 		}

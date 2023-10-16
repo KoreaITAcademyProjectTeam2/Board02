@@ -126,6 +126,10 @@
 		</article>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" 
+integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" 
+crossorigin="anonymous"></script> 
+
 	<script type="text/javascript">
 		/* // 작성일을 상대적인 형식으로 변환하고 출력
 		const dateString = "${comment.comment_add_date}";

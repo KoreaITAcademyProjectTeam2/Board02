@@ -21,6 +21,8 @@ public interface PostService {
 
 	String getUser(Long post_id);
 
+	String getUserEmail(Long post_id);
+	
 	int countPostsByUser(String user_email);
 
 	public String getFirstCommentUser(Long post_id);
