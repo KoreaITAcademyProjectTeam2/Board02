@@ -47,13 +47,6 @@ function clearCurrentPasswordMessageIfMatching() {
 }
 
 
-
-function clearCurrentPasswordMessageIfMatching() {
-    if(isPasswordMatching) {
-        $("#password_message").text("");
-    }
-}
-
 function validateNewPassword() {
     var newPassword = $('#newPassword').val();
     var confirmPassword = $('#confirmPassword').val();
@@ -100,14 +93,15 @@ function modifyPassword() {
     var currentPassword = $('#password').val();
     var newPassword = $('#newPassword').val();
     var confirmPassword = $('#confirmPassword').val();
-    
-    if (!isPasswordMatching) {
-        setMessage("#password_change_message", "현재 비밀번호를 확인해주세요", 'red');
-        return;
-    }
+   
     
     if (!currentPassword || !newPassword || !confirmPassword) {
         setMessage("#password_change_message", "모든 필드를 입력하세요.", 'red');
+        return;
+    }
+     
+    if (!isPasswordMatching) {
+        setMessage("#password_change_message", "현재 비밀번호를 확인해주세요", 'red');
         return;
     }
     

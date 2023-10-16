@@ -135,9 +135,13 @@ public class UserController {
 			return "redirect:/userJoin";
 		}
 
-		if (!isValidInput(user.getUser_email()) || !isValidInput(user.getUser_password())
-				|| !isValidInput(user.getUser_name())) {
-			rttr.addFlashAttribute("error", "아이디, 비밀번호, 닉네임에 공백 또는 특수문자를 사용할 수 없습니다.");
+		if (!isValidInput(user.getUser_email()) || !isValidInput(user.getUser_name())) {
+			rttr.addFlashAttribute("error", "아이디, 닉네임에 공백 또는 특수문자를 사용할 수 없습니다.");
+			return "redirect:/userJoin";
+		}
+
+		if (user.getUser_password().matches(".*\\s.*")) {
+			rttr.addFlashAttribute("error", "비밀번호에 공백을 사용할 수 없습니다.");
 			return "redirect:/userJoin";
 		}
 
