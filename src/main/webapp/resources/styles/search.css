@@ -1,0 +1,52 @@
+@charset "EUC-KR";
+
+
+/* 검색결과 없음 */
+.table_empty{
+	height: 50px;
+    text-align: center;
+    margin: 200px 0 215px 0px;
+    font-size: 25px;
+}
+
+.list_search_result{
+		width: 90%;
+	    margin: auto;	
+	}
+	.type_list{
+	    width: 100%;
+	    border-bottom: 1px solid #e7e7e7;
+	    border-collapse: collapse;	
+	}
+	.type_list tr{
+		height:200px;
+		border-bottom: 1px solid #e7e7e7;
+	}
+	.detail div{
+		margin-bottom: 5px;
+	}
+	.category{
+		font-size: 12px;
+    	font-weight: 600;
+	}
+	.title{
+	    font-size: 20px;
+	    color: #3a60df;
+	    font-weight: 700;
+	}
+	.author{
+		font-size: 14px;
+	}
+	.info{
+		text-align: center;
+	}
+	.price{
+		text-align: center;
+	}
+	.org_price del{
+		font-size: 13px;
+	}
+	.sell_price strong{
+		color: #da6262;
+    	font-size: 18px;
+	}

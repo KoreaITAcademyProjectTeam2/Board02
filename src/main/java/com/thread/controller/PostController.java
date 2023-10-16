@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -12,15 +13,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.thread.domain.CommentVO;
+import com.thread.domain.Criteria;
+import com.thread.domain.PageDTO;
+import com.thread.domain.PostVO;
+import com.thread.domain.UserVO;
+import com.thread.service.CommentService;
 import com.thread.domain.PostDTO;
 import com.thread.domain.PostVO;
 import com.thread.domain.UserVO;
 import com.thread.service.CommentService;
 import com.thread.service.PostService;
+import com.thread.service.SearchService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -38,6 +46,10 @@ public class PostController {
 
 	@Autowired
 	private PostDTO postDTO;
+	
+	//검색
+	@Autowired
+	private SearchService searchService;
 	
 	@GetMapping(value = "/newPost", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void newPost() {
@@ -132,5 +144,39 @@ public class PostController {
 		log.info("post load");
 		return postDTOs;
 	}
+	//검색
+	@GetMapping("/search")
+	public void searchListsGET(Criteria cri, Model model) {
+		
+		log.info("cri : " + cri);
+		
+		List<PostVO> list = searchService.getSearchList(cri);
+		log.info("pre list : " + list);
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			log.info("list : " + list);
+		} else {
+			model.addAttribute("listcheck", "empty");
+			
+			/* return "search"; */
+		}
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, searchService.searchGetTotal(cri)));
+		
+		
+		/* return "search"; */
+		
+	}
 	
+	//검색 스크롤
+	@ResponseBody
+	@GetMapping("/loadSearchPost")
+	public List<PostVO> loadSearchPost(@RequestParam("count") Long count, 
+			@RequestParam("currentCount") Long currentCount) {
+		Long currentCounts = null;
+		List<PostVO> posts = postService.getSearchList(count, currentCounts);
+		log.info("post load");
+		return posts;
+	}
+
 }

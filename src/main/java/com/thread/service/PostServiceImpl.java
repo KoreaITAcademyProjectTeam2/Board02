@@ -1,14 +1,19 @@
 package com.thread.service;
 
 import java.util.List;
+import java.util.logging.LogManager;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.thread.domain.Criteria;
 import com.thread.domain.CommentVO;
 import com.thread.domain.PostVO;
 import com.thread.mapper.PostMapper;
+import com.thread.mapper.SearchMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -64,6 +69,26 @@ public class PostServiceImpl implements PostService {
 	public String getUser(Long post_id) {
 		return mapper.getUser(post_id);
 	}
+	
+	@Override
+	public List<PostVO> getSearchList(Long count, Long currentCount) {
+		log.info("getList...");
+		return mapper.getList(count, currentCount);
+	}
+/*
+	//검색
+	private static final Logger log = LoggerFactory.getLogger(PostServiceImpl.class);
+	
+	@Autowired
+	SearchMapper searchMapper;
+	//검색 목록
+    @Override
+    public List<PostVO> searchGetList(Criteria cri) throws Exception {
+        
+        return searchMapper.searchGetList(cri);
+    }
+
+	*/
 
 	@Override
 	public int countPostsByUser(String user_email) {

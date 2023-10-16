@@ -15,13 +15,13 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class PostMapperTest {
-	
+
 	@Setter(onMethod_ = @Autowired)
 	private PostMapper mapper;
-	
+
 	@Test
 	public void testInsert() {
-		
+
 		PostVO post = new PostVO();
 		post.setPost_content("새로 작성하는 내용");
 		post.setPost_user_email("user1@example.com");
@@ -29,39 +29,50 @@ public class PostMapperTest {
 		mapper.insert(post);
 		log.info(post);
 	}
-	
+
 	@Test
 	public void testGet() {
 		mapper.get(3L);
 	}
-	
+
 	@Test
 	public void testGetList() {
-		log.info(mapper.getList(5L,1L));
+		log.info(mapper.getList(5L, 1L));
 	}
-	
+
 	@Test
 	public void testRemove() {
 		mapper.deleteComments(2L);
 		mapper.delete(2L);
 	}
-	
+
 	@Test
 	public void testGetCommentCount() {
 		log.info("comment count: " + mapper.getCommentCount(17L));
 	}
-	
+
 	@Test
 	public void testGetUser() {
 		log.info("post3 user: " + mapper.getUser(18L));
 	}
-	
+
+	// 검색
+	/*
+	 * @Test public void searchGetListTest() throws Exception{
+	 * 
+	 * Criteria cri = new Criteria(3,10); // 3페이지 & 10개 행 표시 cri.setKeyword("테스트");
+	 * 
+	 * List<PostVO> list = mapper.searchGetList(cri);
+	 * 
+	 * for(int i = 0; i < list.size(); i++) { System.out.println("list" + i +
+	 * ".........." + list.get(i)); } }
+	 */
 	@Test
 	public void testGetFirstCommentUser() {
 		log.info("");
 		log.info("post3 first comment user: " + mapper.getFirstCommentUser(3L));
 	}
-	
+
 	@Test
 	public void testGetFirstComment() {
 		log.info("post3 first comment" + mapper.getFirstComment(3L));

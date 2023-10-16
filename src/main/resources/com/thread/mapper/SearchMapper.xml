@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.thread.mapper.SearchMapper">
+  
+<!--    	<sql id="criteria">
+		    <if test="keyword != null">
+				where (post_content like concat ('%', #{keyword}, '%'))
+		    </if>
+	</sql> -->
+
+	
+	<!-- 검색 -->
+	<select id="getSearchList" resultType="com.thread.domain.PostVO">
+	
+			select  post_id, post_content, post_user_email, post_add_date, post_modify_date
+			from test.posts
+			<choose>
+				<when test="keyword != null">
+					where (post_content like concat('%',#{keyword},'%'))
+				</when>
+			</choose>
+			order by post_modify_date desc 
+			limit #{skip}, #{amount}	
+	
+	</select>
+	
+	<!-- 총 개수 -->
+	<select id="searchGetTotal" resultType="int">
+
+  		select count(*) from test.posts
+  		
+<!-- 		<include refid="criteria"></include> -->
+		
+	</select>
+
+
+	
+  </mapper>

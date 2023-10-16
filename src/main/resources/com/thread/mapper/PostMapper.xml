@@ -65,6 +65,18 @@
   WHERE comment_post_id = #{post_id}
 </select>
 
+<!-- 검색 목록 -->
+<select id="searchGetList" resultType="com.thread.domain.PostVO">
+    
+        select  post_id, post_content, post_user_email, post_add_date, post_modify_date
+        from test.posts
+        <if test="keyword != null">
+            where post_content like concat('%',#{keyword}, '%')
+        </if>
+        order by post_content desc 
+        limit #{skip}, #{amount}   
+        
+</select> 
 <select id="countPostsByUser" resultType="int">
     SELECT COUNT(*) FROM posts WHERE post_user_email = #{user_email}
 </select>
@@ -85,5 +97,4 @@
 	ORDER BY c.comment_add_date ASC
 	LIMIT 1;
 </select>
-
 </mapper>
