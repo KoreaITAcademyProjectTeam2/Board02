@@ -13,45 +13,7 @@
 <link href="/resources/styles/body.css" rel="stylesheet" type="text/css" />
 <link href="/resources/styles/comments.css" rel="stylesheet"
 	type="text/css" />
-<style>
-/* 추가한 CSS 스타일 */
-.commentList {
-	display: flex;
-	flex-direction: column;
-}
-
-.commentItem {
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
-}
-
-.profilePic {
-	margin-right: 10px;
-}
-
-</style>
-  <style type="text/css">
-	.uploadResult{
-	width: 100%;
-	background-color: white;
-	}
-	
-	.uploadResult ul {
-	display: flex;
-	flex-flow: row;
-	justify-content: center;
-	align-items: center;}
-	
-	.uploadResult ul li{
-	list-style: none;
-	padding: 10px;
-	}
-	
-	.uploadResult ul li img {
-	width: 40px;
-	}
-  </style>
+<link href="/resources/styles/uploadImage.css" rel="stylesheet" type="text/css" />
 
 </head>
 

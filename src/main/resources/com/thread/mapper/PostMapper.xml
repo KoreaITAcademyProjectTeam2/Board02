@@ -10,13 +10,21 @@
     VALUES(#{post_content}, #{post_user_email})
 </insert>
 
-<select id="getList" resultType="com.thread.domain.PostVO">
+<!-- <select id="getList" resultType="com.thread.domain.PostVO">
 	<![CDATA[
 		SELECT * 
 		FROM posts 
 		ORDER BY post_id DESC
 		LIMIT #{count} OFFSET #{currentCount}
 	]]>
+</select> -->
+
+<select id="getList" resultType="com.thread.domain.PostVO">
+SELECT posts.*, attachment.* 
+FROM posts 
+LEFT JOIN attachment ON posts.post_id = attachment.file_post_id
+ORDER BY posts.post_id DESC
+LIMIT #{count} OFFSET #{currentCount};
 </select>
 
 <select id="get" resultType="com.thread.domain.PostVO">

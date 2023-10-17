@@ -12,6 +12,7 @@
   <link href="/resources/styles/body.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/comments.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/main.css" rel="stylesheet" type="text/css" />
+  <link href="/resources/styles/uploadImage.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -43,7 +44,24 @@
 				</div>
 				<div class="feed-post-box" onclick='location.href="main/getPost?post_id=<c:out value="${postDTOs.post.post_id }" />"'>
 					<div class="feed_picture">
-						(이미지 영역)
+							<div class="uploadResult">
+              					<ul>
+              					(이미지 영역)
+<%--               					    <c:choose>
+								        <c:when test="${not empty post.attachList}">
+								            <c:forEach var="attach" items="${post.attachList}">
+								                <div>
+								                    <li>${attach.file_name}</li>
+								                    <li><img src='<c:url value="/display"/>?fileName=${attach.uploadPath + "/s_" + attach.uuid + "_" + attach.file_name}'></li>
+								                </div>
+								            </c:forEach>
+								        </c:when>
+								        <c:otherwise>
+								            <p>No attachments available</p>
+								        </c:otherwise>
+								    </c:choose> --%>
+              					</ul>
+            				</div>
 					</div>
 					<div class="feed_text" >
 						<c:out value="${postDTOs.post.post_content }"/>
@@ -231,4 +249,33 @@
 	window.addEventListener('scroll', debounceHandleScroll);
 
 </script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    (function(){
+	        const post_id = '<c:out value="${postDTOs.post.post_id}"/>';
+			
+	        
+	        
+	        $.getJSON("/main/getAttachList", {post_id: post_id}, function(arr){
+	        	let str = "";
+	        	console.log(arr);
+	            $(arr).each(function(i, attach){
+	            	const fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.file_name);
+	            	
+	            	str += "<div>";
+	    			str += "<li>" + attach.file_name + "</li>";
+	    			str += "<li><img src='/display?fileName="+fileCallPath+"'></li>";
+	    			str += "</div>";
+	    			
+	    			console.log(attach.file_name);
+	            });
+	            
+		        $(".uploadResult ul").html(str);
+	        });
+	        
+	        
+	    })();
+	});
+	</script>
 </body>

@@ -11,27 +11,7 @@
   <link href="/resources/styles/nav.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/body.css" rel="stylesheet" type="text/css" />
   <link href="/resources/styles/comments.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-	.uploadResult{
-	width: 100%;
-	background-color: white;
-	}
-	
-	.uploadResult ul {
-	display: flex;
-	flex-flow: row;
-	justify-content: center;
-	align-items: center;}
-	
-	.uploadResult ul li{
-	list-style: none;
-	padding: 10px;
-	}
-	
-	.uploadResult ul li img {
-	width: 40px;
-	}
-  </style>
+  <link href="/resources/styles/uploadImage.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
