@@ -53,9 +53,6 @@ public class CommentServiceImpl implements CommentService {
     public int commentRemove(Long comment_id) {
         return commentMapper.delete(comment_id);
     }
-
-
-
 	
     @Override
     public int getCommentCount(Long post_Id) {

@@ -52,7 +52,6 @@
 						</div>
 					</div>
 
-
 					<!--feedbottom-->
 					<div class="feed_bottom">
 						<div class="emoticon_box">
@@ -76,7 +75,7 @@
 							<div class="type_comment">
 								<input type='hidden' name='comment_post_id'
 									value='${empty post ? 0 : post.post.post_id}'>
-									<input type="hidden" name="comment_user_email" value="${userEmail}">
+ 									<input type="hidden" name="comment_user_email" value="${userEmail}">
 									<input
 									class="inputBox" type="text" placeholder="댓글 작성..."
 									name="comment_content">
@@ -103,28 +102,28 @@
 									<p/>
 								</div>
 								<div class="commentActions">
-									<a href="/comment/modify?comment_id=${comment.comment_id}"
-										class="commentAction modify">수정</a>
-									<a href="/comment/remove?comment_id=${comment.comment_id}"
-										class="commentAction delete">삭제</a>
+								    <c:if test="${sessionScope.member.user_email == comment.comment_user_email}">
+<%-- 								        <a href="/comment/modify?comment_id=${comment.comment_id}" class="commentAction modify">수정</a> --%>
+								        <a href="/comment/remove?comment_id=${comment.comment_id}" class="commentAction delete">삭제</a>
+								    </c:if>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
+					<div id="loadMoreComments" class="commentList"></div>
 				</div>
 			</div>
 		</article>
 	</div>
+	
+	
 
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" 
 integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" 
 crossorigin="anonymous"></script> 
 
 	<script type="text/javascript">
-		/* // 작성일을 상대적인 형식으로 변환하고 출력
-		const dateString = "${comment.comment_add_date}";
-		document.write(formatRelativeDate(dateString)); */
-
+		// 작성일을 상대적인 형식으로 변환
 		function formatRelativeDate(dateString) {
 			
 			const now = new Date();
@@ -160,6 +159,108 @@ crossorigin="anonymous"></script>
 	
 
 	<script type="text/javascript">
+    // 수정 버튼 클릭 시 텍스트 박스로 변경
+    function editComment(commentId) {
+      // '수정' 버튼을 누르면 해당 요소를 편집 가능하게 만듦
+      document.getElementById('content_' + commentId).contentEditable = 'true';
+
+      // '수정' 버튼을 숨기고 '확인' 버튼을 보여줌
+      document.querySelector('.modifyComment').style.display = 'none';
+      document.getElementById('save_' + commentId).style.display = 'inline-block';
+    }
+
+    function saveComment(commentId) {
+      // 서버에 변경된 내용을 저장하는 로직 추가
+
+      // 다시 편집 불가능한 상태로 되돌리고, 
+      document.getElementById('content_' + commentId).contentEditable = 'false';
+
+      // ‘확인’버튼은 숨기고 ‘수정’버튼은 다시 보여줍니다.
+      document.querySelector('.modifyComment').style.display = 'inline-block';
+      document.getElementById('save_' + commentId).style.display = 'none';
+    }
+  </script>
+
+<script type="text/javascript">
+        // 무한 스크롤 로직
+        var loading = false;
+        var currentPage = 1;
+        var pageSize = 15;
+        
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if (!loading && $(window).scrollTop() >= $(document).height() - $(window).height() - 15) {
+                    loadMoreComments();
+                }
+            });
+
+            loadMoreComments(); // 초기 로딩
+        });
+
+        function loadMoreComments() {
+            loading = true;
+            var postId = /* 댓글을 가져올 게시물 ID */;
+            
+            // AJAX 요청으로 추가 댓글을 서버에서 가져옵니다.
+            $.ajax({
+                type: 'GET',
+                url: '/comment/getComments',
+                data: {
+                    postId: postId,
+                    page: currentPage,
+                    pageSize: pageSize
+                },
+                success: function (response) {
+                    if (response.length > 0) {
+                        // 서버에서 반환된 댓글 데이터를 페이지에 추가합니다.
+                        for (var i = 0; i < response.length; i++) {
+                            var comment = response[i];
+                         // 새로운 댓글 요소를 생성하고 데이터를 추가
+                            var commentElement = document.createElement('div');
+                            commentElement.className = 'commentItem';
+
+                            // 프로필 이미지 추가
+                            var profilePic = document.createElement('div');
+                            profilePic.className = 'profilePic';
+                            // 프로필 이미지의 경로를 comment.comment_user_profile 등을 이용하여 지정
+
+                            // 댓글 내용 추가
+                            var commentContent = document.createElement('div');
+                            commentContent.className = 'commentContent';
+                            var commentAuthor = document.createElement('p');
+                            commentAuthor.className = 'commentAuthor';
+                            commentAuthor.innerHTML = comment.comment_user_email + " " + comment.comment_add_date;
+                            var commentText = document.createElement('p');
+                            commentText.innerHTML = comment.comment_content;
+
+                            // 삭제 버튼 추가
+                            var commentActions = document.createElement('div');
+                            commentActions.className = 'commentActions';
+                            var deleteButton = document.createElement('a');
+                            deleteButton.href = '/comment/remove?comment_id=' + comment.comment_id;
+                            deleteButton.className = 'commentAction delete';
+                            deleteButton.innerHTML = '삭제';
+
+                            // 각 요소를 commentElement에 추가
+                            commentElement.appendChild(profilePic);
+                            commentElement.appendChild(commentContent);
+                            commentContent.appendChild(commentAuthor);
+                            commentContent.appendChild(commentText);
+                            commentActions.appendChild(deleteButton);
+                            commentElement.appendChild(commentActions);
+
+                            // 댓글 목록에 새로운 댓글 요소를 추가
+                            document.getElementById('commentList').appendChild(commentElement);
+                        }
+                        currentPage++;
+                    }
+                },
+                complete: function () {
+                    loading = false;
+                }
+            });
+        }
+    </script>
 		$(document).ready(function() {
 		    // '수정' 버튼 클릭 시 실행할 함수 정의
 		    $('.modify-button').click(function() {
