@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,7 +67,7 @@ public class UserController {
 		}
 
 		session.setAttribute("member", lvo); // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-		
+
 		return "redirect:/main";
 
 	}
@@ -88,13 +89,13 @@ public class UserController {
 	@GetMapping("/main")
 	public String mainView(HttpSession session, Model model) {
 		UserVO currentUser = (UserVO) session.getAttribute("member");
-		if(currentUser == null) {
+		if (currentUser == null) {
 			return "login";
 		}
 		List<PostVO> postVOs = service.getList(5L, 0L);
 		List<PostDTO> postDTOs = new ArrayList<>();
-		
-		for( PostVO postVO: postVOs) {
+
+		for (PostVO postVO : postVOs) {
 			PostDTO postDTO = new PostDTO();
 			postDTO.setPost(postVO);
 			postDTO.setCommentCount(service.getCommentCount(postVO.getPost_id()));
@@ -103,7 +104,7 @@ public class UserController {
 			postDTO.setFirstCommentUser(service.getFirstCommentUser(postVO.getPost_id()));
 			postDTOs.add(postDTO);
 		}
-		
+
 		model.addAttribute("list", postDTOs);
 		log.info("Main Page Thread List");
 		return "main";
@@ -134,9 +135,13 @@ public class UserController {
 			return "redirect:/userJoin";
 		}
 
-		if (!isValidInput(user.getUser_email()) || !isValidInput(user.getUser_password())
-				|| !isValidInput(user.getUser_name())) {
-			rttr.addFlashAttribute("error", "아이디, 비밀번호, 닉네임에 공백 또는 특수문자를 사용할 수 없습니다.");
+		if (!isValidInput(user.getUser_email()) || !isValidInput(user.getUser_name())) {
+			rttr.addFlashAttribute("error", "아이디, 닉네임에 공백 또는 특수문자를 사용할 수 없습니다.");
+			return "redirect:/userJoin";
+		}
+
+		if (user.getUser_password().matches(".*\\s.*")) {
+			rttr.addFlashAttribute("error", "비밀번호에 공백을 사용할 수 없습니다.");
 			return "redirect:/userJoin";
 		}
 
@@ -158,6 +163,11 @@ public class UserController {
 		return "myPage";
 	}
 
+	@PostMapping("/searchPwd")
+	public void searchPwdPage() {
+		log.info("SearchPwd Page");
+	}
+
 	@PostMapping("/modify")
 	public void modify() {
 		log.info("modifyPage");
@@ -169,7 +179,7 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@PostMapping("/nicknameCheck")
+	@PostMapping(value = "/nicknameCheck", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Integer> nicknameCheck(@RequestParam("user_name") String user_name) {
 		Integer cnt = userservice.nicknameCheck(user_name);
 		log.info("cnt" + cnt);
@@ -177,7 +187,7 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@PostMapping("/emailCheck")
+	@PostMapping(value = "/emailCheck", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Integer> emailCheck(@RequestParam("user_email") String user_email) {
 		Integer ecnt = userservice.emailCheck(user_email);
 		log.info("cnt" + ecnt);
@@ -185,10 +195,13 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@PostMapping("/updateUserName")
+	@PostMapping(value = "/updateUserName", produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean updateUserName(HttpSession session, @RequestParam("user_name") String user_name) {
 		UserVO currentUser = (UserVO) session.getAttribute("member");
 		if (currentUser == null) {
+			return false;
+		}
+		if (userservice.nicknameCheck(user_name) >= 1) {
 			return false;
 		}
 		currentUser.setUser_name(user_name);
@@ -196,12 +209,13 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@PostMapping("/checkCurrentPassword")
+	@PostMapping(value = "/checkCurrentPassword", produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean checkCurrentPassword(HttpSession session, @RequestParam("password") String password) {
 		UserVO currentUser = (UserVO) session.getAttribute("member");
 		if (currentUser == null) {
 			return false;
 		}
+		log.info(password);
 		UserVO dbUser = userservice.get(currentUser.getUser_email());
 		return dbUser.getUser_password().equals(password);
 	}

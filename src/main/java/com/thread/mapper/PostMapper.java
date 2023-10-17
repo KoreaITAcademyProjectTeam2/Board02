@@ -22,15 +22,18 @@ public interface PostMapper {
 	public int deleteComments(Long post_id);
 
 	public String getUser(Long post_id);
+	
+	public String userEmail(Long post_id);
 
 	public int getCommentCount(Long post_id);
 
 	public List<Integer> getCommentCountList(@Param("count") Long count, @Param("currentCount") Long currentCount);
 
 	int countPostsByUser(String user_email);
-	
+
 	public String getFirstCommentUser(Long post_id);
-	
+
 	public CommentVO getFirstComment(Long post_id);
 
+	public Long LastPostId();
 }

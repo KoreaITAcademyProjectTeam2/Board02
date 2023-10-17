@@ -14,6 +14,7 @@
 	<![CDATA[
 		SELECT * 
 		FROM posts 
+		ORDER BY post_id DESC
 		LIMIT #{count} OFFSET #{currentCount}
 	]]>
 </select>
@@ -49,6 +50,12 @@
 	WHERE p.post_id = #{post_id}
 </select>
 
+<select id="userEmail" resultType="String">
+	SELECT post_user_email
+	FROM posts
+	WHERE post_id = #{post_id}
+</select>
+
 <delete id="deleteComments">
 	DELETE FROM comments WHERE comment_post_id = #{post_id}
 </delete>
@@ -59,6 +66,18 @@
   WHERE comment_post_id = #{post_id}
 </select>
 
+<!-- 검색 목록 -->
+<select id="searchGetList" resultType="com.thread.domain.PostVO">
+    
+        select  post_id, post_content, post_user_email, post_add_date, post_modify_date
+        from test.posts
+        <if test="keyword != null">
+            where post_content like concat('%',#{keyword}, '%')
+        </if>
+        order by post_content desc 
+        limit #{skip}, #{amount}   
+        
+</select> 
 <select id="countPostsByUser" resultType="int">
     SELECT COUNT(*) FROM posts WHERE post_user_email = #{user_email}
 </select>
@@ -77,6 +96,13 @@
 	JOIN users u ON c.comment_user_email = u.user_email
 	WHERE c.comment_post_id = #{post_id}
 	ORDER BY c.comment_add_date ASC
+	LIMIT 1;
+</select>
+
+<select id="LastPostId" resultType="Long">
+	SELECT post_id
+	FROM posts
+	ORDER BY post_id DESC 
 	LIMIT 1;
 </select>
 

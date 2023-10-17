@@ -74,14 +74,14 @@ $(document).ready(function() {
 		}
 		
 		$.ajax({
-			url: '/uploadAjaxAction',
+			url: 'uploadAjaxAction',
 			processData: false,
 			contentType: false,
 			data: formData,
 			type: 'POST',
 			dataType: 'json',
 			success: function(result){
-				console.log(result);
+				console.log("result: " + result);
 				showUploadedFile(result);
 				
 				$(".uploadDiv").html(cloneObj.html());
@@ -98,7 +98,7 @@ $(document).ready(function() {
 			str += "<li>" + obj.fileName + "</li>"
 			const fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
 			
-			str += "<li><img src='/display?fileName="+fileCallPath+"'></li>"
+			str += "<li><img src='/main/newPost/display?fileName="+fileCallPath+"'></li>"
 		});
 		
 

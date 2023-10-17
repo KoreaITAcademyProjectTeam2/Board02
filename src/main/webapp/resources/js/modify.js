@@ -6,12 +6,18 @@ $(document).ready(function() {
                       .on('keyup', validateNewPassword);
     $('#confirmPassword').on('keyup', confirmNewPassword);
     $('#password, #newPassword, #confirmPassword').on('input', clearUserNameMessage);
+    $('#password, #newPassword, #confirmPassword').on('input', clearPasswordChangeMessage);
     $('#user_name').on('input', clearPasswordMessages);
 });
 
 function setMessage(element, message, color) {
     $(element).text(message).css('color', color || 'black');
 }
+
+function clearPasswordChangeMessage() {
+    $("#password_change_message").text("");
+}
+
 
 function checkCurrentPassword() {
     var password = $('#password').val();
@@ -39,6 +45,7 @@ function clearCurrentPasswordMessageIfMatching() {
         $("#password_message").text("");
     }
 }
+
 
 function validateNewPassword() {
     var newPassword = $('#newPassword').val();
@@ -81,9 +88,22 @@ function clearUserNameMessage() {
 }
 
 function modifyPassword() {
+	clearPasswordMessages();
+	
     var currentPassword = $('#password').val();
     var newPassword = $('#newPassword').val();
     var confirmPassword = $('#confirmPassword').val();
+   
+    
+    if (!currentPassword || !newPassword || !confirmPassword) {
+        setMessage("#password_change_message", "모든 필드를 입력하세요.", 'red');
+        return;
+    }
+     
+    if (!isPasswordMatching) {
+        setMessage("#password_change_message", "현재 비밀번호를 확인해주세요", 'red');
+        return;
+    }
     
     $("#password_confirm_message").text("");
 
@@ -129,6 +149,8 @@ function modifyUserName() {
         url: "/nicknameCheck",
         data: { user_name: newUserName },
         success: function(cnt) {
+        
+    console.log(cnt);
             if (cnt >= 1) {
                 setMessage("#modify_username_message", "중복된 닉네임입니다.", 'red');
                 $('#user_name').val('');
@@ -138,10 +160,11 @@ function modifyUserName() {
                     url: "/updateUserName",
                     data: { user_name: newUserName },
                     success: function(response) {
+                    console.log("response " + response);
                         if(response) {
                             setMessage("#modify_username_message", "닉네임이 성공적으로 변경되었습니다.", 'green');
                         } else {
-                            setMessage("#modify_username_message", "닉네임 변경 중 오류가 발생했습니다. 다시 시도하세요.", 'red');
+                            setMessage("#modify_username_message", "중복된 닉네임입니다. 다시 시도하세요.", 'red');
                         }
                     },
                     error: function() {

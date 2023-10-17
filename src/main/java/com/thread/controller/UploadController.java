@@ -3,6 +3,8 @@ package com.thread.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,10 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,39 +31,8 @@ import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
 @Log4j
+@RequestMapping("/*")
 public class UploadController {
-	
-	@GetMapping("/uploadForm")
-	public void uploadForm() {
-		log.info("upload form");
-	}
-	
-	@PostMapping("/uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
-		
-		String uploadFolder = "C:\\upload";
-		
-		log.info(uploadFile.toString());
-		
-		for(MultipartFile multipartFile : uploadFile) {
-			log.info("--------------------");
-			log.info("Upload File Name: " + multipartFile.getOriginalFilename());
-			log.info("Upload File Size: " + multipartFile.getSize());
-			
-			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
-			
-			try {
-				multipartFile.transferTo(saveFile);
-			} catch(Exception e) {
-				log.error(e.getMessage());
-			}
-		}
-	}
-	
-	@GetMapping(value = "/uploadAjax", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void uploadAjax() {
-		log.info("upload Ajax");
-	}
 	
 	@PostMapping(value= "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -85,7 +56,7 @@ public class UploadController {
 			
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
 			
-			attachDTO.setFileName(uploadFileName);
+			attachDTO.setFile_name(uploadFileName);
 			
 			UUID uuid = UUID.randomUUID();
 			
@@ -100,7 +71,7 @@ public class UploadController {
 				
 				FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
 				
-				Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+				Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 400, 400);
 				
 				thumbnail.close();
 				
@@ -111,7 +82,33 @@ public class UploadController {
 			}
 		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
-		
+	}
+	
+	@PostMapping("/deleteFile")
+	@ResponseBody
+	public ResponseEntity<String> deleteFile(String file_name, String type){
+		log.info("deleteFile: "+file_name);
+		File file;
+		log.info("type: " +type);
+		try {
+			file = new File("c:\\upload\\" + URLDecoder.decode(file_name, "UTF-8"));
+			
+			file.delete();
+			
+			if(type.equals("image")) {
+				String largeFileName = file.getAbsolutePath().replace("s_", "");
+				
+				log.info("large File Name: " + largeFileName);
+				
+				file = new File(largeFileName);
+				
+				file.delete();
+			}
+		} catch(UnsupportedEncodingException e){
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 	
 	@GetMapping("/display")

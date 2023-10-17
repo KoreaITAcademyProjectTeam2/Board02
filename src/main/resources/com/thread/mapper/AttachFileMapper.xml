@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.thread.mapper.AttachFileMapper">
+
+	<insert id="insert">
+   INSERT INTO attachment(file_post_id, file_name, uuid, uploadPath)
+   VALUES(#{file_post_id}, #{file_name},#{uuid},#{uploadPath});
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM attachment
+		WHERE uuid = #{uuid}
+	</delete>
+	
+	<select id="findByPostId" resultType="com.thread.domain.AttachFileDTO">
+		SELECT * 
+		FROM attachment
+		WHERE file_post_id = #{file_post_id}
+	</select>
+</mapper>

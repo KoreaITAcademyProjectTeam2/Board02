@@ -21,7 +21,7 @@
         <header class="logo">
             <div class="withdrawal_Message">회원정보 수정</div>
         </header>
-        <form id="user_Join" method="post">
+        <form id="user_Join" method="post" action="main">
             <!-- Password Sections -->
             <div class="email-form">
                 <input type="password" name="password" id="password" class="user_Login" placeholder="현재 비밀번호" />
@@ -48,6 +48,11 @@
             </div>
             <input type="button" class="change" value="닉네임 변경" onclick="modifyUserName();">
             <div id="modify_username_message"></div>
+            
+            <footer>
+				<input type="submit" id = "submit" value="메인으로" class="small_text" />
+				<div id="submit_message"></div>
+		</footer>
         </form>
     </div>
     

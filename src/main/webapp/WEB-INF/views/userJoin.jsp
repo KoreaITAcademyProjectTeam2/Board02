@@ -106,14 +106,14 @@
 	            $("#email_message").text(""); // 해당 필드가 유효할 때만 메시지를 제거
 	        }
 	        
-	        if (!validateInput(password)) {
+	        /* if (!validateInput(password)) {
 	            $("#password_message").text("공백 또는 특수문자를 사용할 수 없습니다.");
 	            $("#password_message").css('color', 'red');
 	            e.preventDefault();
 	            return false;
 	        } else {
 	            $("#password_message").text(""); // 해당 필드가 유효할 때만 메시지를 제거
-	        }
+	        } */
 
 	        if (!validateInput(nickname)) {
 	            $("#user_name_message").text("공백 또는 특수문자를 사용할 수 없습니다.");
@@ -222,7 +222,7 @@
                 } else if(user_name == "" || !noSpecialChars.test(user_name)){
                 	message.text("사용할 수 없는 닉네임입니다.");
                 	message.css('color', 'red');
-                	nicknameVerified = false;
+                	nicknameVerified = true;
                     
                 }else {
                 	message.text("사용 가능한 닉네임입니다.");

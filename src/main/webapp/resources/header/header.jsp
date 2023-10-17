@@ -2,23 +2,27 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/resources/header.css">
 <link rel="icon" href="/resources/favicon.ico" type="image/x-icon">
+<%
+	com.thread.domain.UserVO loggedInUser = (com.thread.domain.UserVO)session.getAttribute("member");
+%>
 <header>
   <div class="header-container">
     
     <div class="left_box">
       <span class="logo_box">
         <a href="/main">
-        	<img src="">로고 들어가야함
+        	<img src="/resources/img/logo.png"}>
         </a>
         </span>
     </div>
 
 
     <!-- 내가 고친부분 -->
+    <!-- 검색 영역 -->
     <div class="search_box">
-      <form class="search-form" action="/main/search">
-          <input type="search" class="search-input" placeholder="   🔎 검색" name="q">
-          <button type="submit" class="search-btn">button</button>
+      <form class="search_form" id="moveForm" action="../main/search" method="get">
+          <input type="text" name="keyword" placeholder="   🔎 검색" >
+          <button type="submit" class="search_btn">button</button>
       </form>
     </div>
 
@@ -47,10 +51,26 @@
       	  	<img class="myPage" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/profile.png" 
       	  	alt="마이페이지" />
          </a>
+         <span><%= loggedInUser.getUser_name() %></span>
       </span>
 
     </div>
   </div>
-</header>
   
+  <!-- 검색수 안내 -->
+  <c:if test="${not empty keyword }">
+  	<div class="alert text-center">
+  		<strong>${totalRow}</strong>개의 자료가 검색되었습니다.
+  	</div>
+  </c:if>
+  
+  <!-- card section -->
+  <section id="card-list" class="card-list">
+  	<div class="container">
+  		<div class="row card-list-container thumbnails"></div>
+  	</div>
+  </section>
+
+  
+</header>
   <!--/header-->

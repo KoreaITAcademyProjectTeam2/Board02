@@ -29,7 +29,29 @@
 .profilePic {
 	margin-right: 10px;
 }
+
 </style>
+  <style type="text/css">
+	.uploadResult{
+	width: 100%;
+	background-color: white;
+	}
+	
+	.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;}
+	
+	.uploadResult ul li{
+	list-style: none;
+	padding: 10px;
+	}
+	
+	.uploadResult ul li img {
+	width: 40px;
+	}
+  </style>
 
 </head>
 
@@ -56,7 +78,13 @@
 						</div>
 					</div>
 					<div class="feed-post-box">
-						<div class="feed_picture">(이미지 영역)</div>
+						<div class="feed_picture">
+							<div class="uploadResult">
+              					<ul>
+                <!-- 이곳에 이미지 추가 -->
+              					</ul>
+            				</div>
+						</div>
 						<div class="feed_text">
 							<c:out value="${post.post.post_content }" />
 						</div>
@@ -127,6 +155,10 @@
 	</div>
 	
 	
+
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" 
+integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" 
+crossorigin="anonymous"></script> 
 
 	<script type="text/javascript">
 		// 작성일을 상대적인 형식으로 변환
@@ -267,6 +299,60 @@
             });
         }
     </script>
+		$(document).ready(function() {
+		    // '수정' 버튼 클릭 시 실행할 함수 정의
+		    $('.modify-button').click(function() {
+		        // '수정' 버튼이 속한 댓글 div를 찾음
+		        var commentDiv = $(this).closest('.comment');
+		        // 댓글의 ID를 가져옴
+		        var commentId = commentDiv.data('id');
+		        // 댓글 내용을 가져옴
+		        var commentContent = commentDiv.find('.comment-content').text();
+		
+		        // 텍스트를 텍스트 입력 요소로 바꿈
+		        commentDiv.find('.comment-content').replaceWith('<input type="text" value="' + commentContent + '">');
+		
+		         // '수정' 및 '삭제' 버튼을 '확인' 버튼으로 바꿈
+		         $(this).replaceWith('<button class="confirm-button">확인</button>');
+			     // 삭제버튼은 숨김 처리함.
+			     commentDiv.find('.delete-button').hide();
+		    
+			     // 확인 버튼 클릭 시 이벤트 핸들러 추가 
+			     commentDiv.find('.confirm-button').click(function() {
+			         // 여기에 댓글 업데이트를 위한 AJAX 요청 코드가 들어갑니다...
+			     });
+		    });
+		});
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    (function(){
+	        const post_id = '<c:out value="${post.post.post_id}"/>';
+			
+	        
+	        
+	        $.getJSON("/main/getAttachList", {post_id: post_id}, function(arr){
+	        	let str = "";
+	        	console.log(arr);
+	            $(arr).each(function(i, attach){
+	            	const fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.file_name);
+	            	
+	            	str += "<div>";
+	    			str += "<li>" + attach.file_name + "</li>";
+	    			str += "<li><img src='/display?fileName="+fileCallPath+"'></li>";
+	    			str += "</div>";
+	    			
+	    			console.log(attach.file_name);
+	            });
+	            
+		        $(".uploadResult ul").html(str);
+	        });
+	        
+	        
+	    })();
+	});
+	</script>
+	<!-- <script src="/resources/js/attachList.js"></script> -->
 
 </body>
 
