@@ -59,4 +59,15 @@ public class CommentController {
 	        return "redirect:/error";
 	    }
 	}
+	
+//	// 무한 스크롤
+//	@RequestMapping(value = "/getComments", method = RequestMethod.GET)
+//	public @ResponseBody List<CommentVO> getComments(@RequestParam Long postId,
+//	                                                 @RequestParam int page,
+//	                                                 @RequestParam int pageSize) throws Exception {
+//	    
+//		List<CommentVO> comments = commentService.getCommentsByPostId(postId, page, pageSize);
+//		return comments;
+//	}
+
 }
